@@ -1,0 +1,23 @@
+{
+  "name": "makieta-soft",
+  "version": "1.0.0",
+  "description": "Semaphores steering software",
+  "main": "semaphores-steering.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Class66/Makieta-Soft.git"
+  },
+  "author": "Marcin Gierczak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Class66/Makieta-Soft/issues"
+  },
+  "homepage": "https://github.com/Class66/Makieta-Soft#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "johnny-five": "^2.0.0"
+  }
+}
