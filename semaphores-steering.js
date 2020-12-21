@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000; // Localhost port number
+const port = 4000;
 const serveStatic = require('serve-static'); // To serve static file needed (before to do: npm install serve-static)
 
 // Arduino initialization
@@ -8,25 +8,7 @@ const temporal = require('temporal');
 const { Board, Led } = require('johnny-five');
 const board = new Board();
 
-////// OBSŁUGA DODATKOWEJ PŁYTKI Z PORTAMI PWM
-////// http://johnny-five.io/examples/led-PCA9685/
-////// http://johnny-five.io/api/led/
-////// http://johnny-five.io/api/leds/
-////// https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
-////// OBSŁUGA DODATKOWEJ PŁYTKI Z PORTAMI PWM
-
 board.on('ready', function () {
-    /* KABELKI:
-        WYCHODZĄCE Z ARDUINO:
-            męsko-żeńskie:
-                GND: czerwony (zgodnie z zasilaniem diody Anody na pasku semaforów - czerwona żyła)
-                5V: czarny
-                A4: żółty
-                A5: zielony
-        Wszystkie V+ każdej diody PWM wspólnie podłączyć
-    */
-
-    // PCA9685 Boards
     const defineLedsPinPCA9685BoardOne = (pin) => {
         return new Led.RGB({
             controller: 'PCA9685',
@@ -52,14 +34,6 @@ board.on('ready', function () {
         ORANGE_TWO: defineLedsPinPCA9685BoardOne(3),
         WHITE: defineLedsPinPCA9685BoardOne(4),
     };
-
-    // const ledsSemaphore1 = { FOR TESTS TWO BOARDS ONLY
-    //     GREEN: defineLedsPinPCA9685BoardTwo(0),
-    //     ORANGE_ONE: defineLedsPinPCA9685BoardOne(1),
-    //     RED: defineLedsPinPCA9685BoardTwo(2),
-    //     ORANGE_TWO: defineLedsPinPCA9685BoardOne(3),
-    //     WHITE: defineLedsPinPCA9685BoardTwo(4),
-    // };
 
     const ledsSemaphore2 = {
         GREEN: defineLedsPinPCA9685BoardOne(5),
@@ -273,8 +247,8 @@ board.on('ready', function () {
                 .filter(ledStatus => ledsPinToBeOn.includes(ledStatus.ledPin));
             ledsStatus = [];
             ledsStatus = ledsStatus
-                .concat(ledsStatusForOthersSemaphores) // Tu pozostawiam w statusie wszystkie inne semafory
-                .concat(ledsStatusForledsToBeOff); // Tu wygaszam wszelkie inne diody naszego semafora
+                .concat(ledsStatusForOthersSemaphores)
+                .concat(ledsStatusForledsToBeOff);
         }
     };
 
@@ -806,7 +780,7 @@ board.on('ready', function () {
 
     setInitialSignals();
 
-    /// ROUTING
+    /// NODE SECTION
 
     const routingSignals = [
         {
@@ -910,11 +884,13 @@ board.on('ready', function () {
         },
     ];
 
-    // Middlewares Section - https://expressjs.com/en/guide/writing-middleware.html
+    /// MIDDLEWARES https://expressjs.com/en/guide/writing-middleware.html
+
     const writeTimeOnConsole = (req, res, next) => {
         const today = new Date();
         const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        console.log('Time of calling request:', Date.now());
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        console.log('Time of calling request:', date, time);
         next();
     };
 

@@ -6,11 +6,19 @@
 
 Jest to aplikacja do sterowania semaforami firmy KLUBA oraz symulacji wirtualnego pulpitu nastawczego typu kostkowego.
 
-## Co potrzebne do obsługi programu
+## Wymagane urządzenia do działania aplikacji
 
 - Układ Arduino
 - Płytki PWM PCA 9685
 - Semafory firmy KLUBA (http://modelarstwo-kluba.pl/)
+
+## Jak przygotować połączenie PWA przy pomocy Arduino i PCA9685
+
+- Jak podłączyć płytkę PCA9685:
+http://johnny-five.io/examples/led-PCA9685/
+
+- Jak podłączyć większą ilość płytek PCA9685:
+https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 
 ## Jak uruchomić aplikację po raz pierwszy
 
