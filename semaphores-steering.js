@@ -895,8 +895,8 @@ board.on('ready', function () {
     };
 
     // Middleware - public - folder where static files exist - https://expressjs.com/en/starter/static-files.html
-    app.use(serveStatic('public', {
-        'index': ['index.html', 'index.htm']
+    app.use(serveStatic('.', {
+        'index': ['semaphores-steering.html']
     }));
 
     // Middleware - Our function for logging time
