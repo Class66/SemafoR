@@ -4,7 +4,10 @@
   "description": "Semaphores steering",
   "main": "semaphore.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -12,12 +15,34 @@
   },
   "author": "Marcin Gierczak",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Class66/SemafoR/issues"
-  },
-  "homepage": "https://github.com/Class66/SemafoR#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "johnny-five": "^2.0.0"
+    "johnny-five": "^2.0.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "node-sass": "^4.14.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
