@@ -24,9 +24,9 @@ https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 
 The application is composed of two separate programs:
 
-- **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.
+- **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform. It's Node application.
 
-- **The user interface application** - it's a visual user interface that makes it easier to control semaphores through the browser.
+- **The user interface application** - it's a visual user interface that makes it easier to control semaphores through the browser. It's React application.
 
 ## How to run the steering application for the first time
 
