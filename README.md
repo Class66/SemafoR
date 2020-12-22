@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is application for semaphores steering.
+This is application for KLUBA semaphores steering.
 
 ## Requirements
 
