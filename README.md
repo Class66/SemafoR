@@ -1,6 +1,6 @@
 # SemafoR
 
-![Pulpit Image](/images/pulpit.jpg)
+![Pulpit Image](/images/semafor.jpg)
 
 ## Introduction
 
@@ -12,7 +12,7 @@ This is application for semaphores steering.
 - PCA 9685 board one or more (for PWM steering)
 - Semaphores from KLUBA (http://modelarstwo-kluba.pl/)
 
-## How to prepare connection between PWA and Arduino and PCA9685 board(s)
+## How to create circuit with Arduino and PCA9685 board(s)
 
 - How to connect the PCA9685 board:
 http://johnny-five.io/examples/led-PCA9685/
@@ -26,9 +26,7 @@ The application is composed of two separate programs:
 
 - **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.
 
-- **The user interface (UI) application** - it's a visual user interface that makes it easier to control semaphores through the browser.
-
-## THE STEERING APPLICATION - How to run
+- **The user interface application** - it's a visual user interface that makes it easier to control semaphores through the browser.
 
 ## How to run the steering application for the first time
 
@@ -58,17 +56,7 @@ If there is an issue while loading the file:
 2. Run our application:
 ```node semaphore```
 
-## THE USER INTERFACE APPLICATION - How to run
-
-## How to run the user interface for the first time
-
-1. In folder <b>ui</b> run:
-```npm install```
-
-2. Then run the UI:
-```npm start```
-
-## How to run the user interface for the next time
+## How to run the user interface application
 
 1. In folder <b>ui</b> run:
 ```npm start```
