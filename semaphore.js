@@ -1,7 +1,8 @@
 const express = require('express');
+const serveStatic = require('serve-static');
+
 const app = express();
 const port = 4000;
-const serveStatic = require('serve-static'); // To serve static file needed (before to do: npm install serve-static)
 
 // Arduino initialization
 const temporal = require('temporal');
@@ -9,6 +10,11 @@ const { Board, Led } = require('johnny-five');
 const board = new Board();
 
 board.on('ready', function () {
+
+    /////////////////////////////////////////////////////
+    /// PCA9685 BOARDS CONFIGURATION - CAN BE EXTENDED/MODIFIED BY A USER
+    /////////////////////////////////////////////////////
+
     const defineLedsPinPCA9685BoardOne = (pin) => {
         return new Led.RGB({
             controller: 'PCA9685',
@@ -26,6 +32,10 @@ board.on('ready', function () {
             isAnode: true,
         });
     };
+
+    /////////////////////////////////////////////////////
+    /// SEMAPHORES LED'S PINS CONFIGURATION - CAN BE EXTENDED/MODIFIED BY A USER
+    /////////////////////////////////////////////////////
 
     const ledsSemaphore1 = {
         GREEN: defineLedsPinPCA9685BoardOne(0),
@@ -72,7 +82,11 @@ board.on('ready', function () {
         WHITE: defineLedsPinPCA9685BoardTwo(10),
     };
 
-    // Maksymalna jasnosc LED - scisle powiazane z parametrami w ledsEffectConfig
+    /////////////////////////////////////////////////////
+    /// LEDS CONFIGURATION - CAN BE EXTENDED/MODIFIED BY A USER
+    /////////////////////////////////////////////////////
+
+    // Maximum LED brightness (closely related to the parameters in ledsEffectConfig)
     const ledsMaxBrightness = { 
         GREEN: 4,
         ORANGE: 45,
@@ -81,6 +95,7 @@ board.on('ready', function () {
         BLUE: 5,
     };
 
+    // Timing of leds effects (closely related to the parameters in ladsMaxBrightness)
     const ledsEffectConfig = {
         GREEN: {
             pulse: {
@@ -138,14 +153,14 @@ board.on('ready', function () {
     };
 
     const signal = {
-        // Semafor glowny
+        // Main semaphore
         S1: 'S1', S2: 'S2', S3: 'S3', S4: 'S4', S5: 'S5', S10: 'S10',
         S11: 'S11', S12: 'S12', S13: 'S13', SZ: 'SZ', MS2: 'MS2',
-        // Tarcza manewrowa
+        // Maneuvering shield
         MS1: 'MS1', MS2: 'MS2',
-        // Sygnal powtarzajacy
+        // Repeating signal
         SP1: 'SP1', SP2: 'SP2', SP3: 'SP3', SP4: 'SP4',
-        // Wylaczone
+        // Off
         OFF: 'OFF',
     };
 
@@ -153,7 +168,9 @@ board.on('ready', function () {
     let ledsStatus = [];
     let currentSignals = [];
 
-    /// LED STEERING METHODS
+    /////////////////////////////////////////////////////
+    /// LED STEERING METHODS - DO NOT MODIFY !!!
+    /////////////////////////////////////////////////////
 
     const stopAllLoops = (semaphore, ledsPinToBeOn) => {
         if (loopInstances.length) {
@@ -275,7 +292,9 @@ board.on('ready', function () {
         ledsToBeOff.forEach(led => led.off());
     };
 
-    /// LED EFFECTS METHODS
+    /////////////////////////////////////////////////////
+    /// LED EFFECTS METHODS - DO NOT MODIFY !!!
+    /////////////////////////////////////////////////////
 
     const fadeIn = (led, maxBrightness, effectConfig) => {
         let brightness = 0;
@@ -422,7 +441,9 @@ board.on('ready', function () {
         putLedStatus(semaphore, led, status.ON);
     };
 
-    /// CHANGE SIGNALS METHODS
+    /////////////////////////////////////////////////////
+    /// CHANGE SIGNAL METHODS - DO NOT MODIFY !!!
+    /////////////////////////////////////////////////////
 
     const generateSignal = (semaphore, signalStatus, ledsPinToBeOn, effects) => {
         if (!isSignalSet(semaphore, signalStatus)) {
@@ -766,6 +787,10 @@ board.on('ready', function () {
         console.log(`Choosed ${signal.OFF} signal`);
     };
 
+    /////////////////////////////////////////////////////
+    /// SET INITIAL SIGNALS - CAN BE EXTENDED/MODIFIED BY A USER
+    /////////////////////////////////////////////////////
+
     const setInitialSignals = () => {
         setSignalS1(ledsSemaphore1);
         //setSignalS1(ledsSemaphore2);
@@ -776,13 +801,13 @@ board.on('ready', function () {
         //setSignalSp1(ledsSemaphore1Pow);
     };
 
-    /// SET INITIAL SIGNALS
-
     setInitialSignals();
 
-    /// NODE SECTION
+    /////////////////////////////////////////////////////
+    /// NODE ROUTING
+    /////////////////////////////////////////////////////
 
-    const routingSignals = [
+    const routingSignals = [ // DO NOT MODIFY !!!
         {
             routeSignal: signal.S1,
             setSignal: (semaphore) => setSignalS1(semaphore),
@@ -853,7 +878,7 @@ board.on('ready', function () {
         },
     ];
 
-    const routingSemaphores = [
+    const routingSemaphores = [ // CAN BE EXTENDED/MODIFIED BY A USER
         {
             routeSemaphore: 'sem1',
             semaphore: ledsSemaphore1,
@@ -884,7 +909,9 @@ board.on('ready', function () {
         },
     ];
 
-    /// MIDDLEWARES https://expressjs.com/en/guide/writing-middleware.html
+    /////////////////////////////////////////////////////
+    /// MIDDLEWARES https://expressjs.com/en/guide/writing-middleware.html - DO NOT MODIFY !!!
+    /////////////////////////////////////////////////////
 
     const writeTimeOnConsole = (req, res, next) => {
         const today = new Date();
@@ -894,9 +921,9 @@ board.on('ready', function () {
         next();
     };
 
-    // Middleware - public - folder where static files exist - https://expressjs.com/en/starter/static-files.html
+    // Middleware - Our static files - https://expressjs.com/en/starter/static-files.html
     app.use(serveStatic('.', {
-        'index': ['semaphores-steering.html']
+        'index': ['semaphore.html']
     }));
 
     // Middleware - Our function for logging time
