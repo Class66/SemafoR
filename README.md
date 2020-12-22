@@ -36,27 +36,27 @@ The application is composed of two separate programs:
 
 2. Open Arduino IDE
    
-3. Connect our circuit (with Arduino and PCA9685) to the selected USB port
+3. Connect your circuit (with Arduino and PCA9685) to the selected USB port
    
 4. Using Arduino IDE load to the Arduino a file ***SandardFirmataPlus.ino***
 (it's located in folder'Johnny-Five/firmware').
 If there is an issue while loading the file:
 				Select from top menu Tools/Port > COM3 or other COM prepared for the Arduino Uno
 			
-5. To be able to steering semaphores via our computer (localhost) install Node Express:
+5. To be able to steering semaphores via your computer (localhost) install Node Express:
 ```npm install express --save```
 
-6. Run our application:
+6. Run application:
 ```node semaphore```
 
 ## How to run the steering application for the next time
 
-1. Connect our circuit (with Arduino and PCA9685) to the selected USB port
+1. Connect your circuit (with Arduino and PCA9685) to the selected USB port
 
-2. Run our application:
+2. Run application:
 ```node semaphore```
 
 ## How to run the user interface application
 
-1. Run our application:
+1. Run application:
 ```npm start```
