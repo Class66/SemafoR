@@ -1,6 +1,6 @@
 # SemafoR
 
-![Pulpit Image](/images/semafor.jpg)
+![Pulpit Image](/images/semaphore.jpg)
 
 ## Introduction
 
@@ -58,5 +58,5 @@ If there is an issue while loading the file:
 
 ## How to run the user interface application
 
-1. In folder <b>ui</b> run:
+1. Run our application:
 ```npm start```
