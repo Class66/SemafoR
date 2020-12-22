@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
-import './App.css';
+import { Semaphore } from './components/Semaphore/Semaphore';
+
+import './App.scss';
 
 function App() {
   const uri = 'http://localhost:4000';
@@ -195,29 +197,30 @@ function App() {
 
   return (
     <div className="App">
+      <Semaphore />
       <br /><br />
-      <button id="sem1-s1" class="driver">S1</button>
-      <button id="sem1-s2" class="driver">S2</button>
-      <button id="sem1-s3" class="driver">S3</button>
-      <button id="sem1-s4" class="driver">S4</button>
-      <button id="sem1-s5" class="driver">S5</button>
-      <button id="sem1-s10" class="driver">S10</button>
-      <button id="sem1-s11" class="driver">S11</button>
-      <button id="sem1-s12" class="driver">S12</button>
-      <button id="sem1-s13" class="driver">S13</button>
-      <button id="sem1-sz" class="driver">SZ</button>
-      <button id="sem1-ms2" class="driver">MS2</button>
-      <button id="sem1-off" class="driver">OFF</button>
+      <button id="sem1-s1" className="driver">S1</button>
+      <button id="sem1-s2" className="driver">S2</button>
+      <button id="sem1-s3" className="driver">S3</button>
+      <button id="sem1-s4" className="driver">S4</button>
+      <button id="sem1-s5" className="driver">S5</button>
+      <button id="sem1-s10" className="driver">S10</button>
+      <button id="sem1-s11" className="driver">S11</button>
+      <button id="sem1-s12" className="driver">S12</button>
+      <button id="sem1-s13" className="driver">S13</button>
+      <button id="sem1-sz" className="driver">SZ</button>
+      <button id="sem1-ms2" className="driver">MS2</button>
+      <button id="sem1-off" className="driver">OFF</button>
       <br /><br />
-      <button id="sem1man-ms1" class="driver">MS1</button>
-      <button id="sem1man-ms2" class="driver">MS2</button>
-      <button id="sem1man-off" class="driver">OFF</button>
+      <button id="sem1man-ms1" className="driver">MS1</button>
+      <button id="sem1man-ms2" className="driver">MS2</button>
+      <button id="sem1man-off" className="driver">OFF</button>
       <br /><br />
-      <button id="sem1pow-sp1" class="driver">SP1</button>
-      <button id="sem1pow-sp2" class="driver">SP2</button>
-      <button id="sem1pow-sp3" class="driver">SP3</button>
-      <button id="sem1pow-sp4" class="driver">SP4</button>
-      <button id="sem1pow-off" class="driver">OFF</button>
+      <button id="sem1pow-sp1" className="driver">SP1</button>
+      <button id="sem1pow-sp2" className="driver">SP2</button>
+      <button id="sem1pow-sp3" className="driver">SP3</button>
+      <button id="sem1pow-sp4" className="driver">SP4</button>
+      <button id="sem1pow-off" className="driver">OFF</button>
     </div>
   )
 }
