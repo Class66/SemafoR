@@ -1,7 +1,17 @@
+@import "../../scss/_colors";
+
 .Semaphore {
-  
-  div {
-    background-color: red;
-  }
-  background-color: green;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  width: 50px;
+  background-color: $gray;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.Semaphore:hover {
+  background-color: $light-gray;
 }

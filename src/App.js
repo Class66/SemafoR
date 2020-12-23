@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
 import { Semaphore } from './components/Semaphore/Semaphore';
+import { signals } from './enums/signals.enum';
+import { semaphoreTypes } from './enums/semaphoreTypes.enum';
 
 import './App.scss';
 
@@ -195,9 +197,41 @@ function App() {
 
   });
 
+  const setSignalHandler = ({ signalType }) => {
+    console.log(signalType);
+  };
+
   return (
     <div className="App">
-      <Semaphore />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S1} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S2} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S3} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S4} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S5} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S10} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S11} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S12} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S13} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SZ} semaphoreType={semaphoreTypes.Sm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sm} />
+
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP1} semaphoreType={semaphoreTypes.Sp} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP2} semaphoreType={semaphoreTypes.Sp} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP3} semaphoreType={semaphoreTypes.Sp} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP4} semaphoreType={semaphoreTypes.Sp} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sp} />
+
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS1} semaphoreType={semaphoreTypes.To} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS2} semaphoreType={semaphoreTypes.To} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS3} semaphoreType={semaphoreTypes.To} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS4} semaphoreType={semaphoreTypes.To} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.To} />
+
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS1} semaphoreType={semaphoreTypes.Tm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS2} semaphoreType={semaphoreTypes.Tm} />
+      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Tm} />
+
+
       <br /><br />
       <button id="sem1-s1" className="driver">S1</button>
       <button id="sem1-s2" className="driver">S2</button>
