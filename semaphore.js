@@ -61,25 +61,30 @@ board.on('ready', function () {
         WHITE: defineLedsPinPCA9685BoardOne(14),
     };
 
-    const ledsSemaphore1Man = {
+    const ledsSemaphore1Tm = {
         WHITE: defineLedsPinPCA9685BoardTwo(0),
         BLUE: defineLedsPinPCA9685BoardTwo(1),
     };
 
-    const ledsSemaphore2Man = {
+    const ledsSemaphore2Tm = {
         WHITE: defineLedsPinPCA9685BoardTwo(2),
         BLUE: defineLedsPinPCA9685BoardTwo(3),
     };
 
-    const ledsSemaphore3Man = {
+    const ledsSemaphore3Tm = {
         WHITE: defineLedsPinPCA9685BoardTwo(4),
         BLUE: defineLedsPinPCA9685BoardTwo(5),
     };
 
-    const ledsSemaphore1Pow = {
+    const ledsSemaphore1Sp = {
         ORANGE: defineLedsPinPCA9685BoardTwo(8),
         GREEN: defineLedsPinPCA9685BoardTwo(9),
         WHITE: defineLedsPinPCA9685BoardTwo(10),
+    };
+
+    const ledsSemaphore1To = {
+        ORANGE: defineLedsPinPCA9685BoardTwo(11),
+        GREEN: defineLedsPinPCA9685BoardTwo(12),
     };
 
     /////////////////////////////////////////////////////
@@ -778,6 +783,70 @@ board.on('ready', function () {
         console.log(`Choosed ${signal.SP4} signal`);
     };
 
+    const setSignalOs1 = (semaphore) => {
+        const effects = [
+            () => fadeInComplex(
+                semaphore,
+                semaphore.ORANGE,
+                ledsMaxBrightness.ORANGE,
+                ledsEffectConfig.ORANGE,
+                [getLedPinNumber(semaphore.ORANGE)]
+            ),
+        ];
+        const ledsPinToBeOn = [];
+
+        generateSignal(semaphore, signal.OS1, ledsPinToBeOn, effects);
+        console.log(`Choosed ${signal.OS1} signal`);
+    };
+
+    const setSignalOs2 = (semaphore) => {
+        const effects = [
+            () => fadeInComplex(
+                semaphore,
+                semaphore.GREEN,
+                ledsMaxBrightness.GREEN,
+                ledsEffectConfig.GREEN,
+                [getLedPinNumber(semaphore.GREEN)]
+            ),
+        ];
+        const ledsPinToBeOn = [];
+
+        generateSignal(semaphore, signal.OS2, ledsPinToBeOn, effects);
+        console.log(`Choosed ${signal.OS2} signal`);
+    };
+
+    const setSignalOs3 = (semaphore) => {
+        const effects = [
+            () => pulseComplex(
+                semaphore,
+                semaphore.GREEN,
+                ledsMaxBrightness.GREEN,
+                ledsEffectConfig.GREEN,
+                [getLedPinNumber(semaphore.GREEN)]
+            ),
+        ];
+        const ledsPinToBeOn = [getLedPinNumber(semaphore.GREEN)];
+
+        generateSignal(semaphore, signal.OS3, ledsPinToBeOn, effects);
+        console.log(`Choosed ${signal.OS3} signal`);
+    };
+
+    const setSignalOs4 = (semaphore) => {
+        const effects = [
+            () => pulseComplex(
+                semaphore,
+                semaphore.ORANGE,
+                ledsMaxBrightness.ORANGE,
+                ledsEffectConfig.ORANGE,
+                [getLedPinNumber(semaphore.ORANGE)]
+            ),
+        ];
+        const ledsPinToBeOn = [getLedPinNumber(semaphore.ORANGE)];
+
+        generateSignal(semaphore, signal.OS4, ledsPinToBeOn, effects);
+        console.log(`Choosed ${signal.OS4} signal`);
+    };
+
     const setSignalOff = (semaphore) => {
         const effects = [];
         const ledsPinToBeOn = [];
@@ -797,10 +866,11 @@ board.on('ready', function () {
         setSignalS1(ledsSemaphore1);
         //setSignalS1(ledsSemaphore2);
         //setSignalS1(ledsSemaphore3);
-        setSignalMs1(ledsSemaphore1Man);
-        //setSignalMs1(ledsSemaphore2Man);
-        //setSignalMs1(ledsSemaphore3Man);
-        //setSignalSp1(ledsSemaphore1Pow);
+        setSignalMs1(ledsSemaphore1Tm);
+        //setSignalMs1(ledsSemaphore2Tm);
+        //setSignalMs1(ledsSemaphore3Tm);
+        //setSignalSp1(ledsSemaphore1Sp);
+        //setSignalOs1(ledsSemaphore1To);
     };
 
     setInitialSignals();
@@ -875,6 +945,22 @@ board.on('ready', function () {
             setSignal: (semaphore) => setSignalSp4(semaphore),
         },
         {
+            routeSignal: signal.OS1,
+            setSignal: (semaphore) => setSignalOs1(semaphore),
+        },
+        {
+            routeSignal: signal.OS2,
+            setSignal: (semaphore) => setSignalOs2(semaphore),
+        },
+        {
+            routeSignal: signal.OS3,
+            setSignal: (semaphore) => setSignalOs3(semaphore),
+        },
+        {
+            routeSignal: signal.OS4,
+            setSignal: (semaphore) => setSignalOs4(semaphore),
+        },
+        {
             routeSignal: signal.OFF,
             setSignal: (semaphore) => setSignalOff(semaphore),
         },
@@ -894,21 +980,25 @@ board.on('ready', function () {
             semaphore: ledsSemaphore3,
         },
         {
-            routeSemaphore: 'sem1man',
-            semaphore: ledsSemaphore1Man,
+            routeSemaphore: 'sem1tm',
+            semaphore: ledsSemaphore1Tm,
         },
         {
-            routeSemaphore: 'sem2man',
-            semaphore: ledsSemaphore2Man,
+            routeSemaphore: 'sem2tm',
+            semaphore: ledsSemaphore2Tm,
         },
         {
-            routeSemaphore: 'sem3man',
-            semaphore: ledsSemaphore3Man,
+            routeSemaphore: 'sem3tm',
+            semaphore: ledsSemaphore3Tm,
         },
         {
-            routeSemaphore: 'sem1pow',
-            semaphore: ledsSemaphore1Pow,
+            routeSemaphore: 'sem1sp',
+            semaphore: ledsSemaphore1Sp,
         },
+        // {
+        //     routeSemaphore: 'sem1to',
+        //     semaphore: ledsSemaphore1To,
+        // },
     ];
 
     /////////////////////////////////////////////////////
