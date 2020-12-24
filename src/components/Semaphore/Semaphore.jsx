@@ -279,13 +279,13 @@ export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
   }
 
   return (
-    <div className="Semaphore" onClick={() => setSignalHandler(signals.S1)}>
+    <div className="Semaphore" onClick={() => setSignalHandler(signalType)}>
       { displaySignals()}
     </div>
   )
 }
 
-Pole.propTypes = {
+Semaphore.propTypes = {
   setSignalHandler: PropTypes.func.isRequired,
   signalType: PropTypes.string.isRequired,
   semaphoreType: PropTypes.string.isRequired,

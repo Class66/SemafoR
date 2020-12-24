@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Semaphore } from './components/Semaphore/Semaphore';
 import { signals } from './enums/signals.enum';
@@ -8,6 +8,8 @@ import './App.scss';
 
 function App() {
   const uri = 'http://localhost:4000';
+
+  const [semaphore, setSemaphore] = useState();
 
   useEffect(() => {
     // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
@@ -197,66 +199,81 @@ function App() {
 
   });
 
-  const setSignalHandler = ({ signalType }) => {
+  const setSignalHandler = (signalType) => {
     console.log(signalType);
   };
 
   return (
-    <div className="App">
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S1} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S2} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S3} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S4} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S5} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S10} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S11} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S12} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S13} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SZ} semaphoreType={semaphoreTypes.Sm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sm} />
+    <>
+      <div className="App">
+        <div className="semaphore-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S1} semaphoreType={semaphoreTypes.Sm} />
+          <button id="sm1" className="driver">Sm 1</button>
+        </div>
+        <div className="semaphore-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S4} semaphoreType={semaphoreTypes.Sm} />
+          <button id="sm2" className="driver">Sm 11</button>
+        </div>
+        <div className="semaphores-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S1} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S2} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S3} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S4} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S5} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S10} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S11} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S12} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.S13} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SZ} semaphoreType={semaphoreTypes.Sm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sm} />
+        </div>
+        <div className="semaphores-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP1} semaphoreType={semaphoreTypes.Sp} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP2} semaphoreType={semaphoreTypes.Sp} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP3} semaphoreType={semaphoreTypes.Sp} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP4} semaphoreType={semaphoreTypes.Sp} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sp} />
+        </div>
+        <div className="semaphores-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS1} semaphoreType={semaphoreTypes.To} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS2} semaphoreType={semaphoreTypes.To} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS3} semaphoreType={semaphoreTypes.To} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS4} semaphoreType={semaphoreTypes.To} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.To} />
+        </div>
+        <div className="semaphores-group">
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS1} semaphoreType={semaphoreTypes.Tm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS2} semaphoreType={semaphoreTypes.Tm} />
+          <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Tm} />
+        </div>
 
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP1} semaphoreType={semaphoreTypes.Sp} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP2} semaphoreType={semaphoreTypes.Sp} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP3} semaphoreType={semaphoreTypes.Sp} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.SP4} semaphoreType={semaphoreTypes.Sp} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Sp} />
-
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS1} semaphoreType={semaphoreTypes.To} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS2} semaphoreType={semaphoreTypes.To} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS3} semaphoreType={semaphoreTypes.To} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OS4} semaphoreType={semaphoreTypes.To} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.To} />
-
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS1} semaphoreType={semaphoreTypes.Tm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.MS2} semaphoreType={semaphoreTypes.Tm} />
-      <Semaphore setSignalHandler={setSignalHandler} signalType={signals.OFF} semaphoreType={semaphoreTypes.Tm} />
-
-      <div>
-        <br /><br />
-        <button id="sem1-s1" className="driver">S1</button>
-        <button id="sem1-s2" className="driver">S2</button>
-        <button id="sem1-s3" className="driver">S3</button>
-        <button id="sem1-s4" className="driver">S4</button>
-        <button id="sem1-s5" className="driver">S5</button>
-        <button id="sem1-s10" className="driver">S10</button>
-        <button id="sem1-s11" className="driver">S11</button>
-        <button id="sem1-s12" className="driver">S12</button>
-        <button id="sem1-s13" className="driver">S13</button>
-        <button id="sem1-sz" className="driver">SZ</button>
-        <button id="sem1-ms2" className="driver">MS2</button>
-        <button id="sem1-off" className="driver">OFF</button>
-        <br /><br />
-        <button id="sem1tm-ms1" className="driver">MS1</button>
-        <button id="sem1tm-ms2" className="driver">MS2</button>
-        <button id="sem1tm-off" className="driver">OFF</button>
-        <br /><br />
-        <button id="sem1sp-sp1" className="driver">SP1</button>
-        <button id="sem1sp-sp2" className="driver">SP2</button>
-        <button id="sem1sp-sp3" className="driver">SP3</button>
-        <button id="sem1sp-sp4" className="driver">SP4</button>
-        <button id="sem1sp-off" className="driver">OFF</button>
+        <div>
+          <br /><br />
+          <button id="sem1-s1" className="driver">S1</button>
+          <button id="sem1-s2" className="driver">S2</button>
+          <button id="sem1-s3" className="driver">S3</button>
+          <button id="sem1-s4" className="driver">S4</button>
+          <button id="sem1-s5" className="driver">S5</button>
+          <button id="sem1-s10" className="driver">S10</button>
+          <button id="sem1-s11" className="driver">S11</button>
+          <button id="sem1-s12" className="driver">S12</button>
+          <button id="sem1-s13" className="driver">S13</button>
+          <button id="sem1-sz" className="driver">SZ</button>
+          <button id="sem1-ms2" className="driver">MS2</button>
+          <button id="sem1-off" className="driver">OFF</button>
+          <br /><br />
+          <button id="sem1tm-ms1" className="driver">MS1</button>
+          <button id="sem1tm-ms2" className="driver">MS2</button>
+          <button id="sem1tm-off" className="driver">OFF</button>
+          <br /><br />
+          <button id="sem1sp-sp1" className="driver">SP1</button>
+          <button id="sem1sp-sp2" className="driver">SP2</button>
+          <button id="sem1sp-sp3" className="driver">SP3</button>
+          <button id="sem1sp-sp4" className="driver">SP4</button>
+          <button id="sem1sp-off" className="driver">OFF</button>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
