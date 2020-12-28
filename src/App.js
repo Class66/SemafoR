@@ -9,7 +9,18 @@ import './App.scss';
 function App() {
   const uri = 'http://localhost:4000';
 
-  const [semaphore, setSemaphore] = useState();
+  const [semaphores, setSemaphores] = useState();
+  const [selectedSemaphore, setSelectedSemaphore] = useState();
+
+  // const semaphores = [
+  //   {
+  //     type: 'Sm1',
+  //     signal: 'S1',
+  //   }, {
+  //     type: 'Sm2',
+  //     signal: 'S11',
+  //   }];
+  // const selectedSemaphore = 'Sm2';
 
   useEffect(() => {
     // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
