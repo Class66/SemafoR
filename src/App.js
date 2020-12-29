@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Semaphore } from './components/Semaphore/Semaphore';
 import { ConnectedSemaphore } from './components/ConnectedSemaphore/ConnectedSemaphore';
@@ -7,11 +7,7 @@ import { semaphoreTypes } from './enums/semaphoreTypes.enum';
 
 import './App.scss';
 
-const semaphoreSteeringNodeApp = 'http://localhost:4000';
-
-const semaphoreRouteName = (semaphoreType, semaphoreNumber) => (
-	`${semaphoreType}${semaphoreNumber}`
-);
+const semaphoreSteeringUri = 'http://localhost:4000';
 
 const semaphoresConfig = [
 	{
@@ -45,23 +41,41 @@ const semaphoresConfig = [
 	}
 ];
 
+const semaphoreRouteName = (semaphoreType, semaphoreNumber) => (
+	`${semaphoreType}${semaphoreNumber}`
+);
+
+const semaphoreSteeringRoute = (semaphore, signal) => (
+	`${semaphoreSteeringUri}/${semaphoreRouteName(
+		semaphore.type,
+		semaphore.number
+	)}/${signal}`
+);
+
+const callApiToSetSignal = (semaphoreSteeringRoute) => {
+	fetch(semaphoreSteeringRoute)
+		.then(resp => resp.text())
+		.then(resp => {
+			console.log(resp);
+		});
+};
+
+const setDefaultSignals = () => {
+	semaphoresConfig.forEach(sem => {
+		callApiToSetSignal(semaphoreSteeringRoute(sem, sem.signal));
+	});
+};
+
 function App() {
 	const [semaphoresSignal, setSemaphoresSignal] = useState(semaphoresConfig);
 	const [selectedSemaphore, setSelectedSemaphore] = useState(semaphoresConfig[0]);
 
-	const setSignalHandler = (signal) => {
-		const semaphoreRoute = semaphoreRouteName(
-			selectedSemaphore.type,
-			selectedSemaphore.number
-		);
-		const semaphoreSteeringRoute =
-			`${semaphoreSteeringNodeApp}/${semaphoreRoute}/${signal}`;
+	useEffect(() => {
+		setDefaultSignals();
+	}, []);
 
-		fetch(semaphoreSteeringRoute)
-			.then(resp => resp.text())
-			.then(resp => {
-				console.log(resp);
-			});
+	const setSignalHandler = (signal) => {
+		callApiToSetSignal(semaphoreSteeringRoute(selectedSemaphore, signal));
 
 		const newSemaphoresSignal = [...semaphoresSignal];
 		const selectedSemaphoreIndex = semaphoresSignal.findIndex(
