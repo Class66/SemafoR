@@ -4,7 +4,7 @@ import { Semaphore } from './components/Semaphore/Semaphore';
 import { ConnectedSemaphore } from './components/ConnectedSemaphore/ConnectedSemaphore';
 import { signals } from './enums/signals.enum';
 import { semaphoreTypes } from './enums/semaphoreTypes.enum';
-import { semaphoreSteeringUri, semaphoresGeneralConfiguration } from './common/semaphoresConfig';
+import { semaphoreSteeringUri, semaphoresGeneralConfiguration } from './common/semaphoreConfig';
 
 import './App.scss';
 
