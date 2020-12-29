@@ -3,7 +3,7 @@ import {
 	semaphoreSteeringPort,
 	semaphoresLedConfiguration,
 	semaphoresGeneralConfiguration
-} from './src/common/semaphoresConfig';
+} from './src/common/semaphoreConfig';
 
 const express = require('express');
 const cors = require('cors');
