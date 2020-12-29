@@ -18,13 +18,13 @@ export const Pole = ({ semaphoreType }) => {
       default:
         return signalLights.POLE;
     }
-  }
+  };
 
   return (
     <Signal image={displayPole()} />
   )
-}
+};
 
 Pole.propTypes = {
   semaphoreType: PropTypes.string.isRequired,
-}
+};
