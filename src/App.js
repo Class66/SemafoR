@@ -4,42 +4,9 @@ import { Semaphore } from './components/Semaphore/Semaphore';
 import { ConnectedSemaphore } from './components/ConnectedSemaphore/ConnectedSemaphore';
 import { signals } from './enums/signals.enum';
 import { semaphoreTypes } from './enums/semaphoreTypes.enum';
+import { semaphoreSteeringUri, semaphoresGeneralConfiguration } from './common/semaphoresConfig';
 
 import './App.scss';
-
-const semaphoreSteeringUri = 'http://localhost:4000';
-
-const semaphoresConfig = [
-	{
-		type: semaphoreTypes.Sm,
-		number: 1,
-		signal: signals.S1,
-	}, {
-		type: semaphoreTypes.Sm,
-		number: 2,
-		signal: signals.S1,
-	}, {
-		type: semaphoreTypes.Sm,
-		number: 3,
-		signal: signals.S1,
-	}, {
-		type: semaphoreTypes.Sp,
-		number: 1,
-		signal: signals.SP1,
-	}, {
-		type: semaphoreTypes.Tm,
-		number: 1,
-		signal: signals.MS1,
-	}, {
-		type: semaphoreTypes.Tm,
-		number: 2,
-		signal: signals.MS1,
-	}, {
-		type: semaphoreTypes.Tm,
-		number: 3,
-		signal: signals.MS1,
-	}
-];
 
 const semaphoreRouteName = (semaphoreType, semaphoreNumber) => (
 	`${semaphoreType}${semaphoreNumber}`
@@ -61,14 +28,14 @@ const callApiToSetSignal = (semaphoreSteeringRoute) => {
 };
 
 const setDefaultSignals = () => {
-	semaphoresConfig.forEach(sem => {
+	semaphoresGeneralConfiguration.forEach(sem => {
 		callApiToSetSignal(semaphoreSteeringRoute(sem, sem.signal));
 	});
 };
 
 function App() {
-	const [semaphoresSignal, setSemaphoresSignal] = useState(semaphoresConfig);
-	const [selectedSemaphore, setSelectedSemaphore] = useState(semaphoresConfig[0]);
+	const [semaphoresSignal, setSemaphoresSignal] = useState(semaphoresGeneralConfiguration);
+	const [selectedSemaphore, setSelectedSemaphore] = useState(semaphoresGeneralConfiguration[0]);
 
 	useEffect(() => {
 		setDefaultSignals();
