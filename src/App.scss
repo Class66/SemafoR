@@ -7,22 +7,10 @@
   .semaphores-group {
     display: flex;
     float: left;
+    clear: both;
     margin: 10px;
     padding: 10px;
     background-color: $lighter-gray;
     border-radius: 25px;
-  }
-
-  .semaphore-group {
-    display: flex;
-    flex-direction: column;
-    float: left;
-    margin: 10px;
-    padding: 10px;
-
-    button {
-      height: 30px;
-      margin: 0 0 5px 0;
-    }
   }
 }

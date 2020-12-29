@@ -10,8 +10,8 @@
   background-color: $gray;
   border-radius: 25px;
   margin: 5px;
-}
 
-.Semaphore:hover {
-  background-color: $light-gray;
+  &:hover {
+    background-color: $light-gray;
+  }
 }
