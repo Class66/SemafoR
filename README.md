@@ -47,16 +47,16 @@ If there is an issue while loading the file:
 ```npm install express --save```
 
 6. Run application:
-```node semaphore```
+```node server```
 
 ## How to run the steering application for the next time
 
 1. Connect your circuit (with Arduino and PCA9685) to the selected USB port
 
-2. Run application:
-```node semaphore```
+2. Run application: (by default http://localhost:4000)
+```node server```
 
 ## How to run the user interface application
 
-1. Run application:
+1. Run application: (by default http://localhost:3000)
 ```npm start```
