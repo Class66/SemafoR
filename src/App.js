@@ -126,14 +126,25 @@ function App() {
 		</div>
 	);
 
+	const getCorrectSemaphoresGroup = () => {
+		// eslint-disable-next-line default-case
+		switch (selectedSemaphore.type) {
+			case semaphoreTypes.Sm:
+				return semaphoresSmGroup;
+			case semaphoreTypes.Sp:
+				return semaphoresSpGroup;
+			case semaphoreTypes.To:
+				return semaphoresToGroup;
+			case semaphoreTypes.Tm:
+				return semaphoresTmGroup;
+		}
+	};
+
 	return (
 		<>
 			<div className="App">
 				{connectedSemaphores}
-				{selectedSemaphore.type === semaphoreTypes.Sm && semaphoresSmGroup}
-				{selectedSemaphore.type === semaphoreTypes.Sp && semaphoresSpGroup}
-				{selectedSemaphore.type === semaphoreTypes.To && semaphoresToGroup}
-				{selectedSemaphore.type === semaphoreTypes.Tm && semaphoresTmGroup}
+				{getCorrectSemaphoresGroup()}
 			</div>
 		</>
 	);

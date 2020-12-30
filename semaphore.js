@@ -243,7 +243,7 @@ board.on('ready', function () {
 		let brightness = 0;
 
 		return temporal.loop(effectConfig.delayLoop, function () {
-			// Here can't be defined arrow function because of this
+			// Here can't be defined arrow function because of |this|
 			brightness = brightness + effectConfig.brightnessStep;
 			if (brightness === maxBrightness) {
 				this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
@@ -259,7 +259,7 @@ board.on('ready', function () {
 		led.intensity(maxBrightness);
 
 		return temporal.loop(effectConfig.delayLoop, function () {
-			// Here can't be defined arrow function because of this
+			// Here can't be defined arrow function because of |this|
 			brightness = brightness - effectConfig.brightnessStep;
 			if (brightness < 0) {
 				this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
@@ -795,7 +795,7 @@ board.on('ready', function () {
 	};
 
 	/////////////////////////////////////////////////////
-	/// NODE ROUTING
+	/// NODE EXPRESS ROUTING CONFIGURATION
 	/////////////////////////////////////////////////////
 
 	const routingSignals = [
@@ -915,9 +915,10 @@ board.on('ready', function () {
 	setInitialSignals();
 
 	/////////////////////////////////////////////////////
-	/// MIDDLEWARES - https://expressjs.com/en/guide/writing-middleware.html
+	/// NODE EXPRESS MIDDLEWARES - https://expressjs.com/en/guide/writing-middleware.html
 	/////////////////////////////////////////////////////
 
+	// Middleware - Our function for logging time
 	const writeTimeOnConsole = (req, res, next) => {
 		const today = new Date();
 		const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -927,15 +928,21 @@ board.on('ready', function () {
 	};
 
 	// Middleware - Our static files - https://expressjs.com/en/starter/static-files.html
-	app.use(serveStatic('.', {
-		'index': ['semaphore.html']
-	}));
+	const serveStaticFiles = () => (
+		serveStatic('.', {
+			'index': ['semaphore.html']
+		})
+	);
 
-	// Middleware - Our function for logging time
+	app.use(serveStaticFiles());
 	app.use(writeTimeOnConsole);
 
-	// Express Routing: https://expressjs.com/en/guide/routing.html
-	// cors - Enable CORS for a Single Route (https://expressjs.com/en/resources/middleware/cors.html)
+	/////////////////////////////////////////////////////
+	/// NODE EXPRESS ROUTING
+	/// Express Routing: https://expressjs.com/en/guide/routing.html
+	/// cors - Enable CORS for a Single Route (https://expressjs.com/en/resources/middleware/cors.html)
+	/////////////////////////////////////////////////////
+
 	app.get('/:semaphore/:signal', cors(), (req, res) => {
 		const signalToShow = routingSignals
 			.filter(s => s.routeSignal === req.params.signal.toUpperCase());
