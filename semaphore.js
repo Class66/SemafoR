@@ -231,6 +231,7 @@ board.on('ready', function () {
 
 	const turnOffLeds = (semaphore, ledsPinToBeOn) => {
 		const ledsToBeOff = Object.values(semaphore)
+			.filter(val => val.pins) // the semaphore object could includes other props too
 			.filter(val => !ledsPinToBeOn.includes(val.pins[0]));
 		ledsToBeOff.forEach(led => led.off());
 	};
