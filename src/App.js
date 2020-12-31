@@ -76,12 +76,94 @@ function App() {
 	const semaphoresSmGroup = (
 		<div className="semaphores-group">
 			{[signals.S1, signals.S2, signals.S3, signals.S4, signals.S5,
-			signals.S10, signals.S11, signals.S12, signals.S13, signals.SZ, signals.OFF].map(s => (
+			signals.S10, signals.S11, signals.S12, signals.S13, signals.SZ, signals.MS2, signals.OFF].map(s => (
 				<Semaphore
 					key={`semaphoreTypes.Sm${s}`}
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.Sm}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmGOROGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S2, signals.S3, signals.S4, signals.S5,
+			signals.S10, signals.S11, signals.S12, signals.S13, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmGORO${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmGORO}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmGROWGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S2, signals.S3, signals.S4, signals.S5,
+			signals.S10, signals.S11, signals.SZ, signals.MS2, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmGROW${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmGROW}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmOROWGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S4, signals.S5,
+			signals.S12, signals.S13, signals.SZ, signals.MS2, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmOROW${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmOROW}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmRGWGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S2, signals.S3, signals.SZ, signals.MS2, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmRGW${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmRGW}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmGROGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S2, signals.S3, signals.S4, signals.S5,
+			signals.S10, signals.S11, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmGRO${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmGRO}
+				/>
+			))}
+		</div>
+	);
+
+	const semaphoresSmRGGroup = (
+		<div className="semaphores-group">
+			{[signals.S1, signals.S2, signals.S3, signals.OFF].map(s => (
+				<Semaphore
+					key={`semaphoreTypes.SmRG${s}`}
+					setSignalHandler={setSignalHandler}
+					signalType={s}
+					semaphoreType={semaphoreTypes.SmRG}
 				/>
 			))}
 		</div>
@@ -131,6 +213,18 @@ function App() {
 		switch (selectedSemaphore.type) {
 			case semaphoreTypes.Sm:
 				return semaphoresSmGroup;
+			case semaphoreTypes.SmGORO:
+				return semaphoresSmGOROGroup;
+			case semaphoreTypes.SmGROW:
+				return semaphoresSmGROWGroup;
+			case semaphoreTypes.SmOROW:
+				return semaphoresSmOROWGroup;
+			case semaphoreTypes.SmGRO:
+				return semaphoresSmGROGroup;
+			case semaphoreTypes.SmRGW:
+				return semaphoresSmRGWGroup;
+			case semaphoreTypes.SmRG:
+				return semaphoresSmRGGroup;
 			case semaphoreTypes.Sp:
 				return semaphoresSpGroup;
 			case semaphoreTypes.To:

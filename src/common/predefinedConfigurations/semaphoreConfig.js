@@ -15,15 +15,12 @@ export const boardPCA9685Addresses = [0x40, 0x41];
 /////////////////////////////////////////////////////
 
 export const semaphoresLedConfiguration = (defineLedPin) => ([{
-  RED: defineLedPin(2, boardPCA9685Addresses[0]),
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
-  // GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
-  // ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]),
-  // RED: defineLedPin(2, boardPCA9685Addresses[0]),
-  // ORANGE_TWO: defineLedPin(3, boardPCA9685Addresses[0]),
-  // WHITE: defineLedPin(4, boardPCA9685Addresses[0]),
+  ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]),
+  RED: defineLedPin(2, boardPCA9685Addresses[0]),
+  ORANGE_TWO: defineLedPin(3, boardPCA9685Addresses[0]),
+  WHITE: defineLedPin(4, boardPCA9685Addresses[0]),
 }, {
-  // UWAGA!!! Dla SmGROW i SM3GRO diody ORANGE_ONE musi miec ten sam numer pinu co ORANGE_TWO
   GREEN: defineLedPin(5, boardPCA9685Addresses[0]),
   ORANGE_ONE: defineLedPin(6, boardPCA9685Addresses[0]),
   RED: defineLedPin(7, boardPCA9685Addresses[0]),
@@ -56,16 +53,16 @@ export const semaphoresLedConfiguration = (defineLedPin) => ([{
 /////////////////////////////////////////////////////
 
 export const semaphoresGeneralConfiguration = [{
-  type: semaphoreTypes.SmRG, // type of the semaphore
+  type: semaphoreTypes.Sm, // type of the semaphore
   number: 1, // next number of the semaphore type
   signal: signals.S1, // default signal of the semaphore
 }, {
   type: semaphoreTypes.Sm,
-  number: 1,
+  number: 2,
   signal: signals.S1,
 }, {
   type: semaphoreTypes.Sm,
-  number: 2,
+  number: 3,
   signal: signals.S1,
 }, {
   type: semaphoreTypes.Tm,

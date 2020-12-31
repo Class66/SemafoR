@@ -127,7 +127,7 @@ export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
-				<Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
 				<Pole semaphoreType={semaphoreTypes.Sm} />
 				<SignalLabel signal={signals.MS2} />
 			</>
@@ -138,6 +138,462 @@ export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSmGOROSemaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S2: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S2} />
+			</>
+		),
+		S3: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S4: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S4} />
+			</>
+		),
+		S5: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S5} />
+			</>
+		),
+		S10: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S10} />
+			</>
+		),
+		S11: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S11} />
+			</>
+		),
+		S12: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S12} />
+			</>
+		),
+		S13: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S13} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSmGROWSemaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S2: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S2} />
+			</>
+		),
+		S3: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S4: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S4} />
+			</>
+		),
+		S5: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S5} />
+			</>
+		),
+		S10: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S10} />
+			</>
+		),
+		S11: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S11} />
+			</>
+		),
+		SZ: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.SZ} />
+			</>
+		),
+		MS2: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.MS2} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSmOROWSemaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S4: (
+			<>
+				<Signal image={signalLights.ORANGE_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S4} />
+			</>
+		),
+		S5: (
+			<>
+				<Signal image={signalLights.ORANGE_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S5} />
+			</>
+		),
+		S12: (
+			<>
+				<Signal image={signalLights.ORANGE_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S12} />
+			</>
+		),
+		S13: (
+			<>
+				<Signal image={signalLights.ORANGE_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S13} />
+			</>
+		),
+		SZ: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.SZ} />
+			</>
+		),
+		MS2: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.MS2} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSmRGWSemaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.RED_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S2: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.GREEN_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S2} />
+			</>
+		),
+		S3: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.GREEN_MIDDLE_BLINKING} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		SZ: (
+			<>
+				<Signal image={signalLights.RED_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.SZ} />
+			</>
+		),
+		MS2: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.MS2} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSmGROSemaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S2: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S2} />
+			</>
+		),
+		S3: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S4: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_BLINKING} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S5: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S10: (
+			<>
+				<Signal image={signalLights.GREEN_UP_SOLID} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		S11: (
+			<>
+				<Signal image={signalLights.GREEN_UP_BLINKING} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.OFF} />
+			</>
+		),
+	};
+
+	const signalDefinitionsForSm2Semaphore = {
+		S1: (
+			<>
+				<Signal image={signalLights.RED_UP_SOLID} />
+				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S1} />
+			</>
+		),
+		S2: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.GREEN_DOWN_SOLID} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S2} />
+			</>
+		),
+		S3: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
+				<Signal image={signalLights.GREEN_DOWN_BLINKING} isMiddle={true} />
+				<Pole semaphoreType={semaphoreTypes.Sm} />
+				<SignalLabel signal={signals.S3} />
+			</>
+		),
+		OFF: (
+			<>
+				<Signal image={signalLights.OFF_UP} />
 				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
 				<Pole semaphoreType={semaphoreTypes.Sm} />
 				<SignalLabel signal={signals.OFF} />
@@ -267,6 +723,18 @@ export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
 		switch (semaphoreType) {
 			case semaphoreTypes.Sm:
 				return signalDefinitionsForSmSemaphore[signalType];
+			case semaphoreTypes.SmGORO:
+				return signalDefinitionsForSmGOROSemaphore[signalType];
+			case semaphoreTypes.SmGROW:
+				return signalDefinitionsForSmGROWSemaphore[signalType];
+			case semaphoreTypes.SmOROW:
+				return signalDefinitionsForSmOROWSemaphore[signalType];
+			case semaphoreTypes.SmGRO:
+				return signalDefinitionsForSmGROSemaphore[signalType];
+			case semaphoreTypes.SmRGW:
+				return signalDefinitionsForSmRGWSemaphore[signalType];
+			case semaphoreTypes.SmRG:
+				return signalDefinitionsForSm2Semaphore[signalType];
 			case semaphoreTypes.Sp:
 				return signalDefinitionsForSpSemaphore[signalType];
 			case semaphoreTypes.To:
