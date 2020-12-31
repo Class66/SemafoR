@@ -11,16 +11,18 @@ export const ConnectedSemaphore = ({
 }) => (
 	<div
 		onClick={setSemaphoreHandler}
-		className={classNames('ConnectedSemaphore', { 'ConnectedSemaphore--selected':
-		semaphore.type === selectedSemaphore.type
-		&& semaphore.number === selectedSemaphore.number
-	})}>
+		className={classNames('ConnectedSemaphore', {
+			'ConnectedSemaphore--selected':
+				semaphore.type === selectedSemaphore.type
+				&& semaphore.number === selectedSemaphore.number
+		})}>
 		<Semaphore
-			setSignalHandler={() => {}}
+			setSignalHandler={() => { }}
 			signalType={semaphore.signal}
 			semaphoreType={semaphore.type} />
 		<button>
-			{semaphore.type}{semaphore.number}
+			{semaphore.hasOwnProperty('label') ?
+				semaphore.label : `${semaphore.type}${semaphore.number}`}
 		</button>
 	</div>
 );

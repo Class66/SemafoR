@@ -12,8 +12,10 @@
   border-color: $lighter-gray;
 
   button {
-    height: 30px;
+    min-height: 30px;
     margin: -12px 0 15px 0;
+    width: 50px;
+    overflow-wrap: break-word;
   }
 
   .Semaphore:hover {
