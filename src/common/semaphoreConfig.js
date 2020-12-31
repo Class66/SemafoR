@@ -58,11 +58,11 @@ export const semaphoresGeneralConfiguration = [{
   signal: signals.S1, // default signal of the semaphore
 }, {
   type: semaphoreTypes.Sm,
-  number: 1,
+  number: 2,
   signal: signals.S1,
 }, {
   type: semaphoreTypes.Sm,
-  number: 2,
+  number: 3,
   signal: signals.S1,
 }, {
   type: semaphoreTypes.Tm,
