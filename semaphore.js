@@ -369,7 +369,7 @@ board.on('ready', function () {
 			loopInstances.push(instance);
 		}
 
-		turnOffLeds(semaphore, ledsPinToBeOn, status.PULSE);
+		turnOffLeds(semaphore, ledsPinToBeOn);
 		removeLedsStatus(semaphore, ledsPinToBeOn);
 		putLedStatus(semaphore, led, status.PULSE);
 	};
@@ -379,7 +379,7 @@ board.on('ready', function () {
 			fadeIn(led, ledMaxBrightness, ledEffectConfig.fadeIn);
 		}
 
-		turnOffLeds(semaphore, ledsPinToBeOn, status.ON);
+		turnOffLeds(semaphore, ledsPinToBeOn);
 		removeLedsStatus(semaphore, ledsPinToBeOn);
 		putLedStatus(semaphore, led, status.ON);
 	};
@@ -787,7 +787,7 @@ board.on('ready', function () {
 		const effects = [];
 		const ledsPinToBeOn = [];
 
-		turnOffLeds(semaphore, ledsPinToBeOn, status.OFF);
+		turnOffLeds(semaphore, ledsPinToBeOn);
 		removeLedsStatus(semaphore, ledsPinToBeOn);
 
 		generateSignal(semaphore, signals.OFF, ledsPinToBeOn, effects);
