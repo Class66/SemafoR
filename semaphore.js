@@ -231,7 +231,7 @@ board.on('ready', function () {
 
 	const turnOffLeds = (semaphore, ledsPinToBeOn) => {
 		const ledsToBeOff = Object.values(semaphore)
-			.filter(sem => !ledsPinToBeOn.includes(sem.pins[0]));
+			.filter(val => !ledsPinToBeOn.includes(val.pins[0]));
 		ledsToBeOff.forEach(led => led.off());
 	};
 
