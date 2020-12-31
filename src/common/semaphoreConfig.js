@@ -53,9 +53,9 @@ export const semaphoresLedConfiguration = (defineLedPin) => ([{
 /////////////////////////////////////////////////////
 
 export const semaphoresGeneralConfiguration = [{
-  type: semaphoreTypes.Sm, // type of the semaphore
-  number: 1, // next number of the semaphore type
-  signal: signals.S1, // default signal of the semaphore
+  type: semaphoreTypes.Sm, // type of the semaphore (all types are defined in semaphoreTypes)
+  number: 1, // next number of this particular semaphore type (must be unique for this type)
+  signal: signals.S1, // default signal of the semaphore (it will be set on starting the application)
 }, {
   type: semaphoreTypes.Sm,
   number: 2,
