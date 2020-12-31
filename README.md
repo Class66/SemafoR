@@ -116,8 +116,8 @@ For example, if you need to add one "To" semaphore (let's assume it's connected 
 
 ```javascript
 {
-  GREEN: defineLedPin(9, boardPCA9685Addresses[1]), // number 9 means pin number 9 on PCA9685 board number 2
-  ORANGE: defineLedPin(8, boardPCA9685Addresses[1]), // number 8 means pin number 8 on PCA9685 board number 2
+  GREEN: defineLedPin(9, boardPCA9685Addresses[1]), // number 9 means pin number 9 on PCA9685 number 2
+  ORANGE: defineLedPin(8, boardPCA9685Addresses[1]), // number 8 means pin number 8 on PCA9685 number 2
 }
 ```
 
@@ -136,8 +136,10 @@ All these boards must be defined in ```boardPCA9685Addresses``` array.<br><br>
 ```javascript
 {
   type: semaphoreTypes.To, // defines semaphore type (here we use "To" semaphore)
-  number: 1, // defines another number for the same type of the semaphore in the array (here is just 1 value because we've just connected only one "To" semaphore),
-  signal: signals.OS1, // defines default signal for this semaphore after application start (here OS1 as default signal for "To" semaphore).
+  number: 1, // defines another number for the same type of the semaphore in the array
+  //(here is just 1 value because we've just connected only one "To" semaphore),
+  signal: signals.OS1, // defines default signal for this semaphore after application start
+  //(here OS1 as default signal for "To" semaphore).
 }
 ```
 
@@ -162,11 +164,11 @@ Examples of KLUBA semaphores object definiton:
 It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
 ```javascript
 {
-  GREEN: defineLedPin(0, boardPCA9685Addresses[0]), // pin number 0, connected to PCA9685 board number 1
-  ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]), // pin number 1, connected to PCA9685 board number 1
-  RED: defineLedPin(2, boardPCA9685Addresses[0]), // pin number 2, connected to PCA9685 board number 1
-  ORANGE_TWO: defineLedPin(3, boardPCA9685Addresses[0]), // pin number 3, connected to PCA9685 board number 1
-  WHITE: defineLedPin(4, boardPCA9685Addresses[0]), // pin number 4, connected to PCA9685 board number 1
+  GREEN: defineLedPin(0, boardPCA9685Addresses[0]), // pin number 0, connected to PCA9685 number 1
+  ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]), // pin number 1, connected to PCA9685 number 1
+  RED: defineLedPin(2, boardPCA9685Addresses[0]), // pin number 2, connected to PCA9685 number 1
+  ORANGE_TWO: defineLedPin(3, boardPCA9685Addresses[0]), // pin number 3, connected to PCA9685 number 1
+  WHITE: defineLedPin(4, boardPCA9685Addresses[0]), // pin number 4, connected to PCA9685 number 1
 }
 ```
 ```javascript
