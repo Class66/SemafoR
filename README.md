@@ -80,30 +80,30 @@ https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 - select from Arduino IDE option "Files/Open..." and select the file ***StandardFirmataPlus.ino***.
  (it's located in folder 'Johnny-Five/firmware/StandardFirmataPlus').<br>
 - then, select from Arduino IDE option "Sketch/Save" to save the program in the Arduino memory
-> If there is an issue while loading the file, chceck if proper port is selected:<br>
-> Select from Arduino IDE option: 'Tools/Port > COM3' or other COM prepared for the Arduino Uno (if you use this type of Arduino)
 
 ![Writing to Arduino memory](/images/arduino.gif)
+> If there is an issue while loading the file, chceck if proper port is selected:<br>
+> Select from Arduino IDE option: 'Tools/Port > COM3' or other COM prepared for the Arduino Uno (if you use this type of Arduino)
         
-6. Download this application by clicking green "Code" button and next "Download ZIP" option
+6. Download this application by clicking green "Code" button at the top of this page and next clicking "Download ZIP" option
 
 7. Unzip the application to some folder
 
 8. To install all needed packages for this application, open the main application folder and<br>
-click ```install.bat``` file (works only under Windows)<br>
+click ```install.bat``` file (NOTICE: the file works only under Windows)<br>
 **OR**<br>
-open a console window in this folder and type:
+open a console window in this folder and run command:
 ```
 npm install
 ```
 
 ## How to run the application
 
-1. Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port,
+1. Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port
    
-2. Run the application by clicking ```start-steering.bat``` and next ```start-ui.bat``` (works only under Windows)<br>
+2. Run the application by clicking ```start-steering.bat``` and next ```start-ui.bat``` (NOTICE: the file works only under Windows)<br>
    **OR**<br>
-   open a console window in this folder and type:<br>
+   open a console window in this folder and run commands:<br>
 ```
 node server
 ```
@@ -114,7 +114,7 @@ npm start
 The application is composed of two separate programs, so you can run them separately too:
 
 - **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.<br>
-  > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port,
+  > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port.
 
   Can be run by command:
   ```
@@ -191,7 +191,7 @@ There are 10 types of semaphores in the application that correspons to the semap
 Examples of KLUBA semaphores object definiton:
 > You can copy it to your configuration file called ```semaphoreConfig.js```.<br>
 > Remember to change pin numbers and board numbers.<br>
-> Optionally you can add 'label' to define semaphore labels.
+> Optionally you can add 'label' property to define your own semaphore name.
 
 - **Sm**<br>
 It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
