@@ -110,7 +110,7 @@ node server
 npm start
 ```
 
-Aplikacja ta składa się z dwóch oddzielnych programów, więc możesz je również uruchomić osobno:
+Aplikacja ta składa się z dwóch oddzielnych programów więc możesz je również uruchomić osobno:
 
 - **Aplikacja sterująca** - jest to główny program odpowiedzialny za sterowanie semaforami za pomocą Arduino. Jest oparty na platformie Johnny-Five.<br>
   > Przed uruchomieniem: Podłącz swój obwód (Arduino, PCA9685 i połączone semafory) do wybranego portu USB
@@ -382,7 +382,7 @@ W aplikacji w folderze ```common\predefined``` znajdziesz dwie predefiniowane, d
 Jeśli chcesz użyć jednej z nich, po prostu zmień nazwę pliku na ```semaphoreConfig.js``` i zastąp oryginalny plik w folderze ```common```<br>
 **Pamiętaj o ponownym uruchomieniu całej aplikacji!**
 
-> Konfiguracje te są przykładowe, więc możesz na nich polegać podczas budowania własnego pliku konfiguracyjnego.
+> Konfiguracje te są przykładowe więc możesz na nich polegać podczas budowania własnego pliku konfiguracyjnego.
 
 ## Licencja i prawa autorskie
 
