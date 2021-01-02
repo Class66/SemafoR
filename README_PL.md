@@ -396,8 +396,8 @@ If you want to use one of them just change the filename to ```semaphoreConfig.js
 
 > These configuration are just examples so you can realy on them while building your own config file.
 
-## License and copyrights
+## Licencja i prawa autorskie
 
 Copyright (c) Marcin Gierczak
 
-Licensed under the MIT license: https://github.com/Class66/SemafoR/blob/master/LICENSE
+Obowiązuje licencja MIT: https://github.com/Class66/SemafoR/blob/master/LICENSE
