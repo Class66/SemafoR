@@ -22,15 +22,15 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 
 ## Menu
 
-  - [Hardware requirements](#hardware-requirements)
-  - [Software requirements](#software-requirements)
-  - [How to make circuit with Arduino, PCA9685 and semaphores](#how-to-make-circuit-with-arduino-pca9685-and-semaphores)
-  - [How to install the application](#how-to-install-the-application)
-  - [How to run the application](#how-to-run-the-application)
-  - [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
-  - [How to define semaphores in the configuration file](#how-to-define-semaphores-in-the-configuration-file)
-  - [Predefined configurations](#predefined-configurations)
-  - [License and copyrights](#license-and-copyrights)
+  - [Wymagania sprzętowe](#wymagania-sprzętowe)
+  - [Wymagane oprogramowanie](#wymagane-oprogramowanie)
+  - [Jak wykonac cały układ z Arduino, PCA9685 i semaforami](#jak-wykonac-cały-układ-z-Arduino,-PCA9685-i-semaforami)
+  - [Jak zainstalować tę aplikację](#jak-zainstalować-tę-aplikację)
+  - [Jak uruchomić tę aplikację](#jak-uruchomić-tę-aplikację)
+  - [Jak dodać nową definicję semafora do pliku konfiguracyjnego](#jak-dodać-nową-definicję-semafora-do-pliku-konfiguracyjnego)
+  - [Jak zdefiniować semafory w pliku konfiguracyjnym](#jak-zdefiniować-semafory-w-pliku-konfiguracyjnym)
+  - [Predefiniowane konfiguracje](#predefiniowane-konfiguracje)
+  - [Licencja i prawa autorskie](#licencja-i-prawa-autorskie)
 
 ## Wymagania sprzętowe
 
@@ -46,7 +46,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 - NodeJS - do zainstalowania na Twoim komputerze (https://nodejs.org/en/)
 - Arduino IDE - do zainstalowania na Twoim komputerze (https://www.arduino.cc/en/software)
 
-## Jak wykonac cały układ z Arduino, PCA9685 i semaforów
+## Jak wykonac cały układ z Arduino, PCA9685 i semaforami
 
 Prosty przykład bazujący na 3 płytkach PCA9685:
 
@@ -80,12 +80,12 @@ https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 - wybierz z menu Arduino IDE opcję "Plik/Otwórz..." i zaznacz plik ***StandardFirmataPlus.ino***.
  (plik ten znajduje się w folderze 'Johnny-Five/firmware/StandardFirmataPlus').<br>
 - następnie, zaznacz z menu Arduino IDE opcję "Szkic/Wgraj" aby rozpocząć zapis programu do pamięci Arduino
-> Jeśli podczas zapisu wystąpi błąd sprawdź czy podłączyłeś Arduino pod odpowiedni port USB:<br>
-> Zaznacz z menu Arduino IDE opcję: 'Narzędzia/Port > COM3' lub inny COM przygotowany dla Arduino Uno (jeśli używasz konkretnie ten rodzaj Arduino)
 
 ![Writing to Arduino memory](/images/arduino.gif)
+> Jeśli podczas zapisu wystąpi błąd sprawdź czy podłączyłeś Arduino pod odpowiedni port USB:<br>
+> Zaznacz z menu Arduino IDE opcję: 'Narzędzia/Port > COM3' lub inny COM przygotowany dla Arduino Uno (jeśli używasz konkretnie ten rodzaj Arduino)
         
-6. Pobierz tę aplikację klikając zielony przycisk "Code" a następnie z menu wybierając opcję "Download ZIP"
+6. Pobierz tę aplikację klikając zielony przycisk "Code" na górze tej strony a następnie z menu wybierając opcję "Download ZIP"
 
 7. Rozpakuj pobraną aplikację do wybranego folderu
 
@@ -376,7 +376,7 @@ Jest to 2 komorowa tarcza manewrowa z ledami w kolorach (od góry): BLUE, WHITE
 }
 ```
 
-## Predefiniowane konfiguracja
+## Predefiniowane konfiguracje
 
 W aplikacji w folderze ```common\predefined``` znajdziesz dwie predefiniowane, dodatkowe konfiguracje semaforów.<br>
 Jeśli chcesz użyć jednej z nich, po prostu zmień nazwę pliku na ```semaphoreConfig.js``` i zastąp oryginalny plik w folderze ```common```<br>
