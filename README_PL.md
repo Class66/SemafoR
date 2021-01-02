@@ -28,7 +28,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
   - [Jak zainstalować tę aplikację](#jak-zainstalować-tę-aplikację)
   - [Jak uruchomić tę aplikację](#jak-uruchomić-tę-aplikację)
   - [Jak dodać nową definicję semafora do pliku konfiguracyjnego](#jak-dodać-nową-definicję-semafora-do-pliku-konfiguracyjnego)
-  - [Jak zdefiniować semafory w pliku konfiguracyjnym](#jak-zdefiniować-semafory-w-pliku-konfiguracyjnym)
+  - [Przykłady definicji wszystkich typów semaforów](#przykłady-definicji-wszystkich-typów-semaforów)
   - [Predefiniowane konfiguracje](#predefiniowane-konfiguracje)
   - [Licencja i prawa autorskie](#licencja-i-prawa-autorskie)
 
@@ -46,7 +46,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 - NodeJS - do zainstalowania na Twoim komputerze (https://nodejs.org/en/)
 - Arduino IDE - do zainstalowania na Twoim komputerze (https://www.arduino.cc/en/software)
 
-## Jak wykonac cały układ z Arduino, PCA9685 i semaforami
+## Jak wykonać cały układ z Arduino, PCA9685 i semaforami
 
 Prosty przykład bazujący na 3 płytkach PCA9685:
 
@@ -183,7 +183,7 @@ Wszystkie adresy płytek musimy zdefiniować w tablicy ```boardPCA9685Addresses`
 
 ***To wszystko!*** :rocket: Teraz musisz ponownie załadować wszystkie aplikacje i wszystko powinno działać poprawnie :smile:
 
-## Jak zdefiniować semafory w pliku konfiguracyjnym
+## Przykłady definicji wszystkich typów semaforów
 
 W aplikacji występuje 10 typów semaforów, które odpowiadają semaforom produkowanym przez firmę KLUBA.
 

@@ -28,7 +28,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
   - [How to install the application](#how-to-install-the-application)
   - [How to run the application](#how-to-run-the-application)
   - [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
-  - [How to define semaphores in the configuration file](#how-to-define-semaphores-in-the-configuration-file)
+  - [Examples of definitions for all types of semaphores](#examples-of-definitions-for-all-types-of-semaphores)
   - [Predefined configurations](#predefined-configurations)
   - [License and copyrights](#license-and-copyrights)
 
@@ -184,7 +184,7 @@ All these boards must be defined in ```boardPCA9685Addresses``` array.<br><br>
 
 ***And that's all!*** :rocket: Now, you have to reload all application and everything should work fine :smile:
 
-## How to define semaphores in the configuration file
+## Examples of definitions for all types of semaphores
 
 There are 10 types of semaphores in the application that correspons to the semaphores produced by KLUBA.
 
