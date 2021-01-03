@@ -49,6 +49,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 ## Jak wykonać cały układ z Arduino, PCA9685 i semaforami
 
 Prosty przykład bazujący na 3 płytkach PCA9685:
+> Według podanego schematu można podłączyć max. 7 płytek PCA9685 co daje w sumie 112 dostępnych pinów. Przy tej ilości pinów będziesz mógł podłączyć do 22 semaforów 5 komorowych.
 
 ![Pulpit Image](/images/adafruit-pca9685-circuit_pl.jpg)
 

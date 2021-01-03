@@ -18,7 +18,7 @@ You can control all types of KLUBA semaphores such as:
 Reference to KLUBA semaphores here:<br>
 http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-na-slupie-h0/
 
-> As Arduino supplies 5V to semaphores, theirs LED brightness is lower than if they were powered with 12V. The advantage of this is that the brightness is very similar as in real semaphore.
+> As Arduino supplies 5V to semaphores, theirs LED brightness is lower than if they were powered with 12V. The advantage of this is that the brightness is very similar as in real semaphore. 
 
 ## Contents
 
@@ -49,6 +49,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 ## How to make circuit with Arduino, PCA9685 and semaphores
 
 This is example with 3x PCA9685 boards:
+> According to the given scheme, you can use max. 7 PCA9685 boards with a total of 112 pins available. With this number of pins, you will be able to connect up to 22 5-chamber semaphores.
 
 ![Pulpit Image](/images/adafruit-pca9685-circuit.jpg)
 
