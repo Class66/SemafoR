@@ -43,7 +43,8 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 
 ## Wymagane oprogramowanie
 
-- NodeJS - do zainstalowania na Twoim komputerze (https://nodejs.org/en/)
+- NodeJS - do zainstalowania na Twoim komputerze (https://nodejs.org/en/)<br>
+  (Należy pobrać najnowszą wersję oznaczoną jako `Recommended For Most Users`)
 - Arduino IDE - do zainstalowania na Twoim komputerze (https://www.arduino.cc/en/software)
 
 ## Jak wykonać cały układ z Arduino, PCA9685 i semaforami
