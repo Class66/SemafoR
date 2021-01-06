@@ -2,6 +2,7 @@ import { PropTypes } from 'prop-types';
 import classNames from 'classnames';
 
 import { Semaphore } from '../Semaphore/Semaphore';
+import { semaphoreShape } from './../../types/semaphore.type';
 
 import './ConnectedSemaphore.scss';
 
@@ -27,14 +28,8 @@ export const ConnectedSemaphore = ({
 	</div>
 );
 
-const semaphoreProp = PropTypes.shape({
-	type: PropTypes.string.isRequired,
-	number: PropTypes.number.isRequired,
-	signal: PropTypes.string.isRequired,
-}).isRequired;
-
 ConnectedSemaphore.propTypes = {
 	setSemaphoreHandler: PropTypes.func.isRequired,
-	semaphore: semaphoreProp,
-	selectedSemaphore: semaphoreProp,
+	semaphore: semaphoreShape,
+	selectedSemaphore: semaphoreShape,
 };

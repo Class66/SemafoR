@@ -49,15 +49,17 @@ function App() {
 			({ type, number }) => type === selectedSemaphore.type
 				&& number === selectedSemaphore.number
 		);
-
-		newSemaphoresSignal[selectedSemaphoreIndex] = {
+		const selectedSemaphoreNewSignal = {
 			type: selectedSemaphore.type,
 			number: selectedSemaphore.number,
 			signal: signal,
 		};
 
+		newSemaphoresSignal[selectedSemaphoreIndex] = selectedSemaphoreNewSignal;
+
 		console.table(newSemaphoresSignal[selectedSemaphoreIndex]);
 		setSemaphoresSignal(newSemaphoresSignal);
+		setSelectedSemaphore(selectedSemaphoreNewSignal);
 	};
 
 	const setSemaphoreHandler = (semaphore) => {
@@ -82,6 +84,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.Sm}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -96,6 +99,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmGORO}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -110,6 +114,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmGROW}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -124,6 +129,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmOROW}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -137,6 +143,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmRGW}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -151,6 +158,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmGRO}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -164,6 +172,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.SmRG}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -177,6 +186,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.Sp}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -190,6 +200,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.To}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>
@@ -203,6 +214,7 @@ function App() {
 					setSignalHandler={setSignalHandler}
 					signalType={s}
 					semaphoreType={semaphoreTypes.Tm}
+					selectedSemaphore={selectedSemaphore}
 				/>
 			))}
 		</div>

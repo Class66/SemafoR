@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import classNames from 'classnames';
 
 import { Signal } from '../Signal/Signal';
 import { Pole } from '../Pole/Pole';
@@ -6,10 +7,14 @@ import { SignalLabel } from '../SignalLabel/SignalLabel';
 import { signals } from '../../enums/signals.enum';
 import { semaphoreTypes } from './../../enums/semaphoreTypes.enum';
 import { signalLights } from './../../enums/signalLights.enum';
+import { semaphoreShape } from './../../types/semaphore.type';
 
 import './Semaphore.scss';
 
-export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
+export const Semaphore = ({
+	setSignalHandler, signalType,
+	semaphoreType, selectedSemaphore
+}) => {
 	const signalDefinitionsForSmSemaphore = {
 		S1: (
 			<>
@@ -747,8 +752,12 @@ export const Semaphore = ({ setSignalHandler, signalType, semaphoreType }) => {
 	};
 
 	return (
-		<div className="Semaphore" onClick={() => setSignalHandler(signalType)}>
-			{ displaySignals()}
+		<div
+			className={classNames('Semaphore', {
+				'Semaphore--selected': selectedSemaphore?.signal === signalType
+			})}
+			onClick={() => setSignalHandler(signalType)}>
+			{displaySignals()}
 		</div>
 	);
 };
@@ -757,4 +766,5 @@ Semaphore.propTypes = {
 	setSignalHandler: PropTypes.func.isRequired,
 	signalType: PropTypes.string.isRequired,
 	semaphoreType: PropTypes.string.isRequired,
+	selectedSemaphore: semaphoreShape,
 };
