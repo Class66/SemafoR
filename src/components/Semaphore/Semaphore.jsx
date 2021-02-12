@@ -257,8 +257,8 @@ export const Semaphore = ({
 		S1: (
 			<>
 				<Signal image={signalLights.OFF_UP} />
-				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+				<Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
 				<Signal image={signalLights.OFF_DOWN} isMiddle={true} />
 				<Pole semaphoreType={semaphoreTypes.Sm} />
 				<SignalLabel signal={signals.S1} />
