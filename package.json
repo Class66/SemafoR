@@ -24,10 +24,10 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "johnny-five": "^2.0.0",
-    "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "sass": "^1.32.8",
     "web-vitals": "^0.2.4"
   },
   "eslintConfig": {
