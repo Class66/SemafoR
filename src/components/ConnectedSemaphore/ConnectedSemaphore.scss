@@ -1,4 +1,4 @@
-@import "../../scss/_colors";
+@use "../../scss/_colors" as *;
 
 .ConnectedSemaphore {
   display: flex;

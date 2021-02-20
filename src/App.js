@@ -62,14 +62,10 @@ function App() {
 		setSelectedSemaphore(selectedSemaphoreNewSignal);
 	};
 
-	const setSemaphoreHandler = (semaphore) => {
-		setSelectedSemaphore(semaphore);
-	};
-
 	const connectedSemaphores = semaphoresSignal.map(sem => (
 		<ConnectedSemaphore
 			key={`${sem.type}${sem.number}`}
-			setSemaphoreHandler={() => setSemaphoreHandler(sem)}
+			setSemaphoreHandler={() => setSelectedSemaphore(sem)}
 			semaphore={sem}
 			selectedSemaphore={selectedSemaphore}
 		/>

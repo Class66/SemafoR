@@ -1,4 +1,4 @@
-@import "./scss/_colors";
+@use "./scss/_colors";
 
 .App {
   width: 100%;
@@ -9,7 +9,7 @@
     clear: both;
     margin: 10px;
     padding: 10px;
-    background-color: $lighter-gray;
+    background-color: colors.$lighter-gray;
     border-radius: 25px;
   }
 }
