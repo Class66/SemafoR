@@ -67,134 +67,134 @@ export const Semaphore = ({
 	const signalDefinitionsForSmSemaphore = {
 		S1: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{OffUp}
+				{OffMiddle}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS2 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S4: (
 			<>
-				<OffUp />
-				<OrangeMiddleBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS4 />
+				{OffUp}
+				{OrangeMiddleBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS4}
 			</>
 		),
 		S5: (
 			<>
-				<OffUp />
-				<OrangeMiddleSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS5 />
+				{OffUp}
+				{OrangeMiddleSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS5}
 			</>
 		),
 		S10: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS10 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS10}
 			</>
 		),
 		S11: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS11 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS11}
 			</>
 		),
 		S12: (
 			<>
-				<OffUp />
-				<OrangeMiddleBlinking />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS12 />
+				{OffUp}
+				{OrangeMiddleBlinking}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS12}
 			</>
 		),
 		S13: (
 			<>
-				<OffUp />
-				<OrangeMiddleSolid />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS13 />
+				{OffUp}
+				{OrangeMiddleSolid}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS13}
 			</>
 		),
 		SZ: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<WhiteDownBlinking />
-				<PoleSm />
-				<SignalSZ />
+				{OffUp}
+				{OffMiddle}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{WhiteDownBlinking}
+				{PoleSm}
+				{SignalSZ}
 			</>
 		),
 		MS2: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSm />
-				<SignalMS2 />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSm}
+				{SignalMS2}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -202,102 +202,102 @@ export const Semaphore = ({
 	const signalDefinitionsForSmGOROSemaphore = {
 		S1: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<RedMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{OffUp}
+				{OffMiddle}
+				{RedMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS2 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S4: (
 			<>
-				<OffUp />
-				<OrangeMiddleBlinking />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS4 />
+				{OffUp}
+				{OrangeMiddleBlinking}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS4}
 			</>
 		),
 		S5: (
 			<>
-				<OffUp />
-				<OrangeMiddleSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS5 />
+				{OffUp}
+				{OrangeMiddleSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS5}
 			</>
 		),
 		S10: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS10 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS10}
 			</>
 		),
 		S11: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS11 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS11}
 			</>
 		),
 		S12: (
 			<>
-				<OffUp />
-				<OrangeMiddleBlinking />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS12 />
+				{OffUp}
+				{OrangeMiddleBlinking}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS12}
 			</>
 		),
 		S13: (
 			<>
-				<OffUp />
-				<OrangeMiddleSolid />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS13 />
+				{OffUp}
+				{OrangeMiddleSolid}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS13}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -305,102 +305,102 @@ export const Semaphore = ({
 	const signalDefinitionsForSmGROWSemaphore = {
 		S1: (
 			<>
-				<OffUp />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{OffUp}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS2 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S4: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OrangeMiddleBlinking />
-				<OffDown />
-				<PoleSm />
-				<SignalS4 />
+				{OffUp}
+				{OffMiddle}
+				{OrangeMiddleBlinking}
+				{OffDown}
+				{PoleSm}
+				{SignalS4}
 			</>
 		),
 		S5: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS5 />
+				{OffUp}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS5}
 			</>
 		),
 		S10: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS10 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS10}
 			</>
 		),
 		S11: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS11 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS11}
 			</>
 		),
 		SZ: (
 			<>
-				<OffUp />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<WhiteDownBlinking />
-				<PoleSm />
-				<SignalSZ />
+				{OffUp}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{WhiteDownBlinking}
+				{PoleSm}
+				{SignalSZ}
 			</>
 		),
 		MS2: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSm />
-				<SignalMS2 />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSm}
+				{SignalMS2}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -408,82 +408,82 @@ export const Semaphore = ({
 	const signalDefinitionsForSmOROWSemaphore = {
 		S1: (
 			<>
-				<OffUp />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{OffUp}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S4: (
 			<>
-				<OrangeUpBlinking />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS4 />
+				{OrangeUpBlinking}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS4}
 			</>
 		),
 		S5: (
 			<>
-				<OrangeUpSolid />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS5 />
+				{OrangeUpSolid}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS5}
 			</>
 		),
 		S12: (
 			<>
-				<OrangeUpBlinking />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS12 />
+				{OrangeUpBlinking}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS12}
 			</>
 		),
 		S13: (
 			<>
-				<OrangeUpSolid />
-				<OffMiddle />
-				<OrangeMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS13 />
+				{OrangeUpSolid}
+				{OffMiddle}
+				{OrangeMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS13}
 			</>
 		),
 		SZ: (
 			<>
-				<OffUp />
-				<RedMiddleSolid />
-				<OffMiddle />
-				<WhiteDownBlinking />
-				<PoleSm />
-				<SignalSZ />
+				{OffUp}
+				{RedMiddleSolid}
+				{OffMiddle}
+				{WhiteDownBlinking}
+				{PoleSm}
+				{SignalSZ}
 			</>
 		),
 		MS2: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSm />
-				<SignalMS2 />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSm}
+				{SignalMS2}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -491,56 +491,56 @@ export const Semaphore = ({
 	const signalDefinitionsForSmRGWSemaphore = {
 		S1: (
 			<>
-				<RedUpSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{RedUpSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<OffUp />
-				<GreenMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS2 />
+				{OffUp}
+				{GreenMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<OffUp />
-				<GreenMiddleBlinking />
-				<OffDown />
-				<PoleSm />
-				<SignalS3 />
+				{OffUp}
+				{GreenMiddleBlinking}
+				{OffDown}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		SZ: (
 			<>
-				<RedUpSolid />
-				<OffMiddle />
-				<WhiteDownBlinking />
-				<PoleSm />
-				<SignalSZ />
+				{RedUpSolid}
+				{OffMiddle}
+				{WhiteDownBlinking}
+				{PoleSm}
+				{SignalSZ}
 			</>
 		),
 		MS2: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSm />
-				<SignalMS2 />
+				{OffUp}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSm}
+				{SignalMS2}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -548,74 +548,74 @@ export const Semaphore = ({
 	const signalDefinitionsForSmGROSemaphore = {
 		S1: (
 			<>
-				<OffUp />
-				<RedMiddleSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{OffUp}
+				{RedMiddleSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS2 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S4: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OrangeDownBlinking />
-				<PoleSm />
-				<SignalS3 />
+				{OffUp}
+				{OffMiddle}
+				{OrangeDownBlinking}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S5: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS3 />
+				{OffUp}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S10: (
 			<>
-				<GreenUpSolid />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpSolid}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		S11: (
 			<>
-				<GreenUpBlinking />
-				<OffMiddle />
-				<OrangeDownSolid />
-				<PoleSm />
-				<SignalS3 />
+				{GreenUpBlinking}
+				{OffMiddle}
+				{OrangeDownSolid}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -623,34 +623,34 @@ export const Semaphore = ({
 	const signalDefinitionsForSm2Semaphore = {
 		S1: (
 			<>
-				<RedUpSolid />
-				<OffDown />
-				<PoleSm />
-				<SignalS1 />
+				{RedUpSolid}
+				{OffDown}
+				{PoleSm}
+				{SignalS1}
 			</>
 		),
 		S2: (
 			<>
-				<OffUp />
-				<GreenDownSolid />
-				<PoleSm />
-				<SignalS2 />
+				{OffUp}
+				{GreenDownSolid}
+				{PoleSm}
+				{SignalS2}
 			</>
 		),
 		S3: (
 			<>
-				<OffUp />
-				<GreenDownBlinking />
-				<PoleSm />
-				<SignalS3 />
+				{OffUp}
+				{GreenDownBlinking}
+				{PoleSm}
+				{SignalS3}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffDown />
-				<PoleSm />
-				<SignalOFF />
+				{OffUp}
+				{OffDown}
+				{PoleSm}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -658,47 +658,47 @@ export const Semaphore = ({
 	const signalDefinitionsForSpSemaphore = {
 		SP1: (
 			<>
-				<OrangeUpSolid />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSp />
-				<SignalSP1 />
+				{OrangeUpSolid}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSp}
+				{SignalSP1}
 			</>
 		),
 		SP2: (
 			<>
-				<OffUp />
-				<GreenMiddleSolid />
-				<WhiteDownSolid />
-				<PoleSp />
-				<SignalSP2 />
+				{OffUp}
+				{GreenMiddleSolid}
+				{WhiteDownSolid}
+				{PoleSp}
+				{SignalSP2}
 			</>
 		),
 		SP3: (
 			<>
-				<OffUp />
-				<GreenMiddleBlinking />
-				<WhiteDownSolid />
-				<PoleSp />
-				<SignalSP3 />
+				{OffUp}
+				{GreenMiddleBlinking}
+				{WhiteDownSolid}
+				{PoleSp}
+				{SignalSP3}
 			</>
 		),
 		SP4: (
 			<>
-				<OrangeUpBlinking />
-				<OffMiddle />
-				<WhiteDownSolid />
-				<PoleSp />
-				<SignalSP4 />
+				{OrangeUpBlinking}
+				{OffMiddle}
+				{WhiteDownSolid}
+				{PoleSp}
+				{SignalSP4}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffMiddle />
-				<OffDown />
-				<PoleSp />
-				<SignalOFF />
+				{OffUp}
+				{OffMiddle}
+				{OffDown}
+				{PoleSp}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -706,42 +706,42 @@ export const Semaphore = ({
 	const signalDefinitionsForToSemaphore = {
 		OS1: (
 			<>
-				<OffUp />
-				<OrangeDownSolid />
-				<PoleTo />
-				<SignalOS1 />
+				{OffUp}
+				{OrangeDownSolid}
+				{PoleTo}
+				{SignalOS1}
 			</>
 		),
 		OS2: (
 			<>
-				<GreenUpSolid />
-				<OffDown />
-				<PoleTo />
-				<SignalOS2 />
+				{GreenUpSolid}
+				{OffDown}
+				{PoleTo}
+				{SignalOS2}
 			</>
 		),
 		OS3: (
 			<>
-				<GreenUpBlinking />
-				<OffDown />
-				<PoleTo />
-				<SignalOS3 />
+				{GreenUpBlinking}
+				{OffDown}
+				{PoleTo}
+				{SignalOS3}
 			</>
 		),
 		OS4: (
 			<>
-				<OffUp />
-				<OrangeDownBlinking />
-				<PoleTo />
-				<SignalOS4 />
+				{OffUp}
+				{OrangeDownBlinking}
+				{PoleTo}
+				{SignalOS4}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffDown />
-				<PoleTo />
-				<SignalOFF />
+				{OffUp}
+				{OffDown}
+				{PoleTo}
+				{SignalOFF}
 			</>
 		),
 	};
@@ -749,26 +749,26 @@ export const Semaphore = ({
 	const signalDefinitionsForTmSemaphore = {
 		MS1: (
 			<>
-				<BlueUpSolid />
-				<OffDown />
-				<PoleTm />
-				<SignalMS1 />
+				{BlueUpSolid}
+				{OffDown}
+				{PoleTm}
+				{SignalMS1}
 			</>
 		),
 		MS2: (
 			<>
-				<OffUp />
-				<WhiteDownSolid />
-				<PoleTm />
-				<SignalMS2 />
+				{OffUp}
+				{WhiteDownSolid}
+				{PoleTm}
+				{SignalMS2}
 			</>
 		),
 		OFF: (
 			<>
-				<OffUp />
-				<OffDown />
-				<PoleTm />
-				<SignalOFF />
+				{OffUp}
+				{OffDown}
+				{PoleTm}
+				{SignalOFF}
 			</>
 		),
 	};
