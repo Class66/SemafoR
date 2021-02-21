@@ -4,10 +4,12 @@
   "description": "Semaphores steering",
   "main": "semaphore.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint-css": "stylelint src/**/*.scss src/*.scss"
   },
   "repository": {
     "type": "git",
@@ -47,5 +49,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "react-app-rewired": "^2.1.8",
+    "stylelint": "^13.11.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.19.0",
+    "stylelint-webpack-plugin": "^2.1.1"
   }
 }
