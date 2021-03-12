@@ -18,19 +18,20 @@
   "author": "Marcin Gierczak",
   "license": "MIT",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "classnames": "^2.2.6",
-    "cors": "^2.8.5",
-    "esm": "^3.2.25",
-    "express": "^4.17.1",
-    "johnny-five": "^2.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@testing-library/jest-dom": "5.11.9",
+    "@testing-library/react": "11.2.5",
+    "@testing-library/user-event": "12.8.3",
+    "classnames": "2.2.6",
+    "cors": "2.8.5",
+    "esm": "3.2.25",
+    "express": "4.17.1",
+    "johnny-five": "2.0.0",
+    "prop-types": "15.7.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-scripts": "4.0.1",
-    "sass": "^1.32.8",
-    "web-vitals": "^0.2.4"
+    "sass": "1.32.8",
+    "web-vitals": "0.2.4"
   },
   "eslintConfig": {
     "extends": [
