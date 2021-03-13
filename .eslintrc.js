@@ -25,7 +25,7 @@ module.exports = {
     "max-len": ["warn", 100, { "ignoreComments": true }],
     "no-var": "error",
     "no-case-declarations": 0,
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["table", "warn", "error"] }],
     "no-mixed-operators": ["error", { "allowSamePrecedence": true }],
     "no-prototype-builtins": "off",
     "no-underscore-dangle": "off",
