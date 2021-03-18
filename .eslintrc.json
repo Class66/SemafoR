@@ -1,4 +1,4 @@
-module.exports = {
+{
   "extends": "react-app",
   "globals": {
     "render": true,
@@ -8,7 +8,7 @@ module.exports = {
   "env": {
     "browser": true,
     "jest": true,
-    "node": true,
+    "node": true
   },
   "plugins": [
     "react-hooks"
@@ -47,7 +47,7 @@ module.exports = {
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/label-has-associated-control": [2, {
       "controlComponents": ["Input"],
-      "depth": 3,
+      "depth": 3
     }]
-  },
+  }
 }
