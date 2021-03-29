@@ -800,7 +800,7 @@ export const Semaphore = ({
       default:
         return signalDefinitionsForSmSemaphore[signalType];
     
-    };
+    }
   };
 
   return (
