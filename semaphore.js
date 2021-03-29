@@ -249,9 +249,11 @@ board.on('ready', function () {
     return temporal.loop(effectConfig.delayLoop, function () {
       // Here can't be defined arrow function because of |this|
       brightness = brightness + effectConfig.brightnessStep;
+
       if (brightness === maxBrightness) {
         this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
       }
+
       if (brightness <= maxBrightness) {
         led.intensity(brightness);
       }
@@ -266,9 +268,11 @@ board.on('ready', function () {
     return temporal.loop(effectConfig.delayLoop, function () {
       // Here can't be defined arrow function because of |this|
       brightness = brightness - effectConfig.brightnessStep;
+
       if (brightness < 0) {
         this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
       }
+
       if (brightness < maxBrightness) {
         led.intensity(brightness);
       }
@@ -285,26 +289,33 @@ board.on('ready', function () {
       direction === 'up' && (brightness = brightness + effectConfig.brightnessStep);
       direction === 'down' && (brightness = brightness - effectConfig.brightnessStep);
       direction === 'stopUp' && delay++;
+
       if (brightness <= maxBrightness && direction === 'up') {
         led.intensity(brightness);
       }
+
       if (brightness >= 0 && direction === 'down') {
         led.intensity(brightness);
       }
+
       if (brightness > maxBrightness) {
         direction = 'stopUp';
         delay++;
       }
+
       if (delay > effectConfig.delayMax) {
         direction = 'down';
         delay = 0;
       }
+
       if (brightness < 0 && direction === 'down') {
         direction = 'stopDown';
       }
+
       if (brightness < 0 && direction === 'stopDown') {
         delayDown++;
       }
+
       if (delayDown > effectConfig.delayDownMax) {
         direction = 'up';
         delayDown = 0;
@@ -323,26 +334,33 @@ board.on('ready', function () {
       direction === 'up' && (brightness = brightness + effectConfig.brightnessStep);
       direction === 'down' && (brightness = brightness - effectConfig.brightnessStep);
       direction === 'stopUp' && delay++;
+
       if (brightness <= maxBrightness && direction === 'up') {
         led.intensity(brightness);
       }
+
       if (brightness >= 0 && direction === 'down') {
         led.intensity(brightness);
       }
+
       if (brightness > maxBrightness) {
         direction = 'stopUp';
         delay++;
       }
+
       if (delay > effectConfig.delayMax) {
         direction = 'down';
         delay = 0;
       }
+
       if (brightness < 0 && direction === 'down') {
         direction = 'stopDown';
       }
+
       if (brightness < 0 && direction === 'stopDown') {
         delayDown++;
       }
+
       if (delayDown > effectConfig.delayDownMax) {
         direction = 'up';
         delayDown = 0;
