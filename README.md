@@ -384,7 +384,7 @@ There are two predefined configurations you can find in folder ```common\predefi
 If you want to use one of them just change the filename to ```semaphoreConfig.js``` and replace the original file in ```common``` folder.<br>
 **Remember to restart the whole application!**
 
-> These configuration are just examples so you can realy on them while building your own config file.
+> These configurations are just examples so you can rely on them while building your own config file.
 
 ## License and copyrights
 
