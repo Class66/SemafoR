@@ -1,0 +1,5 @@
+Permission denied on /dev/ttyACM0
+---------------------------------
+
+make a command:
+sudo chmod a+rw /dev/ttyACM0
