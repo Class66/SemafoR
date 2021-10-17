@@ -7,7 +7,8 @@ export const Signal = ({ isMiddle, image }) => (
     <img
         alt="chamber"
         className={classNames({ 'Signal-middle': isMiddle })}
-        src={image} />
+        src={image}
+    />
 );
 
 Signal.propTypes = {

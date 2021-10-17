@@ -8,7 +8,8 @@ import './ConnectedSemaphore.scss';
 
 export const ConnectedSemaphore = ({
     setSemaphoreHandler,
-    semaphore, selectedSemaphore
+    semaphore,
+    selectedSemaphore
 }) => (
     <div
         onClick={setSemaphoreHandler}
@@ -16,11 +17,13 @@ export const ConnectedSemaphore = ({
             'ConnectedSemaphore--selected':
 				semaphore.type === selectedSemaphore.type
 				&& semaphore.number === selectedSemaphore.number
-        })}>
+        })}
+    >
         <Semaphore
             setSignalHandler={() => { }}
             signalType={semaphore.signal}
-            semaphoreType={semaphore.type} />
+            semaphoreType={semaphore.type}
+        />
         <button>
             {semaphore.hasOwnProperty('label') ?
                 semaphore.label : `${semaphore.type}${semaphore.number}`}

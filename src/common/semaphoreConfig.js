@@ -1,8 +1,8 @@
 import { signals } from '../enums/signals.enum';
 import { semaphoreTypes } from '../enums/semaphoreTypes.enum';
 
-export const semaphoreSteeringPort = 4000;
-export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`;
+export const SEMAPHORE_STEERING_PORT = 4000;
+export const semaphoreSteeringUri = `http://localhost:${SEMAPHORE_STEERING_PORT}`;
 
 /////////////////////////////////////////////////////
 /// ADDRESSES OF EACH PCA9685 BOARD

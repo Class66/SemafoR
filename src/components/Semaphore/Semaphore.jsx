@@ -12,8 +12,10 @@ import { semaphoreShape } from './../../types/semaphore.type';
 import './Semaphore.scss';
 
 export const Semaphore = ({
-    setSignalHandler, signalType,
-    semaphoreType, selectedSemaphore
+    setSignalHandler,
+    signalType,
+    semaphoreType,
+    selectedSemaphore
 }) => {
     const OffUp = <Signal image={signalLights.OFF_UP} />;
     const OffMiddle = <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />;
@@ -809,7 +811,8 @@ export const Semaphore = ({
             className={classNames('Semaphore', {
                 'Semaphore--selected': selectedSemaphore?.signal === signalType
             })}
-            onClick={() => setSignalHandler(signalType)}>
+            onClick={() => setSignalHandler(signalType)}
+        >
             {displaySignals()}
         </div>
     );

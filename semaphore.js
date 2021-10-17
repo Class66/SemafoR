@@ -1,6 +1,6 @@
 import { signals } from './src/enums/signals.enum';
 import {
-    semaphoreSteeringPort,
+    SEMAPHORE_STEERING_PORT,
     semaphoresLedConfiguration,
     semaphoresGeneralConfiguration
 } from './src/common/semaphoreConfig';
@@ -10,7 +10,7 @@ const cors = require('cors');
 const serveStatic = require('serve-static');
 
 const app = express();
-const port = semaphoreSteeringPort;
+const port = SEMAPHORE_STEERING_PORT;
 
 // Arduino initialization
 const temporal = require('temporal');
@@ -177,8 +177,7 @@ board.on('ready', function () {
             status: status,
         }
         const isLedActive = ledsStatus
-        // eslint-disable-next-line eqeqeq
-            .some(l => l.ledPin === ledPin && l.semaphore == semaphore);
+            .some(l => l.ledPin === ledPin && l.semaphore === semaphore);
 
         if (isLedActive) {
             updateLedStatus(semaphore, led, status);
@@ -279,45 +278,50 @@ board.on('ready', function () {
         });
     };
 
+    const UP = 'up';
+    const DOWN = 'down';
+    const STOP_UP = 'stopUp';
+    const STOP_DOWN = 'stopDown';
+
     const pulse = (led, maxBrightness, effectConfig) => {
         let brightness = 0;
         let delay = 0;
         let delayDown = 0;
-        let direction = 'up';
+        let direction = UP;
 
         return temporal.loop(effectConfig.delayLoop, function () {
-            direction === 'up' && (brightness = brightness + effectConfig.brightnessStep);
-            direction === 'down' && (brightness = brightness - effectConfig.brightnessStep);
-            direction === 'stopUp' && delay++;
+            direction === UP && (brightness = brightness + effectConfig.brightnessStep);
+            direction === DOWN && (brightness = brightness - effectConfig.brightnessStep);
+            direction === STOP_UP && delay++;
 
-            if (brightness <= maxBrightness && direction === 'up') {
+            if (brightness <= maxBrightness && direction === UP) {
                 led.intensity(brightness);
             }
 
-            if (brightness >= 0 && direction === 'down') {
+            if (brightness >= 0 && direction === DOWN) {
                 led.intensity(brightness);
             }
 
             if (brightness > maxBrightness) {
-                direction = 'stopUp';
+                direction = STOP_UP;
                 delay++;
             }
 
             if (delay > effectConfig.delayMax) {
-                direction = 'down';
+                direction = DOWN;
                 delay = 0;
             }
 
-            if (brightness < 0 && direction === 'down') {
-                direction = 'stopDown';
+            if (brightness < 0 && direction === DOWN) {
+                direction = STOP_DOWN;
             }
 
-            if (brightness < 0 && direction === 'stopDown') {
+            if (brightness < 0 && direction === STOP_DOWN) {
                 delayDown++;
             }
 
             if (delayDown > effectConfig.delayDownMax) {
-                direction = 'up';
+                direction = UP;
                 delayDown = 0;
             }
         });
@@ -327,42 +331,42 @@ board.on('ready', function () {
         let brightness = maxBrightness;
         let delay = 0;
         let delayDown = 0;
-        let direction = 'down';
+        let direction = DOWN;
         led.intensity(maxBrightness);
 
         return temporal.loop(effectConfig.delayLoop, function () {
-            direction === 'up' && (brightness = brightness + effectConfig.brightnessStep);
-            direction === 'down' && (brightness = brightness - effectConfig.brightnessStep);
-            direction === 'stopUp' && delay++;
+            direction === UP && (brightness = brightness + effectConfig.brightnessStep);
+            direction === DOWN && (brightness = brightness - effectConfig.brightnessStep);
+            direction === STOP_UP && delay++;
 
-            if (brightness <= maxBrightness && direction === 'up') {
+            if (brightness <= maxBrightness && direction === UP) {
                 led.intensity(brightness);
             }
 
-            if (brightness >= 0 && direction === 'down') {
+            if (brightness >= 0 && direction === DOWN) {
                 led.intensity(brightness);
             }
 
             if (brightness > maxBrightness) {
-                direction = 'stopUp';
+                direction = STOP_UP;
                 delay++;
             }
 
             if (delay > effectConfig.delayMax) {
-                direction = 'down';
+                direction = DOWN;
                 delay = 0;
             }
 
-            if (brightness < 0 && direction === 'down') {
-                direction = 'stopDown';
+            if (brightness < 0 && direction === DOWN) {
+                direction = STOP_DOWN;
             }
 
-            if (brightness < 0 && direction === 'stopDown') {
+            if (brightness < 0 && direction === STOP_DOWN) {
                 delayDown++;
             }
 
             if (delayDown > effectConfig.delayDownMax) {
-                direction = 'up';
+                direction = UP;
                 delayDown = 0;
             }
         });
@@ -379,8 +383,8 @@ board.on('ready', function () {
 
             loopInstances.push(instance);
         } else if (
-            getLedStatus(semaphore, led) !== status.PULSE &&
-			getLedStatus(semaphore, led) !== status.ON
+            getLedStatus(semaphore, led) !== status.PULSE
+            && getLedStatus(semaphore, led) !== status.ON
         ) {
             const loopInstance = pulse(led, ledMaxBrightness, ledEffectConfig.pulse);
             const instance = {
