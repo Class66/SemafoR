@@ -18,22 +18,22 @@
   "author": "Marcin Gierczak",
   "license": "MIT",
   "dependencies": {
-    "@testing-library/jest-dom": "5.11.9",
-    "@testing-library/react": "11.2.5",
-    "@testing-library/user-event": "12.8.3",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.1.2",
+    "@testing-library/user-event": "13.4.1",
     "classnames": "2.2.6",
     "cors": "2.8.5",
     "esm": "3.2.25",
     "express": "4.17.1",
-    "johnny-five": "2.0.0",
+    "johnny-five": "2.1.0",
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-scripts": "4.0.3",
-    "sass": "1.32.8",
+    "sass": "1.43.2",
     "serve-static": "1.14.1",
     "temporal": "0.7.1",
-    "web-vitals": "0.2.4"
+    "web-vitals": "2.1.2"
   },
   "eslintConfig": {
     "extends": [
@@ -54,12 +54,12 @@
     ]
   },
   "devDependencies": {
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "react-app-rewired": "^2.1.8",
-    "stylelint": "^13.11.0",
-    "stylelint-config-standard": "^20.0.0",
-    "stylelint-scss": "^3.19.0",
-    "stylelint-webpack-plugin": "^2.1.1"
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.6",
+    "react-app-rewired": "2.1.8",
+    "stylelint": "13.13.1",
+    "stylelint-config-standard": "22.0.0",
+    "stylelint-scss": "3.21.0",
+    "stylelint-webpack-plugin": "3.0.1"
   }
 }
