@@ -6,14 +6,14 @@ import { signals } from '../../enums/signals.enum';
 
 describe('SignalLabel', () => {
 
-  it('renders button correctly', () => {
-    const wrapper = shallow(
-      <SignalLabel signal={signals.S1} />
-    );
+    it('renders button correctly', () => {
+        const wrapper = shallow(
+            <SignalLabel signal={signals.S1} />
+        );
   
-    const content = wrapper.find('.SignalLabel').text().includes(signals.S1);
+        const content = wrapper.find('.SignalLabel').text().includes(signals.S1);
 
-    expect(content).toBe(true);
-  });
+        expect(content).toBe(true);
+    });
 
 });

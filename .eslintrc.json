@@ -10,9 +10,7 @@
     "jest": true,
     "node": true
   },
-  "plugins": [
-    "react-hooks"
-  ],
+  "plugins": ["react-hooks"],
   "rules": {
     "arrow-parens": "off",
     "brace-style": ["error", "1tbs"],
@@ -21,7 +19,7 @@
     "import/extensions": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": "off",
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["error", 4, { "SwitchCase": 1 }],
     "max-len": ["warn", 100, { "ignoreComments": true }],
     "no-var": "error",
     "no-case-declarations": 0,
@@ -45,8 +43,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-boolean-value": ["error", "always"],
-    "react/jsx-indent-props": ["error", 2],
-    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 4],
+    "react/jsx-indent": ["error", 4],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unused-prop-types": "off",
@@ -56,9 +54,12 @@
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/label-has-associated-control": [2, {
-      "controlComponents": ["Input"],
-      "depth": 3
-    }]
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": ["Input"],
+        "depth": 3
+      }
+    ]
   }
 }
