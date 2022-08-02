@@ -1,16 +1,16 @@
-@use "../../scss/_colors" as *;
+@use '../../scss/_colors' as *;
 
 .SignalLabel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 25px;
-  background-color: $white;
-  color: $black;
-  border-color: $black;
-  border-radius: 5px;
-  margin: 5px 0 15px 0;
-  font-size: 14px;
-  font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 25px;
+    background-color: $white;
+    color: $black;
+    border-color: $black;
+    border-radius: 5px;
+    margin: 5px 0 15px;
+    font-size: 14px;
+    font-weight: 500;
 }

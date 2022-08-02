@@ -1,7 +1,6 @@
-node_modules
-coverage
-static
-public
-Johnny-Five
-images
-.vscode
+/.vscode
+/coverage
+/images
+/Johnny-Five
+/node_modules
+/public
