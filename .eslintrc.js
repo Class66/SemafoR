@@ -14,7 +14,6 @@ module.exports = {
     rules: {
         'arrow-parens': 'off',
         'brace-style': ['error', '1tbs'],
-        'function-paren-newline': ['error', 'consistent'],
         'implicit-arrow-linebreak': 'off',
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': [
@@ -36,7 +35,6 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'no-multiple-empty-lines': ['error', { max: 1 }],
         'object-curly-newline': ['error', { consistent: true }],
-        'padded-blocks': 'off',
         'padding-line-between-statements': [
             'error',
             { blankLine: 'always', prev: '*', next: 'return' },

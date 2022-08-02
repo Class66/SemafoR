@@ -1141,8 +1141,8 @@ board.on('ready', function () {
         res.send(`Semaphore ${req.params.semaphore} ${req.params.signal} ON!`);
     });
 
-    // eslint-disable-next-line no-console
     app.listen(port, () =>
+        // eslint-disable-next-line no-console
         console.log(`Example app listening on port ${port}!`),
     );
 });
