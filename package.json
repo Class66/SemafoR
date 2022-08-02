@@ -11,7 +11,8 @@
         "lint": "eslint src/**/*.{js,jsx} *.js",
         "lint-fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
         "lint-css": "stylelint src/**/*.scss src/*.scss",
-        "lint-css-fix": "stylelint src/**/*.scss src/*.scss --fix"
+        "lint-css-fix": "stylelint src/**/*.scss src/*.scss --fix",
+        "pretty-quick": "pretty-quick"
     },
     "repository": {
         "type": "git",
@@ -62,6 +63,7 @@
         "eslint-plugin-jest-dom": "4.0.2",
         "eslint-plugin-prettier": "4.2.1",
         "husky": "8.0.1",
+        "prettier": "2.7.1",
         "pretty-quick": "3.1.3",
         "react-app-rewired": "2.2.1",
         "stylelint": "14.9.1",
