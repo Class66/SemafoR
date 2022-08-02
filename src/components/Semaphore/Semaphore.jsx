@@ -15,32 +15,54 @@ export const Semaphore = ({
     setSignalHandler,
     signalType,
     semaphoreType,
-    selectedSemaphore
+    selectedSemaphore,
 }) => {
     const OffUp = <Signal image={signalLights.OFF_UP} />;
-    const OffMiddle = <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />;
+    const OffMiddle = (
+        <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+    );
     const OffDown = <Signal image={signalLights.OFF_DOWN} isMiddle={true} />;
 
     const RedUpSolid = <Signal image={signalLights.RED_UP_SOLID} />;
-    const RedMiddleSolid = <Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />;
+    const RedMiddleSolid = (
+        <Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
+    );
     const GreenUpSolid = <Signal image={signalLights.GREEN_UP_SOLID} />;
     const GreenUpBlinking = <Signal image={signalLights.GREEN_UP_BLINKING} />;
-    const GreenMiddleSolid = <Signal image={signalLights.GREEN_MIDDLE_SOLID} isMiddle={true} />;
-    const GreenMiddleBlinking =
-        <Signal image={signalLights.GREEN_MIDDLE_BLINKING} isMiddle={true} />;
-    const GreenDownSolid = <Signal image={signalLights.GREEN_DOWN_SOLID} isMiddle={true} />;
-    const GreenDownBlinking = <Signal image={signalLights.GREEN_DOWN_BLINKING} isMiddle={true} />;
+    const GreenMiddleSolid = (
+        <Signal image={signalLights.GREEN_MIDDLE_SOLID} isMiddle={true} />
+    );
+    const GreenMiddleBlinking = (
+        <Signal image={signalLights.GREEN_MIDDLE_BLINKING} isMiddle={true} />
+    );
+    const GreenDownSolid = (
+        <Signal image={signalLights.GREEN_DOWN_SOLID} isMiddle={true} />
+    );
+    const GreenDownBlinking = (
+        <Signal image={signalLights.GREEN_DOWN_BLINKING} isMiddle={true} />
+    );
     const OrangeUpSolid = <Signal image={signalLights.ORANGE_UP_SOLID} />;
     const OrangeUpBlinking = <Signal image={signalLights.ORANGE_UP_BLINKING} />;
-    const OrangeMiddleSolid = <Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />;
-    const OrangeMiddleBlinking =
-        <Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />;
-    const OrangeDownSolid = <Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />;
-    const OrangeDownBlinking = <Signal image={signalLights.ORANGE_DOWN_BLINKING} isMiddle={true} />;
-    const WhiteDownSolid = <Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />;
-    const WhiteDownBlinking = <Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />;
+    const OrangeMiddleSolid = (
+        <Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
+    );
+    const OrangeMiddleBlinking = (
+        <Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />
+    );
+    const OrangeDownSolid = (
+        <Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
+    );
+    const OrangeDownBlinking = (
+        <Signal image={signalLights.ORANGE_DOWN_BLINKING} isMiddle={true} />
+    );
+    const WhiteDownSolid = (
+        <Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
+    );
+    const WhiteDownBlinking = (
+        <Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
+    );
     const BlueUpSolid = <Signal image={signalLights.BLUE_UP_SOLID} />;
-	
+
     const PoleSm = <Pole semaphoreType={semaphoreTypes.Sm} />;
     const PoleSp = <Pole semaphoreType={semaphoreTypes.Sp} />;
     const PoleTo = <Pole semaphoreType={semaphoreTypes.To} />;
@@ -779,7 +801,6 @@ export const Semaphore = ({
 
     const displaySignals = () => {
         switch (semaphoreType) {
-
             case semaphoreTypes.Sm:
                 return signalDefinitionsForSmSemaphore[signalType];
             case semaphoreTypes.SmGORO:
@@ -802,14 +823,13 @@ export const Semaphore = ({
                 return signalDefinitionsForTmSemaphore[signalType];
             default:
                 return signalDefinitionsForSmSemaphore[signalType];
-    
         }
     };
 
     return (
         <div
             className={classNames('Semaphore', {
-                'Semaphore--selected': selectedSemaphore?.signal === signalType
+                'Semaphore--selected': selectedSemaphore?.signal === signalType,
             })}
             onClick={() => setSignalHandler(signalType)}
         >

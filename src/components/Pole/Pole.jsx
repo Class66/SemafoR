@@ -7,7 +7,6 @@ import { signalLights } from '../../enums/signalLights.enum';
 export const Pole = ({ semaphoreType }) => {
     const displayPole = () => {
         switch (semaphoreType) {
-
             case semaphoreTypes.Sm:
                 return signalLights.POLE;
             case semaphoreTypes.Sp:
@@ -18,13 +17,10 @@ export const Pole = ({ semaphoreType }) => {
                 return signalLights.POLE_TM;
             default:
                 return signalLights.POLE;
-    
         }
     };
 
-    return (
-        <Signal image={displayPole()} />
-    )
+    return <Signal image={displayPole()} />;
 };
 
 Pole.propTypes = {

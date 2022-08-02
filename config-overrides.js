@@ -1,4 +1,4 @@
-const StylelintPlugin = require('stylelint-webpack-plugin')
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     webpack: function (config, env) {
@@ -6,10 +6,10 @@ module.exports = {
             config.plugins.push(
                 new StylelintPlugin({
                     // options here
-                })
-            )
+                }),
+            );
         }
 
-        return config
-    }
-}
+        return config;
+    },
+};

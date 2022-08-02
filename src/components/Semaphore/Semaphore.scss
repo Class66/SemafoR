@@ -1,20 +1,20 @@
-@use "../../scss/_colors" as *;
+@use '../../scss/_colors' as *;
 
 .Semaphore {
-  display: inline-flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  background-color: $gray;
-  border-radius: 25px;
-  margin: 3px;
+    display: inline-flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    background-color: $gray;
+    border-radius: 25px;
+    margin: 3px;
 
-  &:hover {
-    background-color: $light-gray;
-  }
+    &:hover {
+        background-color: $light-gray;
+    }
 }
 
 .Semaphore--selected {
-  background-color: $light-gray;
+    background-color: $light-gray;
 }

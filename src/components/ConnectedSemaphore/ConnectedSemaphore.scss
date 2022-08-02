@@ -1,29 +1,29 @@
-@use "../../scss/_colors" as *;
+@use '../../scss/_colors' as *;
 
 .ConnectedSemaphore {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  float: left;
-  margin: 10px;
-  background-color: $lighter-gray;
-  border-radius: 25px;
-  border-style: solid;
-  border-color: $lighter-gray;
-
-  button {
-    min-height: 30px;
-    margin: -12px 0 15px 0;
-    width: 50px;
-    overflow-wrap: break-word;
-  }
-
-  .Semaphore:hover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: left;
+    margin: 10px;
     background-color: $lighter-gray;
-  }
+    border-radius: 25px;
+    border-style: solid;
+    border-color: $lighter-gray;
+
+    button {
+        min-height: 30px;
+        margin: -12px 0 15px;
+        width: 50px;
+        overflow-wrap: break-word;
+    }
+
+    .Semaphore:hover {
+        background-color: $lighter-gray;
+    }
 }
 
 .ConnectedSemaphore--selected {
-  border-style: dashed;
-  border-color: $black;
+    border-style: dashed;
+    border-color: $black;
 }
