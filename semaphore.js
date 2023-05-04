@@ -13,7 +13,6 @@ const app = express();
 const port = SEMAPHORE_STEERING_PORT;
 
 // Arduino initialization
-const temporal = require('temporal');
 const { Board, Led } = require('johnny-five');
 const board = new Board();
 
@@ -128,7 +127,7 @@ board.on('ready', function () {
                     loop => !ledsPinToBeOn.includes(loop.ledPin),
                 );
 
-            loopInstancesForLedsToBeOff.forEach(loop => loop.instance.stop());
+            loopInstancesForLedsToBeOff.forEach(loop => clearInterval(loop.instance));
 
             const loopInstancesForLedsToBeOn =
                 loopInstancesForThisSemaphore.filter(loop =>
@@ -257,18 +256,19 @@ board.on('ready', function () {
     const fadeIn = (led, maxBrightness, effectConfig) => {
         let brightness = 0;
 
-        return temporal.loop(effectConfig.delayLoop, function () {
-            // Here can't be defined arrow function because of |this|
+        const intervalId = setInterval(() => {
             brightness = brightness + effectConfig.brightnessStep;
 
             if (brightness === maxBrightness) {
-                this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
+                clearInterval(intervalId);
             }
 
             if (brightness <= maxBrightness) {
                 led.intensity(brightness);
             }
-        });
+        }, effectConfig.delayLoop);
+
+        return intervalId;
     };
 
     // eslint-disable-next-line no-unused-vars
@@ -276,18 +276,19 @@ board.on('ready', function () {
         let brightness = maxBrightness;
         led.intensity(maxBrightness);
 
-        return temporal.loop(effectConfig.delayLoop, function () {
-            // Here can't be defined arrow function because of |this|
+        const intervalId = setInterval(() => {
             brightness = brightness - effectConfig.brightnessStep;
 
             if (brightness < 0) {
-                this.stop(); // |this| is a reference to the temporal instance use it to cancel the loop
+                clearInterval(intervalId);
             }
 
             if (brightness < maxBrightness) {
                 led.intensity(brightness);
             }
-        });
+        }, effectConfig.delayLoop);
+
+        return intervalId;
     };
 
     const UP = 'up';
@@ -301,7 +302,7 @@ board.on('ready', function () {
         let delayDown = 0;
         let direction = UP;
 
-        return temporal.loop(effectConfig.delayLoop, function () {
+        return setInterval(() => {
             direction === UP &&
                 (brightness = brightness + effectConfig.brightnessStep);
             direction === DOWN &&
@@ -338,7 +339,7 @@ board.on('ready', function () {
                 direction = UP;
                 delayDown = 0;
             }
-        });
+        }, effectConfig.delayLoop);
     };
 
     const pulseFromOn = (led, maxBrightness, effectConfig) => {
@@ -348,7 +349,7 @@ board.on('ready', function () {
         let direction = DOWN;
         led.intensity(maxBrightness);
 
-        return temporal.loop(effectConfig.delayLoop, function () {
+        return setInterval(() => {
             direction === UP &&
                 (brightness = brightness + effectConfig.brightnessStep);
             direction === DOWN &&
@@ -385,7 +386,7 @@ board.on('ready', function () {
                 direction = UP;
                 delayDown = 0;
             }
-        });
+        }, effectConfig.delayLoop);
     };
 
     const pulseComplex = (
