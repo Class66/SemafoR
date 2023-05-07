@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { DarkModeToggle } from './components/DarkModeToggle/DarkModeToggle';
 import { Semaphore } from './components/Semaphore/Semaphore';
 import { ConnectedSemaphore } from './components/ConnectedSemaphore/ConnectedSemaphore';
 import { signals } from './enums/signals.enum';
@@ -321,6 +322,7 @@ function App() {
     return (
         <>
             <div className="App">
+                <DarkModeToggle />
                 {connectedSemaphores}
                 {getCorrectSemaphoresGroup()}
             </div>
