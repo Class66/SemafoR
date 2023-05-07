@@ -12,7 +12,8 @@
         "lint-fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
         "lint-css": "stylelint src/**/*.scss src/*.scss",
         "lint-css-fix": "stylelint src/**/*.scss src/*.scss --fix",
-        "pretty-quick": "pretty-quick"
+        "pretty-quick": "pretty-quick",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
