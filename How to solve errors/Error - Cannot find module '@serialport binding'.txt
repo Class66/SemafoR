@@ -1,0 +1,2 @@
+UWAGA!
+Nie podbijać do wersji wyższej niż "serialport": "^9.2.8" z uwagi na zmianę w wyższych wersjach sposobu importu SerialPort.
