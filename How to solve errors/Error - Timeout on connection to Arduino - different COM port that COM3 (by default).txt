@@ -1,0 +1,7 @@
+If connecting via a USB port other than COM3 for instance COM5, change the line below in semaphore.js file from:
+
+const board = new Board();
+
+to:
+
+const board = new Board({ port: 'COM5' });
