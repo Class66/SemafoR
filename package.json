@@ -17,7 +17,7 @@
     "lint:fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "format:staged": "lint-staged",
+    "check:staged": "lint-staged",
     "stylelint": "stylelint \"src/**/*.css\"",
     "type:check": "tsc --noEmit",
     "preview": "vite preview",
@@ -52,7 +52,15 @@
     "vite": "^8.3.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json,jsonc,css,scss,html}": "oxfmt --write --no-error-on-unmatched-pattern"
+    "**/*.{js,jsx,ts,tsx}": [
+      "oxfmt --write --no-error-on-unmatched-pattern",
+      "oxlint"
+    ],
+    "**/*.css": [
+      "oxfmt --write --no-error-on-unmatched-pattern",
+      "stylelint"
+    ],
+    "**/*.{json,jsonc,scss,html}": "oxfmt --write --no-error-on-unmatched-pattern"
   },
   "browserslist": {
     "production": [

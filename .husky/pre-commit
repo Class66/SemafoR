@@ -1,4 +1,2 @@
-npm run format:staged
+npm run check:staged
 npm run type:check
-npm run lint
-npm run stylelint
