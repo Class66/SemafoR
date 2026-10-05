@@ -1,0 +1,97 @@
+@import '../../css/_colors.css';
+
+.theme-toggle {
+  touch-action: pan-x;
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  margin: 10px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle__input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.theme-toggle__track {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 63px;
+  height: 32px;
+  padding: 4px;
+  border-radius: 30px;
+  background-color: var(--mud);
+  transition: all 0.2s ease;
+}
+
+.theme-toggle__input:checked + .theme-toggle__track {
+  background-color: var(--white);
+}
+
+.theme-toggle:hover .theme-toggle__input:not(:checked) + .theme-toggle__track {
+  background-color: var(--black);
+}
+
+.theme-toggle:hover .theme-toggle__input:checked + .theme-toggle__track {
+  background-color: var(--white);
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  top: 50%;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.theme-toggle__icon--checked {
+  left: 7px;
+  opacity: 1;
+}
+
+.theme-toggle__input:not(:checked)
+  + .theme-toggle__track
+  .theme-toggle__icon--checked {
+  opacity: 0;
+}
+
+.theme-toggle__icon--unchecked {
+  right: 7px;
+}
+
+.theme-toggle__input:checked
+  + .theme-toggle__track
+  .theme-toggle__icon--unchecked {
+  opacity: 0;
+}
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.theme-toggle__input:checked + .theme-toggle__track .theme-toggle__thumb {
+  left: 32px;
+  border-color: var(--black);
+}
+
+.theme-toggle__input:focus-visible + .theme-toggle__track {
+  box-shadow: 0 0 2px 3px var(--blue);
+}
+
+.theme-toggle__input:active + .theme-toggle__track .theme-toggle__thumb {
+  box-shadow: 0 0 5px 5px var(--blue);
+}

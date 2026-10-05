@@ -11,26 +11,26 @@ This is application for steering KLUBA semaphores using Arduino platform.<br>
 You can control all types of KLUBA semaphores such as:
 
 - Sm (including 5, 4 or 3 chambers with different signal configuration)
-- Sp (3 chambers) 
+- Sp (3 chambers)
 - To (2 chambers)
 - Tm (2 chambers)
 
 Reference to KLUBA semaphores here:<br>
-http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-na-slupie-h0/
+http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne/
 
-> As Arduino supplies 5V to semaphores, theirs LED brightness is lower than if they were powered with 12V. The advantage of this is that the brightness is very similar as in real semaphore. 
+> As Arduino supplies 5V to semaphores, theirs LED brightness is lower than if they were powered with 12V. The advantage of this is that the brightness is very similar as in real semaphore.
 
 ## Contents
 
-  - [Hardware requirements](#hardware-requirements)
-  - [Software requirements](#software-requirements)
-  - [How to make circuit with Arduino, PCA9685 and semaphores](#how-to-make-circuit-with-arduino-pca9685-and-semaphores)
-  - [How to install the application](#how-to-install-the-application)
-  - [How to run the application](#how-to-run-the-application)
-  - [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
-  - [Examples of definitions for all types of semaphores](#examples-of-definitions-for-all-types-of-semaphores)
-  - [Predefined configurations](#predefined-configurations)
-  - [License and copyrights](#license-and-copyrights)
+- [Hardware requirements](#hardware-requirements)
+- [Software requirements](#software-requirements)
+- [How to make circuit with Arduino, PCA9685 and semaphores](#how-to-make-circuit-with-arduino-pca9685-and-semaphores)
+- [How to install the application](#how-to-install-the-application)
+- [How to run the application](#how-to-run-the-application)
+- [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
+- [Examples of definitions for all types of semaphores](#examples-of-definitions-for-all-types-of-semaphores)
+- [Predefined configurations](#predefined-configurations)
+- [License and copyrights](#license-and-copyrights)
 
 ## Hardware requirements
 
@@ -49,6 +49,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne-h0/sygnalizatory-z-komora-
 ## How to make circuit with Arduino, PCA9685 and semaphores
 
 This is example with 3x PCA9685 boards:
+
 > According to the given scheme, you can use max. 7 PCA9685 boards with a total of 112 pins available. With this number of pins, you will be able to connect up to 22 5-chamber semaphores.
 
 ![Pulpit Image](/images/adafruit-pca9685-circuit.jpg)
@@ -62,10 +63,10 @@ This is example with 3x PCA9685 boards:
 Other reference:<br>
 
 - How to connect the PCA9685 board:
-http://johnny-five.io/examples/led-PCA9685/
+  http://johnny-five.io/examples/led-PCA9685/
 
 - How to connect more than one PCA9685 board:
-https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
+  https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 
 ## How to install the application
 
@@ -74,26 +75,29 @@ https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
 2. Install Arduino IDE application (https://www.arduino.cc/en/software)
 
 3. Connect your Arduino via USB to your computer
-   
+
 4. Open Arduino IDE application
- 
-5. Using the Arduino IDE write to the Arduino memory program from a file ***StandardFirmataPlus.ino***:
-- select from Arduino IDE option "Files/Open..." and select the file ***StandardFirmataPlus.ino***.
- (it's located in folder 'Johnny-Five/firmware/StandardFirmataPlus').<br>
+
+5. Using the Arduino IDE write to the Arduino memory program from a file **_StandardFirmataPlus.ino_**:
+
+- select from Arduino IDE option "Files/Open..." and select the file **_StandardFirmataPlus.ino_**.
+  (it's located in folder 'Johnny-Five/firmware/StandardFirmataPlus').<br>
 - then, select from Arduino IDE option "Sketch/Save" to save the program in the Arduino memory
 
 ![Writing to Arduino memory](/images/arduino.gif)
+
 > If there is an issue while loading the file, chceck if proper port is selected:<br>
 > Select from Arduino IDE option: 'Tools/Port > COM3' or other COM prepared for the Arduino Uno (if you use this type of Arduino)
-        
+
 6. Download this application by clicking green "Code" button at the top of this page and next clicking "Download ZIP" option
 
 7. Unzip the application to some folder
 
 8. To install all needed packages for this application, open the main application folder and<br>
-click ```install.bat``` file (NOTICE: the file works only under Windows)<br>
-**OR**<br>
-open a console window in this folder and run command:
+   click `install.bat` file (NOTICE: the file works only under Windows)<br>
+   **OR**<br>
+   open a console window in this folder and run command:
+
 ```
 npm install
 ```
@@ -101,13 +105,15 @@ npm install
 ## How to run the application
 
 1. Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port
-   
-2. Run the application by clicking ```start-steering.bat``` and next ```start-ui.bat``` (NOTICE: the file works only under Windows)<br>
+
+2. Run the application by clicking `start-steering.bat` and next `start-ui.bat` (NOTICE: the file works only under Windows)<br>
    **OR**<br>
    open a console window in this folder and run commands:<br>
+
 ```
 node server
 ```
+
 ```
 npm start
 ```
@@ -115,43 +121,50 @@ npm start
 The application is composed of two separate programs, so you can run them separately too:
 
 - **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.<br>
+
   > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port.
 
   Can be run by command:
+
   ```
   node server
   ```
+
   (by default it will be started on http://localhost:4000)
 
 - **The user interface application** - it's a visual user interface that makes it easier to control semaphores through the browser.<br>
+
   > Before run the user interface application, you must run **the steering application** as described above.
   > Otherwise, you will not be able to steering connected semaphores.
 
   Can be run by command:
+
   ```
   npm start
   ```
+
   (by default it will be started on http://localhost:3000)
 
 ![Pulpit Image](/images/ui-interface-screenshot.jpg)
 
 ## How to add a new semaphore definition to the configuration file
 
-All configuration for this application is defined in ```common\semaphoreConfig.js``` file.
+All configuration for this application is defined in `common\semaphoreConfig.js` file.
 
-> By default the application is prepared for using 3x "Sm" semaphores, 3x "Tm" semaphores and 1x "Sp" semaphore. The current circuit has two PCA9685 boards with defined addresses such as ```0x40``` and ```0x41``` . These addresses are defined in the ```boardPCA9685Addresses``` array in the same configuration file.
+> By default the application is prepared for using 3x "Sm" semaphores, 3x "Tm" semaphores and 1x "Sp" semaphore. The current circuit has two PCA9685 boards with defined addresses such as `0x40` and `0x41` . These addresses are defined in the `boardPCA9685Addresses` array in the same configuration file.
 
 To add a new semaphore, firstly, you need to connect it to some PCA9685 board (connected to the Arduino). After than you need to add its definition by modifying two arrays:
-1. ```semaphoresLedConfiguration```
-2. ```semaphoresGeneralConfiguration```
+
+1. `semaphoresLedConfiguration`
+2. `semaphoresGeneralConfiguration`
 
 > These semaphores will be displayed on the screen exactly the same order as defined in these arrays.
 
-For example, if you need to add one "To" semaphore (let's assume it's connected to the second PCA9685 board with address ```0x41```) we just need to add additional objects in two arrays:<br><br>
+For example, if you need to add one "To" semaphore (let's assume it's connected to the second PCA9685 board with address `0x41`) we just need to add additional objects in two arrays:<br><br>
 
-***CONFIGURATION IN ARRAY ONE:***
+**_CONFIGURATION IN ARRAY ONE:_**
 
-1. In the ```semaphoresLedConfiguration``` array just add a new object. For our "To" semaphore it will be:
+1. In the `semaphoresLedConfiguration` array just add a new object. For our "To" semaphore it will be:
 
 ```javascript
 {
@@ -162,13 +175,13 @@ For example, if you need to add one "To" semaphore (let's assume it's connected 
 
 The GREEN and ORANGE is defined as leds color used in particular semaphore. Because we use "To" semaphore, the semaphore has two possible signals: GREEN and ORANGE. Our semaphore is connected to the pins with number 9 and 8. Moreover, the pins are located on the second PCA9685 board.
 
-```boardPCA9685Addresses[1]``` - means that we use second PCA9685 board here.<br>
+`boardPCA9685Addresses[1]` - means that we use second PCA9685 board here.<br>
 (0 - for first board, 1 - for second board and so on...)<br>
-All these boards must be defined in ```boardPCA9685Addresses``` array.<br><br>
+All these boards must be defined in `boardPCA9685Addresses` array.<br><br>
 
-***CONFIGURATION IN ARRAY TWO:***
+**_CONFIGURATION IN ARRAY TWO:_**
 
-1. In the ```semaphoresGeneralConfiguration``` array just add new object. For our "To" semaphore it will be:
+1. In the `semaphoresGeneralConfiguration` array just add new object. For our "To" semaphore it will be:
 
 ```javascript
 {
@@ -181,21 +194,24 @@ All these boards must be defined in ```boardPCA9685Addresses``` array.<br><br>
   // if it's not defined, the type + number will be displayed
 }
 ```
+
 <br>
 
-***And that's all!*** :rocket: Now, you have to reload all application and everything should work fine :smile:
+**_And that's all!_** :rocket: Now, you have to reload all application and everything should work fine :smile:
 
 ## Examples of definitions for all types of semaphores
 
 There are 10 types of semaphores in the application that correspons to the semaphores produced by KLUBA.
 
 Examples of KLUBA semaphores object definiton:
-> You can copy it to your configuration file called ```semaphoreConfig.js```.<br>
+
+> You can copy it to your configuration file called `semaphoreConfig.js`.<br>
 > Remember to change pin numbers and board numbers.<br>
 > Optionally you can add 'label' property to define your own semaphore name.
 
 - **Sm**<br>
-It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
+  It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
+
 ```javascript
 {
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]), // pin number 0, connected to PCA9685 number 1
@@ -205,6 +221,7 @@ It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
   WHITE: defineLedPin(4, boardPCA9685Addresses[0]), // pin number 4, connected to PCA9685 number 1
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmGORO, // type of the semaphore (all types are defined in semaphoreTypes)
@@ -212,10 +229,12 @@ It's 5 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE, WHITE
   signal: signals.S1, // default signal of the semaphore (it will be set on starting the application)
 }
 ```
+
 <br>
 
 - **SmGORO**<br>
-It's 4 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE
+  It's 4 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE
+
 ```javascript
 {
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
@@ -224,6 +243,7 @@ It's 4 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE
   ORANGE_TWO: defineLedPin(3, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmGORO,
@@ -231,11 +251,13 @@ It's 4 chambers semaphore with leds: GREEN, ORANGE, RED, ORANGE
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **SmGROW**<br>
-It's 4 chambers semaphore with leds: GREEN, RED, ORANGE, WHITE<br>
-> **IMPORTANT!** ORANGE_ONE and ORANGE_TWO must have the same pin number as there is only one ORANGE led in this semaphore
+  It's 4 chambers semaphore with leds: GREEN, RED, ORANGE, WHITE<br>
+  > **IMPORTANT!** ORANGE_ONE and ORANGE_TWO must have the same pin number as there is only one ORANGE led in this semaphore
+
 ```javascript
 {
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
@@ -245,6 +267,7 @@ It's 4 chambers semaphore with leds: GREEN, RED, ORANGE, WHITE<br>
   WHITE: defineLedPin(4, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmGROW,
@@ -252,10 +275,12 @@ It's 4 chambers semaphore with leds: GREEN, RED, ORANGE, WHITE<br>
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **SmOROW**<br>
-It's 4 chambers semaphore with leds: ORANGE, RED, ORANGE, WHITE
+  It's 4 chambers semaphore with leds: ORANGE, RED, ORANGE, WHITE
+
 ```javascript
 {
   ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]),
@@ -264,6 +289,7 @@ It's 4 chambers semaphore with leds: ORANGE, RED, ORANGE, WHITE
   WHITE: defineLedPin(4, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmOROW,
@@ -271,10 +297,12 @@ It's 4 chambers semaphore with leds: ORANGE, RED, ORANGE, WHITE
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **SmRGW**<br>
-It's 3 chambers semaphore with leds: RED, GREEN, WHITE
+  It's 3 chambers semaphore with leds: RED, GREEN, WHITE
+
 ```javascript
 {
   RED: defineLedPin(2, boardPCA9685Addresses[0]),
@@ -282,6 +310,7 @@ It's 3 chambers semaphore with leds: RED, GREEN, WHITE
   WHITE: defineLedPin(4, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmGROW,
@@ -289,10 +318,12 @@ It's 3 chambers semaphore with leds: RED, GREEN, WHITE
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **SmGRO**<br>
-It's 3 chambers semaphore with leds: GREEN, RED, ORANGE
+  It's 3 chambers semaphore with leds: GREEN, RED, ORANGE
+
 ```javascript
 {
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
@@ -301,6 +332,7 @@ It's 3 chambers semaphore with leds: GREEN, RED, ORANGE
   ORANGE_TWO: defineLedPin(1, boardPCA9685Addresses[0]), // must be the same pin number as ORANGE_ONE !!!
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmGRO,
@@ -308,16 +340,19 @@ It's 3 chambers semaphore with leds: GREEN, RED, ORANGE
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **SmRG**<br>
-It's 2 chambers semaphore with leds: RED, GREEN
+  It's 2 chambers semaphore with leds: RED, GREEN
+
 ```javascript
 {
   RED: defineLedPin(2, boardPCA9685Addresses[0]),
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.SmRG,
@@ -325,10 +360,12 @@ It's 2 chambers semaphore with leds: RED, GREEN
   signal: signals.S1,
 }
 ```
+
 <br>
 
 - **Sp**<br>
-It's 3 chambers semaphore with leds: RED, GREEN, WHITE
+  It's 3 chambers semaphore with leds: RED, GREEN, WHITE
+
 ```javascript
 {
   ORANGE: defineLedPin(0, boardPCA9685Addresses[0]),
@@ -336,6 +373,7 @@ It's 3 chambers semaphore with leds: RED, GREEN, WHITE
   WHITE: defineLedPin(2, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.Sp,
@@ -343,16 +381,19 @@ It's 3 chambers semaphore with leds: RED, GREEN, WHITE
   signal: signals.SP1,
 }
 ```
+
 <br>
 
 - **To**<br>
-It's 2 chambers semaphore with leds: BLUE, WHITE
+  It's 2 chambers semaphore with leds: BLUE, WHITE
+
 ```javascript
 {
   GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
   ORANGE: defineLedPin(1, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.To,
@@ -360,16 +401,19 @@ It's 2 chambers semaphore with leds: BLUE, WHITE
   signal: signals.OS1,
 }
 ```
+
 <br>
 
 - **Tm**<br>
-It's 2 chambers semaphore with leds: BLUE, WHITE
+  It's 2 chambers semaphore with leds: BLUE, WHITE
+
 ```javascript
 {
   WHITE: defineLedPin(0, boardPCA9685Addresses[0]),
   BLUE: defineLedPin(1, boardPCA9685Addresses[0]),
 }
 ```
+
 ```javascript
 {
   type: semaphoreTypes.Tm,
@@ -380,8 +424,8 @@ It's 2 chambers semaphore with leds: BLUE, WHITE
 
 ## Predefined configurations
 
-There are two predefined configurations you can find in folder ```common\predefined```.<br>
-If you want to use one of them just change the filename to ```semaphoreConfig.js``` and replace the original file in ```common``` folder.<br>
+There are two predefined configurations you can find in folder `common\predefined`.<br>
+If you want to use one of them just change the filename to `semaphoreConfig.js` and replace the original file in `common` folder.<br>
 **Remember to restart the whole application!**
 
 > These configurations are just examples so you can rely on them while building your own config file.

@@ -1,6 +1,4 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-yarn pretty-quick --staged
-yarn lint
-yarn lint-css
+npm run pretty-quick
+npm run lint
+npm run lint-css
+npm run typecheck

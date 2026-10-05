@@ -1,0 +1,16 @@
+@import '../../css/_colors.css';
+
+.SignalLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 25px;
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--black);
+  border-radius: 5px;
+  margin: 5px 0 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
