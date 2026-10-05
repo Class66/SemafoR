@@ -18,7 +18,7 @@
     "lint-css": "stylelint \"src/**/*.css\"",
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
-    "prettier-fix": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
     "preview": "vite preview",
     "pretty-quick": "pretty-quick",
     "prepare": "husky install"

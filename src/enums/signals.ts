@@ -25,4 +25,4 @@ export const signals = {
   MS2: 'MS2',
   // Off
   OFF: 'OFF'
-} as const;
+} as const

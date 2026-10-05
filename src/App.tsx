@@ -1,75 +1,75 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import { DarkModeToggle } from './components/dark-mode-toggle/dark-mode-toggle';
-import { Semaphore } from './components/semaphore/semaphore';
-import { ConnectedSemaphore } from './components/connected-semaphore/connected-semaphore';
-import { signals } from './enums/signals';
-import { semaphoreTypes } from './enums/semaphore-types';
+import { DarkModeToggle } from './components/dark-mode-toggle/dark-mode-toggle'
+import { Semaphore } from './components/semaphore/semaphore'
+import { ConnectedSemaphore } from './components/connected-semaphore/connected-semaphore'
+import { signals } from './enums/signals'
+import { semaphoreTypes } from './enums/semaphore-types'
 import {
   semaphoreSteeringUri,
   semaphoresGeneralConfiguration
-} from './common/semaphore-config';
-import type { SemaphoreData } from './types/semaphore';
+} from './common/semaphore-config'
+import type { SemaphoreData } from './types/semaphore'
 
-import styles from './app.module.css';
+import styles from './app.module.css'
 
 const semaphoreRouteName = (semaphoreType: string, semaphoreNumber: number) =>
-  `${semaphoreType}${semaphoreNumber}`;
+  `${semaphoreType}${semaphoreNumber}`
 
 const semaphoreSteeringRoute = (semaphore: SemaphoreData, signal: string) =>
   `${semaphoreSteeringUri}/${semaphoreRouteName(
     semaphore.type,
     semaphore.number
-  )}/${signal}`;
+  )}/${signal}`
 
 const callApiToSetSignal = (route: string) => {
   fetch(route)
     .then(resp => resp.text())
     .then(resp => {
       // eslint-disable-next-line no-console
-      console.log(resp);
-    });
-};
+      console.log(resp)
+    })
+}
 
 const setDefaultSignals = () => {
   semaphoresGeneralConfiguration.forEach(sem => {
-    callApiToSetSignal(semaphoreSteeringRoute(sem, sem.signal));
-  });
-};
+    callApiToSetSignal(semaphoreSteeringRoute(sem, sem.signal))
+  })
+}
 
 function App() {
   const [semaphoresSignal, setSemaphoresSignal] = useState<SemaphoreData[]>(
     semaphoresGeneralConfiguration
-  );
+  )
   const [selectedSemaphore, setSelectedSemaphore] = useState<SemaphoreData>(
     semaphoresGeneralConfiguration[0]
-  );
+  )
 
   useEffect(() => {
-    setDefaultSignals();
-  }, []);
+    setDefaultSignals()
+  }, [])
 
   const setSignalHandler = (signal: string) => {
-    callApiToSetSignal(semaphoreSteeringRoute(selectedSemaphore, signal));
+    callApiToSetSignal(semaphoreSteeringRoute(selectedSemaphore, signal))
 
-    const newSemaphoresSignal = [...semaphoresSignal];
+    const newSemaphoresSignal = [...semaphoresSignal]
     const selectedSemaphoreIndex = semaphoresSignal.findIndex(
       ({ type, number }) =>
         type === selectedSemaphore.type && number === selectedSemaphore.number
-    );
+    )
     const selectedSemaphoreNewSignal = {
       type: selectedSemaphore.type,
       number: selectedSemaphore.number,
       signal: signal
-    };
+    }
 
-    newSemaphoresSignal[selectedSemaphoreIndex] = selectedSemaphoreNewSignal;
+    newSemaphoresSignal[selectedSemaphoreIndex] = selectedSemaphoreNewSignal
 
     // eslint-disable-next-line no-console
-    console.table(newSemaphoresSignal[selectedSemaphoreIndex]);
-    setSemaphoresSignal(newSemaphoresSignal);
-    setSelectedSemaphore(selectedSemaphoreNewSignal);
-  };
+    console.table(newSemaphoresSignal[selectedSemaphoreIndex])
+    setSemaphoresSignal(newSemaphoresSignal)
+    setSelectedSemaphore(selectedSemaphoreNewSignal)
+  }
 
   const connectedSemaphores = semaphoresSignal.map(sem => (
     <ConnectedSemaphore
@@ -78,7 +78,7 @@ function App() {
       semaphore={sem}
       selectedSemaphore={selectedSemaphore}
     />
-  ));
+  ))
 
   const semaphoresSmGroup = (
     <div className={styles.semaphoresGroup}>
@@ -105,7 +105,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmGOROGroup = (
     <div className={styles.semaphoresGroup}>
@@ -130,7 +130,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmGROWGroup = (
     <div className={styles.semaphoresGroup}>
@@ -155,7 +155,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmOROWGroup = (
     <div className={styles.semaphoresGroup}>
@@ -178,7 +178,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmRGWGroup = (
     <div className={styles.semaphoresGroup}>
@@ -199,7 +199,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmGROGroup = (
     <div className={styles.semaphoresGroup}>
@@ -222,7 +222,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSmRGGroup = (
     <div className={styles.semaphoresGroup}>
@@ -236,7 +236,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const semaphoresSpGroup = (
     <div className={styles.semaphoresGroup}>
@@ -252,7 +252,7 @@ function App() {
         )
       )}
     </div>
-  );
+  )
 
   const semaphoresToGroup = (
     <div className={styles.semaphoresGroup}>
@@ -268,7 +268,7 @@ function App() {
         )
       )}
     </div>
-  );
+  )
 
   const semaphoresTmGroup = (
     <div className={styles.semaphoresGroup}>
@@ -282,33 +282,33 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 
   const getCorrectSemaphoresGroup = () => {
     // eslint-disable-next-line default-case
     switch (selectedSemaphore.type) {
       case semaphoreTypes.Sm:
-        return semaphoresSmGroup;
+        return semaphoresSmGroup
       case semaphoreTypes.SmGORO:
-        return semaphoresSmGOROGroup;
+        return semaphoresSmGOROGroup
       case semaphoreTypes.SmGROW:
-        return semaphoresSmGROWGroup;
+        return semaphoresSmGROWGroup
       case semaphoreTypes.SmOROW:
-        return semaphoresSmOROWGroup;
+        return semaphoresSmOROWGroup
       case semaphoreTypes.SmGRO:
-        return semaphoresSmGROGroup;
+        return semaphoresSmGROGroup
       case semaphoreTypes.SmRGW:
-        return semaphoresSmRGWGroup;
+        return semaphoresSmRGWGroup
       case semaphoreTypes.SmRG:
-        return semaphoresSmRGGroup;
+        return semaphoresSmRGGroup
       case semaphoreTypes.Sp:
-        return semaphoresSpGroup;
+        return semaphoresSpGroup
       case semaphoreTypes.To:
-        return semaphoresToGroup;
+        return semaphoresToGroup
       case semaphoreTypes.Tm:
-        return semaphoresTmGroup;
+        return semaphoresTmGroup
     }
-  };
+  }
 
   return (
     <>
@@ -318,7 +318,7 @@ function App() {
         {getCorrectSemaphoresGroup()}
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -9,4 +9,4 @@ export const semaphoreTypes = {
   Sp: 'Sp', // Sp with 3 chambers (led colors: ORANGE, GREEN, WHITE)
   To: 'To', // To with 2 chambers (led colors: YELLOW, GREEN)
   Tm: 'Tm' // Tm with 2 chambers (led colors: BLUE, WHITE)
-} as const;
+} as const

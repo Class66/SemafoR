@@ -1,11 +1,11 @@
-import classNames from 'classnames';
+import classNames from 'classnames'
 
-import styles from './signal.module.css';
+import styles from './signal.module.css'
 
 type SignalProps = {
-  isMiddle?: boolean;
-  image: string;
-};
+  isMiddle?: boolean
+  image: string
+}
 
 export const Signal = ({ isMiddle = false, image }: SignalProps) => (
   <img
@@ -15,4 +15,4 @@ export const Signal = ({ isMiddle = false, image }: SignalProps) => (
     })}
     src={image}
   />
-);
+)

@@ -1,26 +1,26 @@
-import { Signal } from '../signal/signal';
-import { semaphoreTypes } from '../../enums/semaphore-types';
-import { signalLights } from '../../enums/signal-lights';
+import { Signal } from '../signal/signal'
+import { semaphoreTypes } from '../../enums/semaphore-types'
+import { signalLights } from '../../enums/signal-lights'
 
 type PoleProps = {
-  semaphoreType: string;
-};
+  semaphoreType: string
+}
 
 export const Pole = ({ semaphoreType }: PoleProps) => {
   const displayPole = () => {
     switch (semaphoreType) {
       case semaphoreTypes.Sm:
-        return signalLights.POLE;
+        return signalLights.POLE
       case semaphoreTypes.Sp:
-        return signalLights.POLE_SP;
+        return signalLights.POLE_SP
       case semaphoreTypes.To:
-        return signalLights.POLE_TO;
+        return signalLights.POLE_TO
       case semaphoreTypes.Tm:
-        return signalLights.POLE_TM;
+        return signalLights.POLE_TM
       default:
-        return signalLights.POLE;
+        return signalLights.POLE
     }
-  };
+  }
 
-  return <Signal image={displayPole()} />;
-};
+  return <Signal image={displayPole()} />
+}

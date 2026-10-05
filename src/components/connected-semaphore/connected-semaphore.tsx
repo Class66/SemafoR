@@ -1,15 +1,15 @@
-import classNames from 'classnames';
+import classNames from 'classnames'
 
-import { Semaphore } from '../semaphore/semaphore';
-import type { SemaphoreData } from '../../types/semaphore';
+import { Semaphore } from '../semaphore/semaphore'
+import type { SemaphoreData } from '../../types/semaphore'
 
-import styles from './connected-semaphore.module.css';
+import styles from './connected-semaphore.module.css'
 
 type Props = {
-  setSemaphoreHandler: () => void;
-  semaphore: SemaphoreData;
-  selectedSemaphore?: SemaphoreData;
-};
+  setSemaphoreHandler: () => void
+  semaphore: SemaphoreData
+  selectedSemaphore?: SemaphoreData
+}
 
 export const ConnectedSemaphore = ({
   setSemaphoreHandler,
@@ -32,4 +32,4 @@ export const ConnectedSemaphore = ({
     />
     <button>{semaphore.label ?? `${semaphore.type}${semaphore.number}`}</button>
   </div>
-);
+)

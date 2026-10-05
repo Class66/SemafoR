@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import styles from './dark-mode-toggle.module.css';
+import styles from './dark-mode-toggle.module.css'
 
 export const DarkModeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--background-color',
       isDark ? 'var(--black)' : 'var(--white)'
-    );
-  }, [isDark]);
+    )
+  }, [isDark])
 
   return (
     <label className={styles.themeToggle}>
@@ -35,5 +35,5 @@ export const DarkModeToggle = () => {
         <span className={styles.themeToggleThumb} />
       </span>
     </label>
-  );
-};
+  )
+}

@@ -1,32 +1,32 @@
-import classNames from 'classnames';
+import classNames from 'classnames'
 
-import { Signal } from '../signal/signal';
-import { Pole } from '../pole/pole';
-import { SignalLabel } from '../signal-label/signal-label';
-import { signals } from '../../enums/signals';
-import { semaphoreTypes } from '../../enums/semaphore-types';
-import { signalLights } from '../../enums/signal-lights';
-import type { SemaphoreData } from '../../types/semaphore';
+import { Signal } from '../signal/signal'
+import { Pole } from '../pole/pole'
+import { SignalLabel } from '../signal-label/signal-label'
+import { signals } from '../../enums/signals'
+import { semaphoreTypes } from '../../enums/semaphore-types'
+import { signalLights } from '../../enums/signal-lights'
+import type { SemaphoreData } from '../../types/semaphore'
 
-import styles from './semaphore.module.css';
+import styles from './semaphore.module.css'
 
 const hasOwnKey = <T extends object>(
   value: T,
   key: PropertyKey
-): key is keyof T => Object.prototype.hasOwnProperty.call(value, key);
+): key is keyof T => Object.prototype.hasOwnProperty.call(value, key)
 
 const getSignalDefinition = <T extends object>(
   definitions: T,
   signalType: string
-) => (hasOwnKey(definitions, signalType) ? definitions[signalType] : undefined);
+) => (hasOwnKey(definitions, signalType) ? definitions[signalType] : undefined)
 
 export type SemaphoreProps = {
-  setSignalHandler: (signalType: string) => void;
-  signalType: string;
-  semaphoreType: string;
-  className?: string;
-  selectedSemaphore?: SemaphoreData;
-};
+  setSignalHandler: (signalType: string) => void
+  signalType: string
+  semaphoreType: string
+  className?: string
+  selectedSemaphore?: SemaphoreData
+}
 
 export const Semaphore = ({
   setSignalHandler,
@@ -35,76 +35,76 @@ export const Semaphore = ({
   className,
   selectedSemaphore
 }: SemaphoreProps) => {
-  const OffUp = <Signal image={signalLights.OFF_UP} />;
-  const OffMiddle = <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />;
-  const OffDown = <Signal image={signalLights.OFF_DOWN} isMiddle={true} />;
+  const OffUp = <Signal image={signalLights.OFF_UP} />
+  const OffMiddle = <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
+  const OffDown = <Signal image={signalLights.OFF_DOWN} isMiddle={true} />
 
-  const RedUpSolid = <Signal image={signalLights.RED_UP_SOLID} />;
+  const RedUpSolid = <Signal image={signalLights.RED_UP_SOLID} />
   const RedMiddleSolid = (
     <Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />
-  );
-  const GreenUpSolid = <Signal image={signalLights.GREEN_UP_SOLID} />;
-  const GreenUpBlinking = <Signal image={signalLights.GREEN_UP_BLINKING} />;
+  )
+  const GreenUpSolid = <Signal image={signalLights.GREEN_UP_SOLID} />
+  const GreenUpBlinking = <Signal image={signalLights.GREEN_UP_BLINKING} />
   const GreenMiddleSolid = (
     <Signal image={signalLights.GREEN_MIDDLE_SOLID} isMiddle={true} />
-  );
+  )
   const GreenMiddleBlinking = (
     <Signal image={signalLights.GREEN_MIDDLE_BLINKING} isMiddle={true} />
-  );
+  )
   const GreenDownSolid = (
     <Signal image={signalLights.GREEN_DOWN_SOLID} isMiddle={true} />
-  );
+  )
   const GreenDownBlinking = (
     <Signal image={signalLights.GREEN_DOWN_BLINKING} isMiddle={true} />
-  );
-  const OrangeUpSolid = <Signal image={signalLights.ORANGE_UP_SOLID} />;
-  const OrangeUpBlinking = <Signal image={signalLights.ORANGE_UP_BLINKING} />;
+  )
+  const OrangeUpSolid = <Signal image={signalLights.ORANGE_UP_SOLID} />
+  const OrangeUpBlinking = <Signal image={signalLights.ORANGE_UP_BLINKING} />
   const OrangeMiddleSolid = (
     <Signal image={signalLights.ORANGE_MIDDLE_SOLID} isMiddle={true} />
-  );
+  )
   const OrangeMiddleBlinking = (
     <Signal image={signalLights.ORANGE_MIDDLE_BLINKING} isMiddle={true} />
-  );
+  )
   const OrangeDownSolid = (
     <Signal image={signalLights.ORANGE_DOWN_SOLID} isMiddle={true} />
-  );
+  )
   const OrangeDownBlinking = (
     <Signal image={signalLights.ORANGE_DOWN_BLINKING} isMiddle={true} />
-  );
+  )
   const WhiteDownSolid = (
     <Signal image={signalLights.WHITE_DOWN_SOLID} isMiddle={true} />
-  );
+  )
   const WhiteDownBlinking = (
     <Signal image={signalLights.WHITE_DOWN_BLINKING} isMiddle={true} />
-  );
-  const BlueUpSolid = <Signal image={signalLights.BLUE_UP_SOLID} />;
+  )
+  const BlueUpSolid = <Signal image={signalLights.BLUE_UP_SOLID} />
 
-  const PoleSm = <Pole semaphoreType={semaphoreTypes.Sm} />;
-  const PoleSp = <Pole semaphoreType={semaphoreTypes.Sp} />;
-  const PoleTo = <Pole semaphoreType={semaphoreTypes.To} />;
-  const PoleTm = <Pole semaphoreType={semaphoreTypes.Tm} />;
+  const PoleSm = <Pole semaphoreType={semaphoreTypes.Sm} />
+  const PoleSp = <Pole semaphoreType={semaphoreTypes.Sp} />
+  const PoleTo = <Pole semaphoreType={semaphoreTypes.To} />
+  const PoleTm = <Pole semaphoreType={semaphoreTypes.Tm} />
 
-  const SignalS1 = <SignalLabel signal={signals.S1} />;
-  const SignalS2 = <SignalLabel signal={signals.S2} />;
-  const SignalS3 = <SignalLabel signal={signals.S3} />;
-  const SignalS4 = <SignalLabel signal={signals.S4} />;
-  const SignalS5 = <SignalLabel signal={signals.S5} />;
-  const SignalS10 = <SignalLabel signal={signals.S10} />;
-  const SignalS11 = <SignalLabel signal={signals.S11} />;
-  const SignalS12 = <SignalLabel signal={signals.S12} />;
-  const SignalS13 = <SignalLabel signal={signals.S13} />;
-  const SignalSZ = <SignalLabel signal={signals.SZ} />;
-  const SignalMS1 = <SignalLabel signal={signals.MS1} />;
-  const SignalMS2 = <SignalLabel signal={signals.MS2} />;
-  const SignalOS1 = <SignalLabel signal={signals.OS1} />;
-  const SignalOS2 = <SignalLabel signal={signals.OS2} />;
-  const SignalOS3 = <SignalLabel signal={signals.OS3} />;
-  const SignalOS4 = <SignalLabel signal={signals.OS4} />;
-  const SignalSP1 = <SignalLabel signal={signals.SP1} />;
-  const SignalSP2 = <SignalLabel signal={signals.SP2} />;
-  const SignalSP3 = <SignalLabel signal={signals.SP3} />;
-  const SignalSP4 = <SignalLabel signal={signals.SP4} />;
-  const SignalOFF = <SignalLabel signal={signals.OFF} />;
+  const SignalS1 = <SignalLabel signal={signals.S1} />
+  const SignalS2 = <SignalLabel signal={signals.S2} />
+  const SignalS3 = <SignalLabel signal={signals.S3} />
+  const SignalS4 = <SignalLabel signal={signals.S4} />
+  const SignalS5 = <SignalLabel signal={signals.S5} />
+  const SignalS10 = <SignalLabel signal={signals.S10} />
+  const SignalS11 = <SignalLabel signal={signals.S11} />
+  const SignalS12 = <SignalLabel signal={signals.S12} />
+  const SignalS13 = <SignalLabel signal={signals.S13} />
+  const SignalSZ = <SignalLabel signal={signals.SZ} />
+  const SignalMS1 = <SignalLabel signal={signals.MS1} />
+  const SignalMS2 = <SignalLabel signal={signals.MS2} />
+  const SignalOS1 = <SignalLabel signal={signals.OS1} />
+  const SignalOS2 = <SignalLabel signal={signals.OS2} />
+  const SignalOS3 = <SignalLabel signal={signals.OS3} />
+  const SignalOS4 = <SignalLabel signal={signals.OS4} />
+  const SignalSP1 = <SignalLabel signal={signals.SP1} />
+  const SignalSP2 = <SignalLabel signal={signals.SP2} />
+  const SignalSP3 = <SignalLabel signal={signals.SP3} />
+  const SignalSP4 = <SignalLabel signal={signals.SP4} />
+  const SignalOFF = <SignalLabel signal={signals.OFF} />
 
   const signalDefinitionsForSmSemaphore = {
     S1: (
@@ -239,7 +239,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSmGOROSemaphore = {
     S1: (
@@ -342,7 +342,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSmGROWSemaphore = {
     S1: (
@@ -445,7 +445,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSmOROWSemaphore = {
     S1: (
@@ -528,7 +528,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSmRGWSemaphore = {
     S1: (
@@ -585,7 +585,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSmGROSemaphore = {
     S1: (
@@ -660,7 +660,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSm2Semaphore = {
     S1: (
@@ -695,7 +695,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForSpSemaphore = {
     SP1: (
@@ -743,7 +743,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForToSemaphore = {
     OS1: (
@@ -786,7 +786,7 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const signalDefinitionsForTmSemaphore = {
     MS1: (
@@ -813,52 +813,49 @@ export const Semaphore = ({
         {SignalOFF}
       </>
     )
-  };
+  }
 
   const displaySignals = () => {
     switch (semaphoreType) {
       case semaphoreTypes.Sm:
-        return getSignalDefinition(signalDefinitionsForSmSemaphore, signalType);
+        return getSignalDefinition(signalDefinitionsForSmSemaphore, signalType)
       case semaphoreTypes.SmGORO:
         return getSignalDefinition(
           signalDefinitionsForSmGOROSemaphore,
           signalType
-        );
+        )
       case semaphoreTypes.SmGROW:
         return getSignalDefinition(
           signalDefinitionsForSmGROWSemaphore,
           signalType
-        );
+        )
       case semaphoreTypes.SmOROW:
         return getSignalDefinition(
           signalDefinitionsForSmOROWSemaphore,
           signalType
-        );
+        )
       case semaphoreTypes.SmGRO:
         return getSignalDefinition(
           signalDefinitionsForSmGROSemaphore,
           signalType
-        );
+        )
       case semaphoreTypes.SmRGW:
         return getSignalDefinition(
           signalDefinitionsForSmRGWSemaphore,
           signalType
-        );
+        )
       case semaphoreTypes.SmRG:
-        return getSignalDefinition(
-          signalDefinitionsForSm2Semaphore,
-          signalType
-        );
+        return getSignalDefinition(signalDefinitionsForSm2Semaphore, signalType)
       case semaphoreTypes.Sp:
-        return getSignalDefinition(signalDefinitionsForSpSemaphore, signalType);
+        return getSignalDefinition(signalDefinitionsForSpSemaphore, signalType)
       case semaphoreTypes.To:
-        return getSignalDefinition(signalDefinitionsForToSemaphore, signalType);
+        return getSignalDefinition(signalDefinitionsForToSemaphore, signalType)
       case semaphoreTypes.Tm:
-        return getSignalDefinition(signalDefinitionsForTmSemaphore, signalType);
+        return getSignalDefinition(signalDefinitionsForTmSemaphore, signalType)
       default:
-        return getSignalDefinition(signalDefinitionsForSmSemaphore, signalType);
+        return getSignalDefinition(signalDefinitionsForSmSemaphore, signalType)
     }
-  };
+  }
 
   return (
     <div
@@ -869,5 +866,5 @@ export const Semaphore = ({
     >
       {displaySignals()}
     </div>
-  );
-};
+  )
+}

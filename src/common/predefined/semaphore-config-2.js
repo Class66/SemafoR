@@ -1,14 +1,14 @@
-import { signals } from '../enums/signals.ts';
-import { semaphoreTypes } from '../enums/semaphore-types.ts';
+import { signals } from '../enums/signals.ts'
+import { semaphoreTypes } from '../enums/semaphore-types.ts'
 
-export const semaphoreSteeringPort = 4000;
-export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`;
+export const semaphoreSteeringPort = 4000
+export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`
 
 /////////////////////////////////////////////////////
 /// ADDRESSES OF EACH PCA9685 BOARD
 /////////////////////////////////////////////////////
 
-export const boardPCA9685Addresses = [0x40];
+export const boardPCA9685Addresses = [0x40]
 
 /////////////////////////////////////////////////////
 /// LEDS PIN NUMBERS OF EACH SEMAPHORE
@@ -34,7 +34,7 @@ export const semaphoresLedConfiguration = defineLedPin => [
     GREEN: defineLedPin(8, boardPCA9685Addresses[0]),
     ORANGE: defineLedPin(9, boardPCA9685Addresses[0])
   }
-];
+]
 
 /////////////////////////////////////////////////////
 /// DEFAULT SIGNALS OF EACH SEMAPHORE
@@ -66,4 +66,4 @@ export const semaphoresGeneralConfiguration = [
     signal: signals.OS1,
     label: 'To1'
   }
-];
+]

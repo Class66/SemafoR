@@ -6,4 +6,4 @@ export default {
     'length-zero-no-unit': true,
     'selector-class-pattern': null
   }
-};
+}

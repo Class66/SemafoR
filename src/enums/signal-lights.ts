@@ -23,4 +23,4 @@ export const signalLights = {
   RED_UP_SOLID: '/images/signals/red-up-solid.svg',
   WHITE_DOWN_BLINKING: '/images/signals/white-down-blinking.svg',
   WHITE_DOWN_SOLID: '/images/signals/white-down-solid.svg'
-} as const;
+} as const
