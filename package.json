@@ -1,39 +1,26 @@
 {
   "name": "semafor",
-  "private": true,
   "version": "2.0.0",
+  "private": true,
   "description": "Semaphores steering",
-  "type": "module",
+  "license": "MIT",
+  "author": "Marcin Gierczak",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Class66/SemafoR.git"
   },
-  "author": "Marcin Gierczak",
-  "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "lint-fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
-    "lint-css": "stylelint \"src/**/*.css\"",
-    "typecheck": "tsc --noEmit",
-    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
-    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "lint:fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "type:check": "tsc --noEmit",
     "preview": "vite preview",
-    "pretty-quick": "pretty-quick",
     "prepare": "husky install"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -54,12 +41,23 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "husky": "^9.1.7",
+    "oxfmt": "^0.72.0",
     "oxlint": "^1.81.0",
-    "prettier": "^3.9.9",
-    "pretty-quick": "^4.2.2",
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

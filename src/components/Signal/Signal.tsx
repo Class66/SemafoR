@@ -7,12 +7,14 @@ type SignalProps = {
   image: string
 }
 
-export const Signal = ({ isMiddle = false, image }: SignalProps) => (
-  <img
-    alt="chamber"
-    className={classNames(styles.signal, {
-      [styles.signalMiddle]: isMiddle
-    })}
-    src={image}
-  />
-)
+export function Signal({ isMiddle = false, image }: SignalProps) {
+  return (
+    <img
+      alt="chamber"
+      className={classNames(styles.signal, {
+        [styles.signalMiddle]: isMiddle
+      })}
+      src={image}
+    />
+  )
+}

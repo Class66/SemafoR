@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import styles from './dark-mode-toggle.module.css'
 
-export const DarkModeToggle = () => {
+export function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {

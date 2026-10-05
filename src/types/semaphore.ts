@@ -1,6 +1,12 @@
+import { signals } from '../enums/signals'
+import { semaphoreTypes } from '../enums/semaphore-types'
+
+export type SignalName = (typeof signals)[keyof typeof signals]
+export type SemaphoreType = (typeof semaphoreTypes)[keyof typeof semaphoreTypes]
+
 export type SemaphoreData = {
-  type: string
+  type: SemaphoreType
   number: number
-  signal: string
+  signal: SignalName
   label?: string
 }

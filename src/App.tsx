@@ -9,18 +9,21 @@ import {
   semaphoreSteeringUri,
   semaphoresGeneralConfiguration
 } from './common/semaphore-config'
-import type { SemaphoreData } from './types/semaphore'
+import type {
+  SemaphoreData,
+  SemaphoreType,
+  SignalName
+} from './types/semaphore'
 
 import styles from './app.module.css'
 
-const semaphoreRouteName = (semaphoreType: string, semaphoreNumber: number) =>
-  `${semaphoreType}${semaphoreNumber}`
+const semaphoreRouteName = (
+  semaphoreType: SemaphoreType,
+  semaphoreNumber: number
+) => `${semaphoreType}${semaphoreNumber}`
 
-const semaphoreSteeringRoute = (semaphore: SemaphoreData, signal: string) =>
-  `${semaphoreSteeringUri}/${semaphoreRouteName(
-    semaphore.type,
-    semaphore.number
-  )}/${signal}`
+const semaphoreSteeringRoute = (semaphore: SemaphoreData, signal: SignalName) =>
+  `${semaphoreSteeringUri}/${semaphoreRouteName(semaphore.type, semaphore.number)}/${signal}`
 
 const callApiToSetSignal = (route: string) => {
   fetch(route)
@@ -49,7 +52,7 @@ function App() {
     setDefaultSignals()
   }, [])
 
-  const setSignalHandler = (signal: string) => {
+  const setSignalHandler = (signal: SignalName) => {
     callApiToSetSignal(semaphoreSteeringRoute(selectedSemaphore, signal))
 
     const newSemaphoresSignal = [...semaphoresSignal]

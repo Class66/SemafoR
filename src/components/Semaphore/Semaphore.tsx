@@ -6,7 +6,11 @@ import { SignalLabel } from '../signal-label/signal-label'
 import { signals } from '../../enums/signals'
 import { semaphoreTypes } from '../../enums/semaphore-types'
 import { signalLights } from '../../enums/signal-lights'
-import type { SemaphoreData } from '../../types/semaphore'
+import type {
+  SemaphoreData,
+  SemaphoreType,
+  SignalName
+} from '../../types/semaphore'
 
 import styles from './semaphore.module.css'
 
@@ -20,25 +24,24 @@ const getSignalDefinition = <T extends object>(
   signalType: string
 ) => (hasOwnKey(definitions, signalType) ? definitions[signalType] : undefined)
 
-export type SemaphoreProps = {
-  setSignalHandler: (signalType: string) => void
-  signalType: string
-  semaphoreType: string
+type SemaphoreProps = {
+  setSignalHandler: (signalType: SignalName) => void
+  signalType: SignalName
+  semaphoreType: SemaphoreType
   className?: string
   selectedSemaphore?: SemaphoreData
 }
 
-export const Semaphore = ({
+export function Semaphore({
   setSignalHandler,
   signalType,
   semaphoreType,
   className,
   selectedSemaphore
-}: SemaphoreProps) => {
+}: SemaphoreProps) {
   const OffUp = <Signal image={signalLights.OFF_UP} />
   const OffMiddle = <Signal image={signalLights.OFF_MIDDLE} isMiddle={true} />
   const OffDown = <Signal image={signalLights.OFF_DOWN} isMiddle={true} />
-
   const RedUpSolid = <Signal image={signalLights.RED_UP_SOLID} />
   const RedMiddleSolid = (
     <Signal image={signalLights.RED_MIDDLE_SOLID} isMiddle={true} />

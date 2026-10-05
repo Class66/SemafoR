@@ -1,12 +1,13 @@
 import { Signal } from '../signal/signal'
 import { semaphoreTypes } from '../../enums/semaphore-types'
 import { signalLights } from '../../enums/signal-lights'
+import type { SemaphoreType } from '../../types/semaphore'
 
 type PoleProps = {
-  semaphoreType: string
+  semaphoreType: SemaphoreType
 }
 
-export const Pole = ({ semaphoreType }: PoleProps) => {
+export function Pole({ semaphoreType }: PoleProps) {
   const displayPole = () => {
     switch (semaphoreType) {
       case semaphoreTypes.Sm:

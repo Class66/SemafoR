@@ -6,7 +6,7 @@ import {
   semaphoreSteeringPort,
   semaphoresLedConfiguration,
   semaphoresGeneralConfiguration
-} from './src/common/semaphore-config.js'
+} from './src/common/semaphore-config.ts'
 
 const require = createRequire(import.meta.url)
 const express = require('express') as typeof import('express')

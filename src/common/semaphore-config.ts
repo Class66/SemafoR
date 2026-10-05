@@ -1,5 +1,6 @@
 import { signals } from '../enums/signals.ts'
 import { semaphoreTypes } from '../enums/semaphore-types.ts'
+import type { SemaphoreData } from '../types/semaphore'
 
 export const semaphoreSteeringPort = 4000
 export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`
@@ -8,13 +9,15 @@ export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`
 /// ADDRESSES OF EACH PCA9685 BOARD
 /////////////////////////////////////////////////////
 
-export const boardPCA9685Addresses = [0x40, 0x41]
+export const boardPCA9685Addresses = [0x40, 0x41] as const
 
 /////////////////////////////////////////////////////
 /// LEDS PIN NUMBERS OF EACH SEMAPHORE
 /////////////////////////////////////////////////////
 
-export const semaphoresLedConfiguration = defineLedPin => [
+export const semaphoresLedConfiguration = <T>(
+  defineLedPin: (pin: number, address: number) => T
+): Record<string, T>[] => [
   {
     GREEN: defineLedPin(0, boardPCA9685Addresses[0]),
     ORANGE_ONE: defineLedPin(1, boardPCA9685Addresses[0]),
@@ -60,7 +63,7 @@ export const semaphoresLedConfiguration = defineLedPin => [
 //  NOTICE: The order must be the same as in semaphoresLedConfiguration !!!
 /////////////////////////////////////////////////////
 
-export const semaphoresGeneralConfiguration = [
+export const semaphoresGeneralConfiguration: SemaphoreData[] = [
   {
     type: semaphoreTypes.Sm, // type of the semaphore (all types are defined in semaphoreTypes)
     number: 1, // next number of this particular semaphore type (must be unique for this type)

@@ -11,25 +11,29 @@ type Props = {
   selectedSemaphore?: SemaphoreData
 }
 
-export const ConnectedSemaphore = ({
+export function ConnectedSemaphore({
   setSemaphoreHandler,
   semaphore,
   selectedSemaphore
-}: Props) => (
-  <div
-    onClick={setSemaphoreHandler}
-    className={classNames(styles.connectedSemaphore, {
-      [styles.connectedSemaphoreSelected]:
-        semaphore.type === selectedSemaphore?.type &&
-        semaphore.number === selectedSemaphore?.number
-    })}
-  >
-    <Semaphore
-      setSignalHandler={() => {}}
-      signalType={semaphore.signal}
-      semaphoreType={semaphore.type}
-      className={styles.semaphore}
-    />
-    <button>{semaphore.label ?? `${semaphore.type}${semaphore.number}`}</button>
-  </div>
-)
+}: Props) {
+  return (
+    <div
+      onClick={setSemaphoreHandler}
+      className={classNames(styles.connectedSemaphore, {
+        [styles.connectedSemaphoreSelected]:
+          semaphore.type === selectedSemaphore?.type &&
+          semaphore.number === selectedSemaphore?.number
+      })}
+    >
+      <Semaphore
+        setSignalHandler={() => {}}
+        signalType={semaphore.signal}
+        semaphoreType={semaphore.type}
+        className={styles.semaphore}
+      />
+      <button>
+        {semaphore.label ?? `${semaphore.type}${semaphore.number}`}
+      </button>
+    </div>
+  )
+}
