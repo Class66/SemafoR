@@ -17,6 +17,7 @@
     "lint:fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
+    "format:staged": "lint-staged",
     "stylelint": "stylelint \"src/**/*.css\"",
     "type:check": "tsc --noEmit",
     "preview": "vite preview",
@@ -42,12 +43,16 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "oxfmt": "^0.72.0",
     "oxlint": "^1.81.0",
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,jsonc,css,scss,html}": "oxfmt --write --no-error-on-unmatched-pattern"
   },
   "browserslist": {
     "production": [
