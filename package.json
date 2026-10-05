@@ -1,61 +1,61 @@
 {
-    "name": "semafor",
-    "private": true,
-    "version": "2.0.0",
-    "description": "Semaphores steering",
-    "type": "module",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Class66/SemafoR.git"
-    },
-    "author": "Marcin Gierczak",
-    "license": "MIT",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "lint": "oxlint",
-        "lint-fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
-        "lint-css": "stylelint \"src/**/*.css\"",
-        "typecheck": "tsc --noEmit",
-        "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
-        "prettier-fix": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
-        "preview": "vite preview",
-        "pretty-quick": "pretty-quick",
-        "prepare": "husky install"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "dependencies": {
-        "classnames": "^2.3.2",
-        "cors": "^2.8.6",
-        "express": "^4.18.2",
-        "johnny-five": "^2.1.0",
-        "react": "^19.2.8",
-        "react-dom": "^19.2.8",
-        "serialport": "^9.2.8",
-        "serve-static": "^1.15.0"
-    },
-    "devDependencies": {
-        "@types/react": "^19.2.18",
-        "@types/react-dom": "^19.2.7",
-        "@vitejs/plugin-react": "^6.1.1",
-        "husky": "^9.1.7",
-        "oxlint": "^1.81.0",
-        "prettier": "^3.9.9",
-        "pretty-quick": "^4.2.2",
-        "stylelint": "^17.16.0",
-        "stylelint-config-standard": "^40.0.0",
-        "typescript": "^7.0.2",
-        "vite": "^8.3.0"
-    }
+  "name": "semafor",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Semaphores steering",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Class66/SemafoR.git"
+  },
+  "author": "Marcin Gierczak",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "lint-fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
+    "lint-css": "stylelint \"src/**/*.css\"",
+    "typecheck": "tsc --noEmit",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "prettier-fix": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "preview": "vite preview",
+    "pretty-quick": "pretty-quick",
+    "prepare": "husky install"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "cors": "^2.8.6",
+    "express": "^4.18.2",
+    "johnny-five": "^2.1.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "serialport": "^9.2.8",
+    "serve-static": "^1.15.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "husky": "^9.1.7",
+    "oxlint": "^1.81.0",
+    "prettier": "^3.9.9",
+    "pretty-quick": "^4.2.2",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
 }
