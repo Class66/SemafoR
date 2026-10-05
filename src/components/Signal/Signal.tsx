@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import './signal.css';
+import styles from './signal.module.css';
 
 type SignalProps = {
   isMiddle?: boolean;
@@ -10,7 +10,9 @@ type SignalProps = {
 export const Signal = ({ isMiddle = false, image }: SignalProps) => (
   <img
     alt="chamber"
-    className={classNames({ 'Signal-middle': isMiddle })}
+    className={classNames(styles.signal, {
+      [styles.signalMiddle]: isMiddle
+    })}
     src={image}
   />
 );

@@ -8,7 +8,7 @@ import { semaphoreTypes } from '../../enums/semaphore-types';
 import { signalLights } from '../../enums/signal-lights';
 import type { SemaphoreData } from '../../types/semaphore';
 
-import './semaphore.css';
+import styles from './semaphore.module.css';
 
 const hasOwnKey = <T extends object>(
   value: T,
@@ -24,6 +24,7 @@ export type SemaphoreProps = {
   setSignalHandler: (signalType: string) => void;
   signalType: string;
   semaphoreType: string;
+  className?: string;
   selectedSemaphore?: SemaphoreData;
 };
 
@@ -31,6 +32,7 @@ export const Semaphore = ({
   setSignalHandler,
   signalType,
   semaphoreType,
+  className,
   selectedSemaphore
 }: SemaphoreProps) => {
   const OffUp = <Signal image={signalLights.OFF_UP} />;
@@ -860,8 +862,8 @@ export const Semaphore = ({
 
   return (
     <div
-      className={classNames('Semaphore', {
-        'Semaphore--selected': selectedSemaphore?.signal === signalType
+      className={classNames(styles.semaphore, className, {
+        [styles.semaphoreSelected]: selectedSemaphore?.signal === signalType
       })}
       onClick={() => setSignalHandler(signalType)}
     >

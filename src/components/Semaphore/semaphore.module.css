@@ -1,6 +1,4 @@
-@import '../../css/_colors.css';
-
-.Semaphore {
+.semaphore {
   display: inline-flex;
   box-sizing: border-box;
   flex-direction: column;
@@ -11,10 +9,10 @@
   margin: 3px;
 }
 
-.Semaphore:hover {
+.semaphore:hover {
   background-color: var(--light-gray);
 }
 
-.Semaphore--selected {
+.semaphoreSelected {
   background-color: var(--light-gray);
 }

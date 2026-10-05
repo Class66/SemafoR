@@ -1,6 +1,4 @@
-@import '../../css/_colors.css';
-
-.SignalLabel {
+.signalLabel {
   display: flex;
   justify-content: center;
   align-items: center;

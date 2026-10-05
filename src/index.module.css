@@ -1,5 +1,17 @@
-body {
+:global(:root) {
+  --black: #000;
+  --white: #fff;
+  --gray: #e0e0e0;
+  --dark-gray: #9b9b9b;
+  --light-gray: #9e9e9e;
+  --lighter-gray: #e2e2e2;
+  --blue: #0099e0;
+  --mud: #4d4d4d;
+}
+
+:global(body) {
   margin: 0;
+  background-color: var(--background-color);
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -7,7 +19,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+:global(code) {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

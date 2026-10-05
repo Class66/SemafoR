@@ -11,7 +11,7 @@ import {
 } from './common/semaphore-config';
 import type { SemaphoreData } from './types/semaphore';
 
-import './app.css';
+import styles from './app.module.css';
 
 const semaphoreRouteName = (semaphoreType: string, semaphoreNumber: number) =>
   `${semaphoreType}${semaphoreNumber}`;
@@ -81,7 +81,7 @@ function App() {
   ));
 
   const semaphoresSmGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S2,
@@ -108,7 +108,7 @@ function App() {
   );
 
   const semaphoresSmGOROGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S2,
@@ -133,7 +133,7 @@ function App() {
   );
 
   const semaphoresSmGROWGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S2,
@@ -158,7 +158,7 @@ function App() {
   );
 
   const semaphoresSmOROWGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S4,
@@ -181,7 +181,7 @@ function App() {
   );
 
   const semaphoresSmRGWGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S2,
@@ -202,7 +202,7 @@ function App() {
   );
 
   const semaphoresSmGROGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[
         signals.S1,
         signals.S2,
@@ -225,7 +225,7 @@ function App() {
   );
 
   const semaphoresSmRGGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[signals.S1, signals.S2, signals.S3, signals.OFF].map(s => (
         <Semaphore
           key={`semaphoreTypes.SmRG${s}`}
@@ -239,7 +239,7 @@ function App() {
   );
 
   const semaphoresSpGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[signals.SP1, signals.SP2, signals.SP3, signals.SP4, signals.OFF].map(
         s => (
           <Semaphore
@@ -255,7 +255,7 @@ function App() {
   );
 
   const semaphoresToGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[signals.OS1, signals.OS2, signals.OS3, signals.OS4, signals.OFF].map(
         s => (
           <Semaphore
@@ -271,7 +271,7 @@ function App() {
   );
 
   const semaphoresTmGroup = (
-    <div className="semaphores-group">
+    <div className={styles.semaphoresGroup}>
       {[signals.MS1, signals.MS2, signals.OFF].map(s => (
         <Semaphore
           key={`semaphoreTypes.Tm${s}`}
@@ -312,7 +312,7 @@ function App() {
 
   return (
     <>
-      <div className="App">
+      <div className={styles.app}>
         <DarkModeToggle />
         {connectedSemaphores}
         {getCorrectSemaphoresGroup()}

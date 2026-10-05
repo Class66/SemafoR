@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Semaphore } from '../semaphore/semaphore';
 import type { SemaphoreData } from '../../types/semaphore';
 
-import './connected-semaphore.css';
+import styles from './connected-semaphore.module.css';
 
 type Props = {
   setSemaphoreHandler: () => void;
@@ -18,8 +18,8 @@ export const ConnectedSemaphore = ({
 }: Props) => (
   <div
     onClick={setSemaphoreHandler}
-    className={classNames('ConnectedSemaphore', {
-      'ConnectedSemaphore--selected':
+    className={classNames(styles.connectedSemaphore, {
+      [styles.connectedSemaphoreSelected]:
         semaphore.type === selectedSemaphore?.type &&
         semaphore.number === selectedSemaphore?.number
     })}
@@ -28,6 +28,7 @@ export const ConnectedSemaphore = ({
       setSignalHandler={() => {}}
       signalType={semaphore.signal}
       semaphoreType={semaphore.type}
+      className={styles.semaphore}
     />
     <button>{semaphore.label ?? `${semaphore.type}${semaphore.number}`}</button>
   </div>

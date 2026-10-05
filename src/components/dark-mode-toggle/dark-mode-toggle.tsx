@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import './dark-mode-toggle.css';
+import styles from './dark-mode-toggle.module.css';
 
 export const DarkModeToggle = () => {
   const [isDark, setIsDark] = useState(false);
@@ -13,22 +13,26 @@ export const DarkModeToggle = () => {
   }, [isDark]);
 
   return (
-    <label className="theme-toggle">
+    <label className={styles.themeToggle}>
       <input
-        className="theme-toggle__input"
+        className={styles.themeToggleInput}
         type="checkbox"
         checked={isDark}
         onChange={event => setIsDark(event.currentTarget.checked)}
         aria-label="Dark mode toggle"
       />
-      <span className="theme-toggle__track" aria-hidden="true">
-        <span className="theme-toggle__icon theme-toggle__icon--checked">
+      <span className={styles.themeToggleTrack} aria-hidden="true">
+        <span
+          className={`${styles.themeToggleIcon} ${styles.themeToggleIconChecked}`}
+        >
           ☀️
         </span>
-        <span className="theme-toggle__icon theme-toggle__icon--unchecked">
+        <span
+          className={`${styles.themeToggleIcon} ${styles.themeToggleIconUnchecked}`}
+        >
           🌙
         </span>
-        <span className="theme-toggle__thumb" />
+        <span className={styles.themeToggleThumb} />
       </span>
     </label>
   );

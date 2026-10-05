@@ -1,9 +1,9 @@
-import './signal-label.css';
+import styles from './signal-label.module.css';
 
 type SignalLabelProps = {
   signal: string;
 };
 
 export const SignalLabel = ({ signal }: SignalLabelProps) => (
-  <span className="SignalLabel">{signal}</span>
+  <span className={styles.signalLabel}>{signal}</span>
 );
