@@ -3,4 +3,4 @@ export type SemaphoreData = {
   number: number;
   signal: string;
   label?: string;
-}
+};
