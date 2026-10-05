@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-import { DarkModeToggle } from './components/DarkModeToggle/DarkModeToggle';
-import { Semaphore } from './components/Semaphore/Semaphore';
-import { ConnectedSemaphore } from './components/ConnectedSemaphore/ConnectedSemaphore';
+import { DarkModeToggle } from './components/dark-mode-toggle/dark-mode-toggle';
+import { Semaphore } from './components/semaphore/semaphore';
+import { ConnectedSemaphore } from './components/connected-semaphore/connected-semaphore';
 import { signals } from './enums/signals';
-import { semaphoreTypes } from './enums/semaphoreTypes';
+import { semaphoreTypes } from './enums/semaphore-types';
 import {
   semaphoreSteeringUri,
   semaphoresGeneralConfiguration
-} from './common/semaphoreConfig';
+} from './common/semaphore-config';
 import type { SemaphoreData } from './types/semaphore';
 
-import './App.css';
+import './app.css';
 
 const semaphoreRouteName = (semaphoreType: string, semaphoreNumber: number) =>
   `${semaphoreType}${semaphoreNumber}`;

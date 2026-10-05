@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 
-import { Signal } from '../Signal/Signal';
-import { Pole } from '../Pole/Pole';
-import { SignalLabel } from '../SignalLabel/SignalLabel';
+import { Signal } from '../signal/signal';
+import { Pole } from '../pole/pole';
+import { SignalLabel } from '../signal-label/signal-label';
 import { signals } from '../../enums/signals';
-import { semaphoreTypes } from '../../enums/semaphoreTypes';
-import { signalLights } from '../../enums/signalLights';
+import { semaphoreTypes } from '../../enums/semaphore-types';
+import { signalLights } from '../../enums/signal-lights';
 import type { SemaphoreData } from '../../types/semaphore';
 
-import './Semaphore.css';
+import './semaphore.css';
 
 const hasOwnKey = <T extends object>(
   value: T,

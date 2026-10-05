@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import './Signal.css';
+import './signal.css';
 
 type SignalProps = {
   isMiddle?: boolean;

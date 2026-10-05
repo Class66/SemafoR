@@ -1,4 +1,4 @@
-import './SignalLabel.css';
+import './signal-label.css';
 
 type SignalLabelProps = {
   signal: string;

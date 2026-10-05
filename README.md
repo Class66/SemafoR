@@ -149,7 +149,7 @@ The application is composed of two separate programs, so you can run them separa
 
 ## How to add a new semaphore definition to the configuration file
 
-All configuration for this application is defined in `common\semaphoreConfig.js` file.
+All configuration for this application is defined in `src/common/semaphore-config.js`.
 
 > By default the application is prepared for using 3x "Sm" semaphores, 3x "Tm" semaphores and 1x "Sp" semaphore. The current circuit has two PCA9685 boards with defined addresses such as `0x40` and `0x41` . These addresses are defined in the `boardPCA9685Addresses` array in the same configuration file.
 
@@ -205,7 +205,7 @@ There are 10 types of semaphores in the application that correspons to the semap
 
 Examples of KLUBA semaphores object definiton:
 
-> You can copy it to your configuration file called `semaphoreConfig.js`.<br>
+> You can copy it to your configuration file called `semaphore-config.js`.<br>
 > Remember to change pin numbers and board numbers.<br>
 > Optionally you can add 'label' property to define your own semaphore name.
 
@@ -424,8 +424,8 @@ Examples of KLUBA semaphores object definiton:
 
 ## Predefined configurations
 
-There are two predefined configurations you can find in folder `common\predefined`.<br>
-If you want to use one of them just change the filename to `semaphoreConfig.js` and replace the original file in `common` folder.<br>
+The two predefined configurations are `src/common/predefined/semaphore-config-1.js` and `src/common/predefined/semaphore-config-2.js`.<br>
+To use one, copy it to `src/common/semaphore-config.js`, replacing the existing configuration file.<br>
 **Remember to restart the whole application!**
 
 > These configurations are just examples so you can rely on them while building your own config file.

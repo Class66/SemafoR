@@ -5,7 +5,7 @@ import {
   SEMAPHORE_STEERING_PORT,
   semaphoresLedConfiguration,
   semaphoresGeneralConfiguration
-} from './src/common/semaphoreConfig.js';
+} from './src/common/semaphore-config.js';
 
 const require = createRequire(import.meta.url);
 const express = require('express');

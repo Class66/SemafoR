@@ -149,7 +149,7 @@ Aplikacja ta składa się z dwóch oddzielnych programów więc możesz je równ
 
 ## Jak dodać nową definicję semafora do pliku konfiguracyjnego
 
-Cała konfiguracja semaforów jest zdefiniowana w pliku `common\semaphoreConfig.js`.
+Cała konfiguracja semaforów jest zdefiniowana w pliku `src/common/semaphore-config.js`.
 
 > Domyślna konfiguracja zakłada użycie 3 semaforów „Sm”, 3 semaforów „Tm” i jednego semafora „Sp”. Układ Arduino ma podane dwie płytki PCA9685 ze zdefiniowanymi adresami, takimi jak `0x40` i `0x41`. Adresy te są zdefiniowane w tablicy `boardPCA9685Addresses` w tym samym pliku konfiguracyjnym.
 
@@ -205,7 +205,7 @@ W aplikacji występuje 10 typów semaforów, które odpowiadają semaforom produ
 
 Przykłady definicji obiektów semaforów KLUBA:
 
-> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphoreConfig.js`.<br>
+> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphore-config.js`.<br>
 > Pamiętaj jednak aby zmienić numery pinów i numer płytki PCA9685, do której semafor jest podłączony.<br>
 > Pamiętaj też, że opcjonalnie zawsze możesz dodać pozycję 'label' aby zdefiniować nazwę semafora widoczą w interfejsie użytkownika.
 
@@ -424,8 +424,8 @@ Przykłady definicji obiektów semaforów KLUBA:
 
 ## Predefiniowane konfiguracje
 
-W aplikacji w folderze `common\predefined` znajdziesz dwie predefiniowane, dodatkowe konfiguracje semaforów.<br>
-Jeśli chcesz użyć jednej z nich, po prostu zmień nazwę pliku na `semaphoreConfig.js` i zastąp oryginalny plik w folderze `common`<br>
+Dwie predefiniowane konfiguracje semaforów znajdziesz w plikach `src/common/predefined/semaphore-config-1.js` i `src/common/predefined/semaphore-config-2.js`.<br>
+Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphore-config.js`, zastępując obecną konfigurację.<br>
 **Pamiętaj o ponownym uruchomieniu całej aplikacji!**
 
 > Konfiguracje te są przykładowe więc możesz na nich polegać podczas budowania własnego pliku konfiguracyjnego.

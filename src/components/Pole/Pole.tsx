@@ -1,6 +1,6 @@
-import { Signal } from '../Signal/Signal';
-import { semaphoreTypes } from '../../enums/semaphoreTypes';
-import { signalLights } from '../../enums/signalLights';
+import { Signal } from '../signal/signal';
+import { semaphoreTypes } from '../../enums/semaphore-types';
+import { signalLights } from '../../enums/signal-lights';
 
 type PoleProps = {
   semaphoreType: string;

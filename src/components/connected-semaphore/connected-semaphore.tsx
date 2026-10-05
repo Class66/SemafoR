@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 
-import { Semaphore } from '../Semaphore/Semaphore';
+import { Semaphore } from '../semaphore/semaphore';
 import type { SemaphoreData } from '../../types/semaphore';
 
-import './ConnectedSemaphore.css';
+import './connected-semaphore.css';
 
 type Props = {
   setSemaphoreHandler: () => void;
