@@ -1,1 +1,1 @@
-yarn start
+npm run dev
