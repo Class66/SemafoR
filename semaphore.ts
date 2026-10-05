@@ -1,23 +1,63 @@
 import { createRequire } from 'node:module';
-
+import type { NextFunction, Request, Response } from 'express';
+import { semaphoreTypes } from './src/enums/semaphore-types.ts';
 import { signals } from './src/enums/signals.ts';
 import {
-  SEMAPHORE_STEERING_PORT,
+  semaphoreSteeringPort,
   semaphoresLedConfiguration,
   semaphoresGeneralConfiguration
 } from './src/common/semaphore-config.js';
 
 const require = createRequire(import.meta.url);
-const express = require('express');
-const cors = require('cors');
-const serveStatic = require('serve-static');
+const express = require('express') as typeof import('express');
+const cors = require('cors') as typeof import('cors');
+const serveStatic = require('serve-static') as typeof import('serve-static');
+const { Board, Led } = require('johnny-five') as typeof import('johnny-five');
 
 const app = express();
-const port = SEMAPHORE_STEERING_PORT;
+const port = semaphoreSteeringPort;
 
 // Arduino initialization
-const { Board, Led } = require('johnny-five');
 const board = new Board({ port: 'COM3' });
+
+type LedPin = InstanceType<typeof Led.RGB> & { pins: [number] };
+type SemaphoreLeds = Record<string, LedPin>;
+type SignalName = (typeof signals)[keyof typeof signals];
+type SemaphoreType = (typeof semaphoreTypes)[keyof typeof semaphoreTypes];
+type SignalStatus = 'on' | 'pulse';
+type LoopInstance = {
+  semaphore: SemaphoreLeds;
+  ledPin: number;
+  instance: ReturnType<typeof setInterval>;
+};
+type LedStatus = {
+  semaphore: SemaphoreLeds;
+  ledPin: number;
+  status: SignalStatus;
+};
+type CurrentSignal = {
+  semaphore: SemaphoreLeds;
+  signal: SignalName;
+};
+type PulseEffectConfig = {
+  brightnessStep: number;
+  delayLoop: number;
+  delayMax: number;
+  delayDownMax: number;
+};
+type FadeEffectConfig = {
+  brightnessStep: number;
+  delayLoop: number;
+};
+type RoutingSignal = {
+  routeSignal: SignalName;
+  setSignal: (semaphore: SemaphoreLeds) => void;
+};
+type SemaphoreConfiguration = {
+  type: SemaphoreType;
+  number: number;
+  signal: SignalName;
+};
 
 board.on('ready', function () {
   /////////////////////////////////////////////////////
@@ -89,16 +129,22 @@ board.on('ready', function () {
   /// BOARD DEFINITION
   /////////////////////////////////////////////////////
 
-  const defineLedsPinPCA9685Board = (pin, address) => {
-    return new Led.RGB({
+  const defineLedsPinPCA9685Board = (pin: number, address: number): LedPin => {
+    const options: import('johnny-five').Led.RGBOption & { address: number } = {
       controller: 'PCA9685',
       address: address,
       pins: { red: pin, green: pin, blue: pin },
       isAnode: true
-    });
+    };
+
+    return new Led.RGB(options) as LedPin;
   };
 
-  const semaphores = semaphoresLedConfiguration(defineLedsPinPCA9685Board);
+  const semaphores: SemaphoreLeds[] = semaphoresLedConfiguration(
+    defineLedsPinPCA9685Board
+  );
+  const semaphoreConfigurations: SemaphoreConfiguration[] =
+    semaphoresGeneralConfiguration;
 
   /////////////////////////////////////////////////////
   /// OTHER DEFINITIONS
@@ -107,17 +153,17 @@ board.on('ready', function () {
   const status = {
     ON: 'on',
     PULSE: 'pulse'
-  };
+  } as const;
 
-  let loopInstances = [];
-  let ledsStatus = [];
-  let currentSignals = [];
+  let loopInstances: LoopInstance[] = [];
+  let ledsStatus: LedStatus[] = [];
+  let currentSignals: CurrentSignal[] = [];
 
   /////////////////////////////////////////////////////
   /// LED STEERING METHODS
   /////////////////////////////////////////////////////
 
-  const stopAllLoops = (semaphore, ledsPinToBeOn) => {
+  const stopAllLoops = (semaphore: SemaphoreLeds, ledsPinToBeOn: number[]) => {
     if (loopInstances.length) {
       const loopInstancesForOtherSemaphores = loopInstances.filter(
         loop => loop.semaphore !== semaphore
@@ -142,9 +188,9 @@ board.on('ready', function () {
     }
   };
 
-  const getLedPinNumber = led => led.pins[0];
+  const getLedPinNumber = (led: LedPin): number => led.pins[0];
 
-  const setCurrentSignal = (semaphore, signal) => {
+  const setCurrentSignal = (semaphore: SemaphoreLeds, signal: SignalName) => {
     const currentSignal = {
       semaphore: semaphore,
       signal: signal
@@ -153,7 +199,7 @@ board.on('ready', function () {
     currentSignals.push(currentSignal);
   };
 
-  const isSignalSet = (semaphore, signal) => {
+  const isSignalSet = (semaphore: SemaphoreLeds, signal: SignalName) => {
     if (currentSignals.length) {
       return currentSignals.find(
         cs => cs.semaphore === semaphore && cs.signal === signal
@@ -163,7 +209,7 @@ board.on('ready', function () {
     return false;
   };
 
-  const removeSignal = semaphore => {
+  const removeSignal = (semaphore: SemaphoreLeds) => {
     if (currentSignals.length) {
       const index = currentSignals.findIndex(cs => cs.semaphore === semaphore);
 
@@ -175,7 +221,11 @@ board.on('ready', function () {
     }
   };
 
-  const putLedStatus = (semaphore, led, status) => {
+  const putLedStatus = (
+    semaphore: SemaphoreLeds,
+    led: LedPin,
+    status: SignalStatus
+  ) => {
     const ledPin = getLedPinNumber(led);
     const ledStatus = {
       semaphore: semaphore,
@@ -197,7 +247,11 @@ board.on('ready', function () {
     }
   };
 
-  const updateLedStatus = (semaphore, led, status) => {
+  const updateLedStatus = (
+    semaphore: SemaphoreLeds,
+    led: LedPin,
+    status: SignalStatus
+  ) => {
     const idx = ledsStatus.findIndex(
       ledStatus =>
         ledStatus.semaphore === semaphore &&
@@ -206,7 +260,10 @@ board.on('ready', function () {
     ledsStatus[idx].status = status;
   };
 
-  const removeLedsStatus = (semaphore, ledsPinToBeOn) => {
+  const removeLedsStatus = (
+    semaphore: SemaphoreLeds,
+    ledsPinToBeOn: number[]
+  ) => {
     if (ledsStatus.length) {
       const ledsStatusForOthersSemaphores = ledsStatus.filter(
         ledStatus => ledStatus.semaphore !== semaphore
@@ -224,7 +281,10 @@ board.on('ready', function () {
     }
   };
 
-  const getLedStatus = (semaphore, led) => {
+  const getLedStatus = (
+    semaphore: SemaphoreLeds,
+    led: LedPin
+  ): SignalStatus | false => {
     if (ledsStatus.length) {
       const ledPin = getLedPinNumber(led);
       const ledStatus = ledsStatus.find(
@@ -240,7 +300,7 @@ board.on('ready', function () {
     return false;
   };
 
-  const turnOffLeds = (semaphore, ledsPinToBeOn) => {
+  const turnOffLeds = (semaphore: SemaphoreLeds, ledsPinToBeOn: number[]) => {
     const ledsToBeOff = Object.values(semaphore)
       .filter(val => val.pins) // the semaphore object could includes other props too
       .filter(val => !ledsPinToBeOn.includes(val.pins[0]));
@@ -251,7 +311,11 @@ board.on('ready', function () {
   /// LED EFFECTS METHODS
   /////////////////////////////////////////////////////
 
-  const fadeIn = (led, maxBrightness, effectConfig) => {
+  const fadeIn = (
+    led: LedPin,
+    maxBrightness: number,
+    effectConfig: FadeEffectConfig
+  ) => {
     let brightness = 0;
 
     const intervalId = setInterval(() => {
@@ -270,7 +334,11 @@ board.on('ready', function () {
   };
 
   // eslint-disable-next-line no-unused-vars
-  const fadeOut = (led, maxBrightness, effectConfig) => {
+  const fadeOut = (
+    led: LedPin,
+    maxBrightness: number,
+    effectConfig: FadeEffectConfig
+  ) => {
     let brightness = maxBrightness;
     led.intensity(maxBrightness);
 
@@ -294,7 +362,11 @@ board.on('ready', function () {
   const STOP_UP = 'stopUp';
   const STOP_DOWN = 'stopDown';
 
-  const pulse = (led, maxBrightness, effectConfig) => {
+  const pulse = (
+    led: LedPin,
+    maxBrightness: number,
+    effectConfig: PulseEffectConfig
+  ) => {
     let brightness = 0;
     let delay = 0;
     let delayDown = 0;
@@ -337,7 +409,11 @@ board.on('ready', function () {
     }, effectConfig.delayLoop);
   };
 
-  const pulseFromOn = (led, maxBrightness, effectConfig) => {
+  const pulseFromOn = (
+    led: LedPin,
+    maxBrightness: number,
+    effectConfig: PulseEffectConfig
+  ) => {
     let brightness = maxBrightness;
     let delay = 0;
     let delayDown = 0;
@@ -382,11 +458,11 @@ board.on('ready', function () {
   };
 
   const pulseComplex = (
-    semaphore,
-    led,
-    ledMaxBrightness,
-    ledEffectConfig,
-    ledsPinToBeOn
+    semaphore: SemaphoreLeds,
+    led: LedPin,
+    ledMaxBrightness: number,
+    ledEffectConfig: { pulse: PulseEffectConfig },
+    ledsPinToBeOn: number[]
   ) => {
     if (getLedStatus(semaphore, led) === status.ON) {
       const loopInstance = pulseFromOn(
@@ -421,11 +497,11 @@ board.on('ready', function () {
   };
 
   const fadeInComplex = (
-    semaphore,
-    led,
-    ledMaxBrightness,
-    ledEffectConfig,
-    ledsPinToBeOn
+    semaphore: SemaphoreLeds,
+    led: LedPin,
+    ledMaxBrightness: number,
+    ledEffectConfig: { fadeIn: FadeEffectConfig },
+    ledsPinToBeOn: number[]
   ) => {
     if (getLedStatus(semaphore, led) !== status.ON) {
       fadeIn(led, ledMaxBrightness, ledEffectConfig.fadeIn);
@@ -440,7 +516,12 @@ board.on('ready', function () {
   /// CHANGE SIGNAL METHODS
   /////////////////////////////////////////////////////
 
-  const generateSignal = (semaphore, signalStatus, ledsPinToBeOn, effects) => {
+  const generateSignal = (
+    semaphore: SemaphoreLeds,
+    signalStatus: SignalName,
+    ledsPinToBeOn: number[],
+    effects: (() => void)[]
+  ) => {
     if (!isSignalSet(semaphore, signalStatus)) {
       removeSignal(semaphore);
       setCurrentSignal(semaphore, signalStatus);
@@ -454,7 +535,7 @@ board.on('ready', function () {
     }
   };
 
-  const setSignalS1 = semaphore => {
+  const setSignalS1 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -465,14 +546,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.RED)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.S1, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.S1} signal`);
   };
 
-  const setSignalS2 = semaphore => {
+  const setSignalS2 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -483,14 +564,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.GREEN)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.S2, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.S2} signal`);
   };
 
-  const setSignalS3 = semaphore => {
+  const setSignalS3 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -508,7 +589,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.S3} signal`);
   };
 
-  const setSignalS4 = semaphore => {
+  const setSignalS4 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -526,7 +607,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.S4} signal`);
   };
 
-  const setSignalS5 = semaphore => {
+  const setSignalS5 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -537,14 +618,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.ORANGE_ONE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.S5, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.S5} signal`);
   };
 
-  const setSignalS10 = semaphore => {
+  const setSignalS10 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -569,14 +650,14 @@ board.on('ready', function () {
           ]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.S10, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.S10} signal`);
   };
 
-  const setSignalS11 = semaphore => {
+  const setSignalS11 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -608,7 +689,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.S11} signal`);
   };
 
-  const setSignalS12 = semaphore => {
+  const setSignalS12 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -640,7 +721,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.S12} signal`);
   };
 
-  const setSignalS13 = semaphore => {
+  const setSignalS13 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -665,14 +746,14 @@ board.on('ready', function () {
           ]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.S13, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.S13} signal`);
   };
 
-  const setSignalSz = semaphore => {
+  const setSignalSz = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -701,7 +782,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.SZ} signal`);
   };
 
-  const setSignalMs1 = semaphore => {
+  const setSignalMs1 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -712,14 +793,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.BLUE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.MS1, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.MS1} signal`);
   };
 
-  const setSignalMs2 = semaphore => {
+  const setSignalMs2 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -730,14 +811,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.WHITE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.MS2, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.MS2} signal`);
   };
 
-  const setSignalSp1 = semaphore => {
+  const setSignalSp1 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -756,14 +837,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.ORANGE), getLedPinNumber(semaphore.WHITE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.SP1, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.SP1} signal`);
   };
 
-  const setSignalSp2 = semaphore => {
+  const setSignalSp2 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -782,14 +863,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.GREEN), getLedPinNumber(semaphore.WHITE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.SP2, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.SP2} signal`);
   };
 
-  const setSignalSp3 = semaphore => {
+  const setSignalSp3 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -818,7 +899,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.SP3} signal`);
   };
 
-  const setSignalSp4 = semaphore => {
+  const setSignalSp4 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -847,7 +928,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.SP4} signal`);
   };
 
-  const setSignalOs1 = semaphore => {
+  const setSignalOs1 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -858,14 +939,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.ORANGE)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.OS1, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.OS1} signal`);
   };
 
-  const setSignalOs2 = semaphore => {
+  const setSignalOs2 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         fadeInComplex(
@@ -876,14 +957,14 @@ board.on('ready', function () {
           [getLedPinNumber(semaphore.GREEN)]
         )
     ];
-    const ledsPinToBeOn = [];
+    const ledsPinToBeOn: number[] = [];
 
     generateSignal(semaphore, signals.OS2, ledsPinToBeOn, effects);
     // eslint-disable-next-line no-console
     console.log(`Choosed ${signals.OS2} signal`);
   };
 
-  const setSignalOs3 = semaphore => {
+  const setSignalOs3 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -901,7 +982,7 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.OS3} signal`);
   };
 
-  const setSignalOs4 = semaphore => {
+  const setSignalOs4 = (semaphore: SemaphoreLeds) => {
     const effects = [
       () =>
         pulseComplex(
@@ -919,9 +1000,9 @@ board.on('ready', function () {
     console.log(`Choosed ${signals.OS4} signal`);
   };
 
-  const setSignalOff = semaphore => {
-    const effects = [];
-    const ledsPinToBeOn = [];
+  const setSignalOff = (semaphore: SemaphoreLeds) => {
+    const effects: (() => void)[] = [];
+    const ledsPinToBeOn: number[] = [];
 
     turnOffLeds(semaphore, ledsPinToBeOn);
     removeLedsStatus(semaphore, ledsPinToBeOn);
@@ -935,7 +1016,7 @@ board.on('ready', function () {
   /// NODE EXPRESS ROUTING CONFIGURATION
   /////////////////////////////////////////////////////
 
-  const routingSignals = [
+  const routingSignals: RoutingSignal[] = [
     {
       routeSignal: signals.S1,
       setSignal: semaphore => setSignalS1(semaphore)
@@ -1022,10 +1103,11 @@ board.on('ready', function () {
     }
   ];
 
-  const semaphoreRouteName = (type, number) => `${type}${number}`;
+  const semaphoreRouteName = (type: SemaphoreType, number: number) =>
+    `${type}${number}`;
 
   const routingSemaphores = () => {
-    return semaphoresGeneralConfiguration.map((sem, index) => ({
+    return semaphoreConfigurations.map((sem, index) => ({
       routeSemaphore: semaphoreRouteName(sem.type, sem.number),
       semaphore: semaphores[index]
     }));
@@ -1036,10 +1118,15 @@ board.on('ready', function () {
   /////////////////////////////////////////////////////
 
   const setInitialSignals = () => {
-    semaphoresGeneralConfiguration.forEach((sem, index) => {
-      routingSignals
-        .find(s => s.routeSignal === sem.signal)
-        .setSignal(semaphores[index]);
+    semaphoreConfigurations.forEach((sem, index) => {
+      const route = routingSignals.find(s => s.routeSignal === sem.signal);
+      const semaphore = semaphores[index];
+
+      if (!route || !semaphore) {
+        throw new Error(`Invalid semaphore configuration at index ${index}`);
+      }
+
+      route.setSignal(semaphore);
     });
   };
 
@@ -1050,7 +1137,11 @@ board.on('ready', function () {
   /////////////////////////////////////////////////////
 
   // Middleware - Our function for logging time
-  const writeTimeOnConsole = (req, res, next) => {
+  const writeTimeOnConsole = (
+    _req: Request,
+    _res: Response,
+    next: NextFunction
+  ) => {
     const today = new Date();
     const date =
       today.getFullYear() +
@@ -1066,7 +1157,7 @@ board.on('ready', function () {
   };
 
   // Middleware - Our static files - https://expressjs.com/en/starter/static-files.html
-  const serveStaticFiles = () =>
+  const serveStaticFiles = (): import('express').RequestHandler =>
     serveStatic('.', {
       index: ['semaphore.html']
     });

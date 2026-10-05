@@ -14,7 +14,7 @@
     "strict": true,
     "allowJs": true,
     "checkJs": false,
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "semaphore.ts"]
 }

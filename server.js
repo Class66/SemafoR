@@ -1,1 +1,1 @@
-import './semaphore.js';
+import './semaphore.ts';
