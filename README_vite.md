@@ -41,7 +41,7 @@ Hook `.husky/pre-commit` przed commitem uruchamia kolejno `format:check`, `lint`
 
 - **Oxfmt** formatuje kod. Konfiguracja znajduje się w `oxfmt.config.ts`: bez średników, pojedyncze cudzysłowy, wcięcia dwuspacjowe i szerokość linii 80 znaków. Dokumentacja Markdown, pliki lock oraz wybrane katalogi są pomijane.
 - **Oxlint** analizuje JavaScript/TypeScript. `oxlint.config.ts` włącza reguły React `rules-of-hooks` (błąd) oraz `only-export-components` (ostrzeżenie); pozostałe aktywne reguły pochodzą z domyślnych konfiguracji Oxlint.
-- **Stylelint** sprawdza CSS. `stylelint.config.js` definiuje reguły dotyczące nieznanych at-rules, nieprawidłowych wartości kolorów hex, jednostek przy zerze, brakującej ogólnej rodziny fontów i wzorca nazw klas.
+- **Stylelint** sprawdza CSS. `stylelint.config.cjs` definiuje reguły dotyczące nieznanych at-rules, nieprawidłowych wartości kolorów hex, jednostek przy zerze, brakującej ogólnej rodziny fontów i wzorca nazw klas.
 - **TypeScript** działa w trybie `strict`. `tsconfig.json` obejmuje `src/` i główny `semaphore.ts`, nie emituje plików JS oraz dopuszcza importowanie istniejących plików JS (`allowJs`), ale nie sprawdza ich typów (`checkJs: false`).
 
 VS Code ma skonfigurowany Oxfmt jako formatter przy zapisie. Wymaga to rozszerzenia **Oxc** (`oxc.oxc-vscode`).
