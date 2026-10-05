@@ -1,21 +1,14 @@
 import { createRequire } from 'node:module'
-import type { NextFunction, Request, Response } from 'express'
-import { semaphoreTypes } from './src/enums/semaphore-types.ts'
-import { signals } from './src/enums/signals.ts'
+import { semaphoreTypes } from '../enums/semaphore-types.ts'
+import { signals } from '../enums/signals.ts'
 import {
-  semaphoreSteeringPort,
   semaphoresLedConfiguration,
   semaphoresGeneralConfiguration
-} from './src/common/semaphore-config.ts'
+} from '../common/semaphore-config.ts'
+import { startSemaphoreServer } from './semaphore-server.ts'
 
 const require = createRequire(import.meta.url)
-const express = require('express') as typeof import('express')
-const cors = require('cors') as typeof import('cors')
-const serveStatic = require('serve-static') as typeof import('serve-static')
 const { Board, Led } = require('johnny-five') as typeof import('johnny-five')
-
-const app = express()
-const port = semaphoreSteeringPort
 
 // Arduino initialization
 const board = new Board({ port: 'COM3' })
@@ -1103,16 +1096,6 @@ board.on('ready', function () {
     }
   ]
 
-  const semaphoreRouteName = (type: SemaphoreType, number: number) =>
-    `${type}${number}`
-
-  const routingSemaphores = () => {
-    return semaphoreConfigurations.map((sem, index) => ({
-      routeSemaphore: semaphoreRouteName(sem.type, sem.number),
-      semaphore: semaphores[index]
-    }))
-  }
-
   /////////////////////////////////////////////////////
   /// SET INITIAL SIGNALS
   /////////////////////////////////////////////////////
@@ -1132,56 +1115,9 @@ board.on('ready', function () {
 
   setInitialSignals()
 
-  /////////////////////////////////////////////////////
-  /// NODE EXPRESS MIDDLEWARES - https://expressjs.com/en/guide/writing-middleware.html
-  /////////////////////////////////////////////////////
-
-  // Middleware - Our function for logging time
-  const writeTimeOnConsole = (
-    _req: Request,
-    _res: Response,
-    next: NextFunction
-  ) => {
-    const today = new Date()
-    const date =
-      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-    const time =
-      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
-    // eslint-disable-next-line no-console
-    console.log('Time of calling request:', date, time)
-    next()
-  }
-
-  // Middleware - Our static files - https://expressjs.com/en/starter/static-files.html
-  const serveStaticFiles = (): import('express').RequestHandler =>
-    serveStatic('.', {
-      index: ['semaphore.html']
-    })
-
-  app.use(serveStaticFiles())
-  app.use(writeTimeOnConsole)
-
-  /////////////////////////////////////////////////////
-  /// NODE EXPRESS ROUTING
-  /// Express Routing: https://expressjs.com/en/guide/routing.html
-  /// cors - Enable CORS for a Single Route (https://expressjs.com/en/resources/middleware/cors.html)
-  /////////////////////////////////////////////////////
-
-  app.get('/:semaphore/:signal', cors(), (req, res) => {
-    const signalToShow = routingSignals.filter(
-      s => s.routeSignal === req.params.signal.toUpperCase()
-    )
-    const semaphoreToUse = routingSemaphores().filter(
-      s => s.routeSemaphore === req.params.semaphore
-    )
-
-    signalToShow[0].setSignal(semaphoreToUse[0].semaphore)
-    // Express Response: https://expressjs.com/en/4x/api.html#res
-    res.send(`Semaphore ${req.params.semaphore} ${req.params.signal} ON!`)
+  startSemaphoreServer({
+    routingSignals,
+    semaphores,
+    semaphoreConfigurations
   })
-
-  app.listen(port, () =>
-    // eslint-disable-next-line no-console
-    console.log(`Example app listening on port ${port}!`)
-  )
 })

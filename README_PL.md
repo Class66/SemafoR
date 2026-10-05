@@ -106,28 +106,16 @@ npm install
 
 1. Podłącz swój układ (Arduino, PCA9685 i podłączone semafory) do wybranego portu USB
 
-2. Uruchom aplikację klikając plik `start-steering.bat` a następnie `start-ui.bat` (UWAGA! plik ten zadziała tylko pod platformą Windows)<br>
-   **LUB**<br>
-   otwórz okno konsoli w tym folderze i wykonaj komendę:<br>
-
-```
-node server
-```
-
-```
-npm start
-```
-
-Aplikacja ta składa się z dwóch oddzielnych programów więc możesz je również uruchomić osobno:
+2. Uruchom osobno aplikację sterującą i interfejs użytkownika. W systemie Windows uruchom `start-steering.bat` oraz `start-ui.bat` w osobnych oknach. Możesz też otworzyć dwa okna konsoli w folderze projektu i wykonać w nich odpowiednie polecenia:
 
 - **Aplikacja sterująca** - jest to główny program odpowiedzialny za sterowanie semaforami za pomocą Arduino. Jest oparty na platformie Johnny-Five.<br>
 
   > Przed uruchomieniem: Podłącz swój obwód (Arduino, PCA9685 i połączone semafory) do wybranego portu USB
 
-  Program ten możesz uruchomić za pomocą komendy:
+  Uruchom ją poleceniem:
 
   ```
-  node server
+  npm run steering
   ```
 
   (domyślnie startuje pod adresem http://localhost:4000)
@@ -137,13 +125,13 @@ Aplikacja ta składa się z dwóch oddzielnych programów więc możesz je równ
   > Przed uruchomieniem aplikacji interfejsu użytkownika należy uruchomić **aplikację sterującą** zgodnie z powyższym opisem.
   > W przeciwnym razie nie będziesz w stanie sterować podłączonymi semaforami.
 
-  Program ten możesz uruchomić za pomocą komendy:
+  Uruchom go poleceniem:
 
   ```
-  npm start
+  npm run dev
   ```
 
-  (domyślnie startuje pod adresem http://localhost:3000)
+  (domyślnie startuje pod adresem http://localhost:5173).
 
 ![Pulpit Image](/images/ui-interface-screenshot.jpg)
 
