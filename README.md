@@ -106,28 +106,16 @@ npm install
 
 1. Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port
 
-2. Run the application by clicking `start-steering.bat` and next `start-ui.bat` (NOTICE: the file works only under Windows)<br>
-   **OR**<br>
-   open a console window in this folder and run commands:<br>
-
-```
-node server
-```
-
-```
-npm start
-```
-
-The application is composed of two separate programs, so you can run them separately too:
+2. Start the steering application and the user interface separately. On Windows, run `start-steering.bat` and `start-ui.bat` in separate windows. Alternatively, open two console windows in the project folder and run:
 
 - **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.<br>
 
   > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port.
 
-  Can be run by command:
+  Run it with:
 
   ```
-  node server
+  npm run steering
   ```
 
   (by default it will be started on http://localhost:4000)
@@ -137,13 +125,13 @@ The application is composed of two separate programs, so you can run them separa
   > Before run the user interface application, you must run **the steering application** as described above.
   > Otherwise, you will not be able to steering connected semaphores.
 
-  Can be run by command:
+  Run it with:
 
   ```
-  npm start
+  npm run dev
   ```
 
-  (by default it will be started on http://localhost:3000)
+  (by default it will be started on  http://localhost:5173).
 
 ![Pulpit Image](/images/ui-interface-screenshot.jpg)
 
