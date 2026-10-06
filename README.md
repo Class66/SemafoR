@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![GitHub release](https://img.shields.io/github/v/release/Class66/SemafoR)](https://GitHub.com/Class66/SemafoR/releases/)
 
-<a href="https://github.com/Class66/SemafoR/blob/master/README_PL.md"><code>Polska wersja instrukcji **TUTAJ**</code></a><br>
+<a href="https://github.com/Class66/SemafoR/blob/main/README_PL.md"><code>Polska wersja instrukcji **TUTAJ**</code></a><br>
 
 This is application for steering KLUBA semaphores using Arduino platform.<br>
 
@@ -422,4 +422,4 @@ To use one, copy it to `src/common/semaphore-config.js`, replacing the existing 
 
 Copyright (c) Marcin Gierczak
 
-Licensed under the MIT license: https://github.com/Class66/SemafoR/blob/master/LICENSE
+Licensed under the MIT license: https://github.com/Class66/SemafoR/blob/main/LICENSE
