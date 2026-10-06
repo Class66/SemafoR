@@ -8,7 +8,7 @@ import { semaphoreTypes } from './enums/semaphore-types'
 import {
   semaphoreSteeringUri,
   semaphoresGeneralConfiguration
-} from './common/semaphore-config'
+} from './common/semaphores-config'
 import type {
   SemaphoreData,
   SemaphoreType,

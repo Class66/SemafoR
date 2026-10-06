@@ -133,11 +133,12 @@ npm install
 
   (domyślnie startuje pod adresem http://localhost:5173).
 
-![Pulpit Image](/images/ui-interface-screenshot.jpg)
+![Pulpit Image](/images/ui-interface-screenshot.png)
+![Pulpit Image](/images/ui-interface-screenshot-dark.png)
 
 ## Jak dodać nową definicję semafora do pliku konfiguracyjnego
 
-Cała konfiguracja semaforów jest zdefiniowana w pliku `src/common/semaphore-config.js`.
+Cała konfiguracja semaforów jest zdefiniowana w pliku `src/common/semaphores-config.js`.
 
 > Domyślna konfiguracja zakłada użycie 3 semaforów „Sm”, 3 semaforów „Tm” i jednego semafora „Sp”. Układ Arduino ma podane dwie płytki PCA9685 ze zdefiniowanymi adresami, takimi jak `0x40` i `0x41`. Adresy te są zdefiniowane w tablicy `boardPCA9685Addresses` w tym samym pliku konfiguracyjnym.
 
@@ -193,7 +194,7 @@ W aplikacji występuje 10 typów semaforów, które odpowiadają semaforom produ
 
 Przykłady definicji obiektów semaforów KLUBA:
 
-> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphore-config.js`.<br>
+> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphores-config.js`.<br>
 > Pamiętaj jednak aby zmienić numery pinów i numer płytki PCA9685, do której semafor jest podłączony.<br>
 > Pamiętaj też, że opcjonalnie zawsze możesz dodać pozycję 'label' aby zdefiniować nazwę semafora widoczą w interfejsie użytkownika.
 
@@ -412,8 +413,8 @@ Przykłady definicji obiektów semaforów KLUBA:
 
 ## Predefiniowane konfiguracje
 
-Dwie predefiniowane konfiguracje semaforów znajdziesz w plikach `src/common/predefined/semaphore-config-1.js` i `src/common/predefined/semaphore-config-2.js`.<br>
-Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphore-config.js`, zastępując obecną konfigurację.<br>
+Dwie predefiniowane konfiguracje semaforów znajdziesz w plikach `src/common/predefined/semaphores-config-1.js` i `src/common/predefined/semaphores-config-2.js`.<br>
+Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphores-config.js`, zastępując obecną konfigurację.<br>
 **Pamiętaj o ponownym uruchomieniu całej aplikacji!**
 
 > Konfiguracje te są przykładowe więc możesz na nich polegać podczas budowania własnego pliku konfiguracyjnego.

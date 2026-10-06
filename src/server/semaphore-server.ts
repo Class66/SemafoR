@@ -1,6 +1,6 @@
 import { createRequire } from 'node:module'
 import type { NextFunction, Request, Response } from 'express'
-import { semaphoreSteeringPort } from '../common/semaphore-config.ts'
+import { semaphoreSteeringPort } from '../common/semaphores-config.ts'
 
 const require = createRequire(import.meta.url)
 const express = require('express') as typeof import('express')
