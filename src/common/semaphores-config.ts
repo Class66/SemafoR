@@ -1,6 +1,6 @@
 import { signals } from '../enums/signals.ts'
 import { semaphoreTypes } from '../enums/semaphore-types.ts'
-import type { SemaphoreData } from '../types/semaphore'
+import type { SemaphoreData } from '../types/semaphore.ts'
 
 export const semaphoreSteeringPort = 4000
 export const semaphoreSteeringUri = `http://localhost:${semaphoreSteeringPort}`

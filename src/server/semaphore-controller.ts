@@ -4,7 +4,7 @@ import { signals } from '../enums/signals.ts'
 import {
   semaphoresLedConfiguration,
   semaphoresGeneralConfiguration
-} from '../common/semaphore-config.ts'
+} from '../common/semaphores-config.ts'
 import { startSemaphoreServer } from './semaphore-server.ts'
 
 const require = createRequire(import.meta.url)
