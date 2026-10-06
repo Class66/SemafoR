@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![GitHub release](https://img.shields.io/github/v/release/Class66/SemafoR)](https://GitHub.com/Class66/SemafoR/releases/)
 
-<a href="https://github.com/Class66/SemafoR/blob/master/README.md"><code>English version **HERE**</code></a><br>
+<a href="https://github.com/Class66/SemafoR/blob/main/README.md"><code>English version **HERE**</code></a><br>
 
 Jest to aplikacja do sterowania semaforami firmy KLUBA za pomocą platformy Arduino.<br>
 
@@ -422,4 +422,4 @@ Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphore-config.js`,
 
 Copyright (c) Marcin Gierczak
 
-Aplikacji tej możesz używać w pełni bezpłatnie na zasadach licencji MIT: https://github.com/Class66/SemafoR/blob/master/LICENSE
+Aplikacji tej możesz używać w pełni bezpłatnie na zasadach licencji MIT: https://github.com/Class66/SemafoR/blob/main/LICENSE
