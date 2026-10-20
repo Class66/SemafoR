@@ -7,6 +7,7 @@
 - **TypeScript 7** — kod UI i sterownika semaforów (`src/server/semaphore-controller.ts`).
 - **Express 4**, **Johnny-Five** i **SerialPort** — API sterujące diodami przez Arduino.
 - **CSS Modules** — lokalne style komponentów; pliki mają rozszerzenie `.module.css`.
+- **Vitest 5** — testy jednostkowe logiki semaforów (bez testów UI).
 
 ## Struktura projektu
 
@@ -16,9 +17,12 @@
 - `src/common/predefined/` — przykładowe konfiguracje sprzętu.
 - `src/enums/`, `src/types/` — typy sygnałów, semaforów i wspólne typy TypeScript.
 - `src/server/semaphore-controller.ts` — inicjalizacja Arduino, konfiguracja diod i logika obsługi sygnałów. Po zdarzeniu `ready` płytki uruchamia serwer, przekazując mu semafory oraz funkcje ustawiające sygnały.
-- `src/server/semaphore-server.ts` — wydzielona logika HTTP: konfiguracja middleware, mapowanie adresów na semafory i sygnały, obsługa endpointu `/:semaphore/:signal` oraz uruchomienie Express.
+- `src/server/semaphore-state.ts` — logika stanu diod i sygnałów niezależna od sprzętu. Fabryka `createSemaphoreState` tworzy odizolowany stan (pętle efektów, statusy diod, bieżące sygnały) wraz z funkcjami nim zarządzającymi, w tym `generateSignal`. Eksportuje też stałą `signalStatus` (`ON`, `PULSE`) i typ `SignalStatus` oraz `getLedPinNumber`. Nie importuje Johnny-Five, dlatego da się ją testować bez Arduino.
+- `src/server/semaphore-routing.ts` — fabryka `createSignalRequestHandler` z handlerem endpointu `/:semaphore/:signal`. Dobiera semafor i sygnał na podstawie adresu; dla nieznanego semafora lub sygnału zwraca `404` (`Unknown semaphore or signal`), bez powtarzania danych z żądania w odpowiedzi.
+- `src/server/semaphore-server.ts` — wydzielona logika HTTP: konfiguracja middleware, podpięcie handlera z `semaphore-routing.ts` pod `/:semaphore/:signal` oraz uruchomienie Express.
+- `src/common/semaphores-config.test.ts`, `src/server/semaphore-state.test.ts`, `src/server/semaphore-routing.test.ts` — testy jednostkowe Vitest (opis w sekcji „Testy”).
 
-Podział oddziela obsługę HTTP od sterowania sprzętem. Moduł Express nie inicjalizuje Arduino ani nie steruje diodami bezpośrednio — korzysta z funkcji przekazanych przez `semaphore-controller.ts`. Serwer startuje dopiero po zgłoszeniu gotowości przez płytkę.
+Podział oddziela obsługę HTTP i logikę stanu od sterowania sprzętem. Moduł Express nie inicjalizuje Arduino ani nie steruje diodami bezpośrednio — korzysta z funkcji przekazanych przez `semaphore-controller.ts`. Serwer startuje dopiero po zgłoszeniu gotowości przez płytkę.
 
 Kolejność wpisów w `semaphoresLedConfiguration` musi odpowiadać kolejności wpisów w `semaphoresGeneralConfiguration`.
 
@@ -30,6 +34,8 @@ Kolejność wpisów w `semaphoresLedConfiguration` musi odpowiadać kolejności 
 | `npm run dev`          | Uruchamia developerski serwer Vite dla UI.                              |
 | `npm run build`        | Buduje produkcyjną wersję UI do katalogu `dist/`.                       |
 | `npm run preview`      | Serwuje lokalnie ostatni build Vite.                                    |
+| `npm run test`         | Jednorazowo uruchamia testy jednostkowe Vitest.                         |
+| `npm run test:watch`   | Uruchamia Vitest w trybie obserwowania zmian.                           |
 | `npm run lint`         | Uruchamia Oxlint dla projektu.                                          |
 | `npm run lint:fix`     | Uruchamia Oxlint z automatycznymi poprawkami dla plików JS/TS w `src/`. |
 | `npm run stylelint`    | Sprawdza arkusze CSS w `src/`.                                          |
@@ -40,6 +46,28 @@ Kolejność wpisów w `semaphoresLedConfiguration` musi odpowiadać kolejności 
 | `npm run prepare`      | Konfiguruje hooki Git przez Husky.                                      |
 
 Hook `.husky/pre-commit` przed commitem uruchamia `check:staged`, a następnie `type:check`.
+
+## Testy
+
+Testy jednostkowe obejmują wyłącznie logikę semaforów (interfejs użytkownika nie jest testowany). Nie wymagają Arduino ani podłączonego sprzętu.
+
+| Plik                                   | Zakres                                                                                                                                                  |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/common/semaphores-config.test.ts` | Konfiguracja: port API i adresy PCA9685, unikalność pinów na płytce, zakres kanałów 0–15, zgodność liczby i kolejności wpisów obu konfiguracji, unikalne nazwy tras. |
+| `src/server/semaphore-state.test.ts`   | Stan diod i sygnałów: statusy diod, `removeLedsStatus`, `turnOffLeds`, bieżące sygnały, zatrzymywanie pętli, `generateSignal` (kolejność czyszczenia i efektów), izolacja między semaforami. |
+| `src/server/semaphore-routing.test.ts` | Handler `/:semaphore/:signal`: dopasowanie semafora i sygnału, wielkość liter (sygnał bez rozróżniania, semafor z rozróżnianiem), odpowiedź `404` dla nieznanych wartości. |
+
+Poza testami pozostają efekty `fadeIn` i `pulse` oraz tablica routingu sygnałów w `semaphore-controller.ts`, ponieważ ten moduł łączy się z Arduino (`COM3`) już przy imporcie.
+
+Testy uruchom poleceniem `npm run test` lub w trybie obserwowania zmian poleceniem `npm run test:watch`.
+
+Testy znajdują się obok sprawdzanego kodu:
+
+- `src/common/semaphores-config.test.ts` - konfiguracja (port, adresy PCA9685, piny, nazwy tras),
+- `src/server/semaphore-state.test.ts` - stan diod i sygnałów (`semaphore-state.ts`),
+- `src/server/semaphore-routing.test.ts` - obsługa endpointu `/:semaphore/:signal` (`semaphore-routing.ts`).
+
+Nieznany semafor lub sygnał w adresie żądania skutkuje odpowiedzią HTTP `404`.
 
 ## Formatowanie i lintowanie
 

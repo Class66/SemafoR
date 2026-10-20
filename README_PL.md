@@ -30,6 +30,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne/
 - [Jak dodać nową definicję semafora do pliku konfiguracyjnego](#jak-dodać-nową-definicję-semafora-do-pliku-konfiguracyjnego)
 - [Przykłady definicji wszystkich typów semaforów](#przykłady-definicji-wszystkich-typów-semaforów)
 - [Predefiniowane konfiguracje](#predefiniowane-konfiguracje)
+- [Uruchamianie testów](#uruchamianie-testów)
 - [Licencja i prawa autorskie](#licencja-i-prawa-autorskie)
 
 ## Wymagania sprzętowe

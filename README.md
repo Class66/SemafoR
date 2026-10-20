@@ -30,6 +30,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne/
 - [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
 - [Examples of definitions for all types of semaphores](#examples-of-definitions-for-all-types-of-semaphores)
 - [Predefined configurations](#predefined-configurations)
+- [Running tests](#running-tests)
 - [License and copyrights](#license-and-copyrights)
 
 ## Hardware requirements
@@ -418,6 +419,24 @@ To use one, copy it to `src/common/semaphores-config.js`, replacing the existing
 **Remember to restart the whole application!**
 
 > These configurations are just examples so you can rely on them while building your own config file.
+
+## Running tests
+
+Unit tests cover the semaphore logic only (the user interface is not tested) and use [Vitest](https://vitest.dev/). They do not need Arduino or any connected hardware. Run them once with:
+
+```
+npm run test
+```
+
+or in watch mode with `npm run test:watch`.
+
+The tests are located next to the code they check:
+
+- `src/common/semaphores-config.test.ts` - configuration (port, PCA9685 addresses, pins, route names),
+- `src/server/semaphore-state.test.ts` - LED and signal state (`semaphore-state.ts`),
+- `src/server/semaphore-routing.test.ts` - handling of the `/:semaphore/:signal` endpoint (`semaphore-routing.ts`).
+
+An unknown semaphore or signal in the request URL is answered with HTTP `404`.
 
 ## License and copyrights
 
