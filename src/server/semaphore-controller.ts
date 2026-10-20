@@ -16,7 +16,7 @@ const require = createRequire(import.meta.url)
 const { Board, Led } = require('johnny-five') as typeof import('johnny-five')
 
 // Arduino initialization
-const board = new Board({ port: 'COM3' })
+const board = new Board({ port: process.env.ARDUINO_PORT })
 
 type LedPin = InstanceType<typeof Led.RGB> & { pins: [number] }
 type SemaphoreLeds = Record<string, LedPin>

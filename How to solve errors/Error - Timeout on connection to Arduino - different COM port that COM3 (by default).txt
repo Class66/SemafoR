@@ -1,7 +1,10 @@
-If connecting via a USB port other than COM3 for instance COM5, change the line below in semaphore.js file from:
+If the application cannot connect to the Arduino (timeout), set the serial port explicitly, for instance COM5.
 
-const board = new Board();
+1. Copy the .env.example file to .env (in the project root folder).
+2. Set the port in the .env file:
 
-to:
+ARDUINO_PORT=COM3
 
-const board = new Board({ port: 'COM5' });
+3. Restart the steering application (npm run steering).
+
+When ARDUINO_PORT is empty or the .env file does not exist, the first available USB/COM serial port is used (it is not checked whether it is an Arduino), so with several serial devices always set the port explicitly.

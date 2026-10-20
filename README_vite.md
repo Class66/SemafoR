@@ -57,7 +57,7 @@ Testy jednostkowe obejmują wyłącznie logikę semaforów (interfejs użytkowni
 | `src/server/semaphore-state.test.ts`   | Stan diod i sygnałów: statusy diod, `removeLedsStatus`, `turnOffLeds`, bieżące sygnały, zatrzymywanie pętli, `generateSignal` (kolejność czyszczenia i efektów), izolacja między semaforami. |
 | `src/server/semaphore-routing.test.ts` | Handler `/:semaphore/:signal`: dopasowanie semafora i sygnału, wielkość liter (sygnał bez rozróżniania, semafor z rozróżnianiem), odpowiedź `404` dla nieznanych wartości. |
 
-Poza testami pozostają efekty `fadeIn` i `pulse` oraz tablica routingu sygnałów w `semaphore-controller.ts`, ponieważ ten moduł łączy się z Arduino (`COM3`) już przy imporcie.
+Poza testami pozostają efekty `fadeIn` i `pulse` oraz tablica routingu sygnałów w `semaphore-controller.ts`, ponieważ ten moduł łączy się z Arduino już przy imporcie.
 
 Testy uruchom poleceniem `npm run test` lub w trybie obserwowania zmian poleceniem `npm run test:watch`.
 
@@ -81,6 +81,7 @@ VS Code ma skonfigurowany Oxfmt jako formatter przy zapisie. Wymaga to rozszerze
 
 ## Uruchamianie
 
-Zainstaluj zależności poleceniem `npm install`. Przed uruchomieniem sterownika podłącz Arduino i wgraj firmware StandardFirmataPlus. Sterownik wraz z API Express uruchom poleceniem `npm run steering`, a interfejs użytkownika w osobnym terminalu poleceniem `npm run dev`. W systemie Windows odpowiadają im skrypty `start-steering.bat` i `start-ui.bat`. Nie używaj `node server` ani `npm start` — punkt wejścia `server.js` został usunięty.
+Zainstaluj zależności poleceniem `npm install`. Przed uruchomieniem sterownika podłącz Arduino i wgraj firmware StandardFirmataPlus. Sterownik wraz z API Express uruchom poleceniem `npm run steering`, a interfejs użytkownika w osobnym terminalu poleceniem `npm run dev`. W systemie Windows odpowiadają im skrypty `start-steering.bat` i `start-ui.bat`.
 
-Port API (`4000`), pinout i adresy PCA9685 konfiguruje się w `src/common/semaphores-config.ts`. Port szeregowy Arduino jest obecnie ustawiony w `src/server/semaphore-controller.ts` na `COM3`; w razie potrzeby zmień go na port właściwy dla danego komputera.
+Port API (`4000`), pinout i adresy PCA9685 konfiguruje się w `src/common/semaphores-config.ts`.
+Port szeregowy Arduino zależy od komputera, dlatego ustawia się go w pliku `.env` (nie jest on śledzony przez Git): skopiuj `.env.example` do `.env` i wpisz np. `ARDUINO_PORT=COM3`. Plik `.env` jest wczytywany przez skrypt `npm run steering` (flaga Node `--env-file-if-exists`).

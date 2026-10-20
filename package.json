@@ -24,7 +24,7 @@
     "test:watch": "vitest",
     "preview": "vite preview",
     "prepare": "husky install",
-    "steering": "node src/server/semaphore-controller.ts"
+    "steering": "node --env-file-if-exists=.env src/server/semaphore-controller.ts"
   },
   "dependencies": {
     "classnames": "^2.3.2",
