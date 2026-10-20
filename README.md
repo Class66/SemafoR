@@ -434,24 +434,6 @@ To use one, copy it to `src/common/semaphores-config.ts`, replacing the existing
 
 > These configurations are just examples so you can rely on them while building your own config file.
 
-## Running tests
-
-Unit tests cover the semaphore logic only (the user interface is not tested) and use [Vitest](https://vitest.dev/). They do not need Arduino or any connected hardware. Run them once with:
-
-```
-npm run test
-```
-
-or in watch mode with `npm run test:watch`.
-
-The tests are located next to the code they check:
-
-- `src/common/semaphores-config.test.ts` - configuration (port, PCA9685 addresses, pins, route names),
-- `src/server/semaphore-state.test.ts` - LED and signal state (`semaphore-state.ts`),
-- `src/server/semaphore-routing.test.ts` - handling of the `/:semaphore/:signal` endpoint (`semaphore-routing.ts`).
-
-An unknown semaphore or signal in the request URL is answered with HTTP `404`.
-
 ## License and copyrights
 
 Copyright (c) Marcin Gierczak
