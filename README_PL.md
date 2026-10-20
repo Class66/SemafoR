@@ -30,6 +30,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne/
 - [Jak dodać nową definicję semafora do pliku konfiguracyjnego](#jak-dodać-nową-definicję-semafora-do-pliku-konfiguracyjnego)
 - [Przykłady definicji wszystkich typów semaforów](#przykłady-definicji-wszystkich-typów-semaforów)
 - [Predefiniowane konfiguracje](#predefiniowane-konfiguracje)
+- [Uruchamianie testów](#uruchamianie-testów)
 - [Licencja i prawa autorskie](#licencja-i-prawa-autorskie)
 
 ## Wymagania sprzętowe
@@ -106,11 +107,25 @@ npm install
 
 1. Podłącz swój układ (Arduino, PCA9685 i podłączone semafory) do wybranego portu USB
 
-2. Uruchom osobno aplikację sterującą i interfejs użytkownika. W systemie Windows uruchom `start-steering.bat` oraz `start-ui.bat` w osobnych oknach. Możesz też otworzyć dwa okna konsoli w folderze projektu i wykonać w nich odpowiednie polecenia:
+2. Ustaw port szeregowy swojego Arduino w pliku `.env` (jednorazowa konfiguracja na każdym komputerze):
+
+   a. Sprawdź nazwę portu: w Arduino IDE wybierz 'Narzędzia/Port' lub, w systemie Windows, Menedżer urządzeń > 'Porty (COM)' (np. `COM3`).
+   b. Skopiuj plik `.env.example` do `.env` w głównym folderze projekt.
+   c. Otwórz plik `.env` i wpisz port, np.:
+
+      ```
+      ARDUINO_PORT=COM3
+      ```
+
+   - Plik `.env` jest **lokalny dla Twojego komputera** i celowo nie jest commitowany do Git (jest wpisany do `.gitignore`). Numer portu nie jest tajemnicą, ale na każdym komputerze bywa inny, więc wspólny plik powodowałby konflikty i nadpisywanie cudzych ustawień. W repozytorium znajduje się tylko wzorzec `.env.example`.
+   - Jeśli `ARDUINO_PORT` jest pusty lub pliku `.env` nie ma, aplikacja użyje **pierwszego dostępnego** portu szeregowego USB/COM.
+   - Po każdej zmianie pliku `.env` uruchom aplikację sterującą ponownie.
+
+3. Uruchom osobno aplikację sterującą i interfejs użytkownika. W systemie Windows uruchom `start-steering.bat` oraz `start-ui.bat` w osobnych oknach. Możesz też otworzyć dwa okna konsoli w folderze projektu i wykonać w nich odpowiednie polecenia:
 
 - **Aplikacja sterująca** - jest to główny program odpowiedzialny za sterowanie semaforami za pomocą Arduino. Jest oparty na platformie Johnny-Five.<br>
 
-  > Przed uruchomieniem: Podłącz swój obwód (Arduino, PCA9685 i połączone semafory) do wybranego portu USB
+  > Przed uruchomieniem: Podłącz swój obwód (Arduino, PCA9685 i połączone semafory) do wybranego portu USB i ustaw `ARDUINO_PORT` zgodnie z krokiem 2.
 
   Uruchom ją poleceniem:
 
@@ -138,7 +153,7 @@ npm install
 
 ## Jak dodać nową definicję semafora do pliku konfiguracyjnego
 
-Cała konfiguracja semaforów jest zdefiniowana w pliku `src/common/semaphores-config.js`.
+Cała konfiguracja semaforów jest zdefiniowana w pliku `src/common/semaphores-config.ts`.
 
 > Domyślna konfiguracja zakłada użycie 3 semaforów „Sm”, 3 semaforów „Tm” i jednego semafora „Sp”. Układ Arduino ma podane dwie płytki PCA9685 ze zdefiniowanymi adresami, takimi jak `0x40` i `0x41`. Adresy te są zdefiniowane w tablicy `boardPCA9685Addresses` w tym samym pliku konfiguracyjnym.
 
@@ -194,7 +209,7 @@ W aplikacji występuje 10 typów semaforów, które odpowiadają semaforom produ
 
 Przykłady definicji obiektów semaforów KLUBA:
 
-> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphores-config.js`.<br>
+> Możesz skopiować je bezpośrednio do swojego pliku konfiguracyjnego o nazwie `semaphores-config.ts`.<br>
 > Pamiętaj jednak aby zmienić numery pinów i numer płytki PCA9685, do której semafor jest podłączony.<br>
 > Pamiętaj też, że opcjonalnie zawsze możesz dodać pozycję 'label' aby zdefiniować nazwę semafora widoczą w interfejsie użytkownika.
 
@@ -413,8 +428,8 @@ Przykłady definicji obiektów semaforów KLUBA:
 
 ## Predefiniowane konfiguracje
 
-Dwie predefiniowane konfiguracje semaforów znajdziesz w plikach `src/common/predefined/semaphores-config-1.js` i `src/common/predefined/semaphores-config-2.js`.<br>
-Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphores-config.js`, zastępując obecną konfigurację.<br>
+Dwie predefiniowane konfiguracje semaforów znajdziesz w plikach `src/common/predefined/semaphores-config-1.ts` i `src/common/predefined/semaphores-config-2.ts`.<br>
+Aby użyć jednej z nich, skopiuj ją do pliku `src/common/semaphores-config.ts`, zastępując obecną konfigurację.<br>
 **Pamiętaj o ponownym uruchomieniu całej aplikacji!**
 
 > Konfiguracje te są przykładowe więc możesz na nich polegać podczas budowania własnego pliku konfiguracyjnego.

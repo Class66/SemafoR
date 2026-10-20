@@ -1,21 +1,16 @@
 import { createRequire } from 'node:module'
 import type { NextFunction, Request, Response } from 'express'
 import { semaphoreSteeringPort } from '../common/semaphores-config.ts'
+import {
+  createSignalRequestHandler,
+  type SemaphoreIdentity,
+  type SignalRoute
+} from './semaphore-routing.ts'
 
 const require = createRequire(import.meta.url)
 const express = require('express') as typeof import('express')
 const cors = require('cors') as typeof import('cors')
 const serveStatic = require('serve-static') as typeof import('serve-static')
-
-type SignalRoute<TSemaphore> = {
-  routeSignal: string
-  setSignal: (semaphore: TSemaphore) => void
-}
-
-type SemaphoreIdentity = {
-  type: string
-  number: number
-}
 
 type SemaphoreServerOptions<TSemaphore> = {
   routingSignals: readonly SignalRoute<TSemaphore>[]
@@ -30,10 +25,11 @@ export const startSemaphoreServer = <TSemaphore>({
 }: SemaphoreServerOptions<TSemaphore>) => {
   const app = express()
   const port = semaphoreSteeringPort
-  const routingSemaphores = semaphoreConfigurations.map((semaphore, index) => ({
-    routeSemaphore: `${semaphore.type}${semaphore.number}`,
-    semaphore: semaphores[index]
-  }))
+  const handleSignalRequest = createSignalRequestHandler({
+    routingSignals,
+    semaphores,
+    semaphoreConfigurations
+  })
 
   const writeTimeOnConsole = (
     _req: Request,
@@ -64,17 +60,7 @@ export const startSemaphoreServer = <TSemaphore>({
   /// cors - Enable CORS for a Single Route (https://expressjs.com/en/resources/middleware/cors.html)
   /////////////////////////////////////////////////////
 
-  app.get('/:semaphore/:signal', cors(), (req, res) => {
-    const signalToShow = routingSignals.filter(
-      signal => signal.routeSignal === req.params.signal.toUpperCase()
-    )
-    const semaphoreToUse = routingSemaphores.filter(
-      semaphore => semaphore.routeSemaphore === req.params.semaphore
-    )
-
-    signalToShow[0].setSignal(semaphoreToUse[0].semaphore)
-    res.send(`Semaphore ${req.params.semaphore} ${req.params.signal} ON!`)
-  })
+  app.get('/:semaphore/:signal', cors(), handleSignalRequest)
 
   app.listen(port, () =>
     // eslint-disable-next-line no-console

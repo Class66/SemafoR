@@ -6,32 +6,22 @@ import {
   semaphoresGeneralConfiguration
 } from '../common/semaphores-config.ts'
 import { startSemaphoreServer } from './semaphore-server.ts'
+import {
+  createSemaphoreState,
+  getLedPinNumber,
+  signalStatus
+} from './semaphore-state.ts'
 
 const require = createRequire(import.meta.url)
 const { Board, Led } = require('johnny-five') as typeof import('johnny-five')
 
 // Arduino initialization
-const board = new Board({ port: 'COM3' })
+const board = new Board({ port: process.env.ARDUINO_PORT })
 
 type LedPin = InstanceType<typeof Led.RGB> & { pins: [number] }
 type SemaphoreLeds = Record<string, LedPin>
 type SignalName = (typeof signals)[keyof typeof signals]
 type SemaphoreType = (typeof semaphoreTypes)[keyof typeof semaphoreTypes]
-type SignalStatus = 'on' | 'pulse'
-type LoopInstance = {
-  semaphore: SemaphoreLeds
-  ledPin: number
-  instance: ReturnType<typeof setInterval>
-}
-type LedStatus = {
-  semaphore: SemaphoreLeds
-  ledPin: number
-  status: SignalStatus
-}
-type CurrentSignal = {
-  semaphore: SemaphoreLeds
-  signal: SignalName
-}
 type PulseEffectConfig = {
   brightnessStep: number
   delayLoop: number
@@ -143,162 +133,17 @@ board.on('ready', function () {
   /// OTHER DEFINITIONS
   /////////////////////////////////////////////////////
 
-  const status = {
-    ON: 'on',
-    PULSE: 'pulse'
-  } as const
-
-  let loopInstances: LoopInstance[] = []
-  let ledsStatus: LedStatus[] = []
-  let currentSignals: CurrentSignal[] = []
-
-  /////////////////////////////////////////////////////
-  /// LED STEERING METHODS
-  /////////////////////////////////////////////////////
-
-  const stopAllLoops = (semaphore: SemaphoreLeds, ledsPinToBeOn: number[]) => {
-    if (loopInstances.length) {
-      const loopInstancesForOtherSemaphores = loopInstances.filter(
-        loop => loop.semaphore !== semaphore
-      )
-      const loopInstancesForThisSemaphore = loopInstances.filter(
-        loop => loop.semaphore === semaphore
-      )
-      const loopInstancesForLedsToBeOff = loopInstancesForThisSemaphore.filter(
-        loop => !ledsPinToBeOn.includes(loop.ledPin)
-      )
-
-      loopInstancesForLedsToBeOff.forEach(loop => clearInterval(loop.instance))
-
-      const loopInstancesForLedsToBeOn = loopInstancesForThisSemaphore.filter(
-        loop => ledsPinToBeOn.includes(loop.ledPin)
-      )
-
-      loopInstances = []
-      loopInstances = loopInstances
-        .concat(loopInstancesForOtherSemaphores)
-        .concat(loopInstancesForLedsToBeOn)
-    }
-  }
-
-  const getLedPinNumber = (led: LedPin): number => led.pins[0]
-
-  const setCurrentSignal = (semaphore: SemaphoreLeds, signal: SignalName) => {
-    const currentSignal = {
-      semaphore: semaphore,
-      signal: signal
-    }
-
-    currentSignals.push(currentSignal)
-  }
-
-  const isSignalSet = (semaphore: SemaphoreLeds, signal: SignalName) => {
-    if (currentSignals.length) {
-      return currentSignals.find(
-        cs => cs.semaphore === semaphore && cs.signal === signal
-      )
-    }
-
-    return false
-  }
-
-  const removeSignal = (semaphore: SemaphoreLeds) => {
-    if (currentSignals.length) {
-      const index = currentSignals.findIndex(cs => cs.semaphore === semaphore)
-
-      if (index !== -1) {
-        console.table(currentSignals)
-        currentSignals.splice(index, 1)
-        console.table(currentSignals)
-      }
-    }
-  }
-
-  const putLedStatus = (
-    semaphore: SemaphoreLeds,
-    led: LedPin,
-    status: SignalStatus
-  ) => {
-    const ledPin = getLedPinNumber(led)
-    const ledStatus = {
-      semaphore: semaphore,
-      ledPin: ledPin,
-      status: status
-    }
-    const isLedActive = ledsStatus.some(
-      l => l.ledPin === ledPin && l.semaphore === semaphore
-    )
-
-    if (isLedActive) {
-      updateLedStatus(semaphore, led, status)
-      // eslint-disable-next-line no-console
-      console.table(ledsStatus)
-    } else {
-      ledsStatus.push(ledStatus)
-      // eslint-disable-next-line no-console
-      console.table(ledsStatus)
-    }
-  }
-
-  const updateLedStatus = (
-    semaphore: SemaphoreLeds,
-    led: LedPin,
-    status: SignalStatus
-  ) => {
-    const idx = ledsStatus.findIndex(
-      ledStatus =>
-        ledStatus.semaphore === semaphore &&
-        ledStatus.ledPin === getLedPinNumber(led)
-    )
-    ledsStatus[idx].status = status
-  }
-
-  const removeLedsStatus = (
-    semaphore: SemaphoreLeds,
-    ledsPinToBeOn: number[]
-  ) => {
-    if (ledsStatus.length) {
-      const ledsStatusForOthersSemaphores = ledsStatus.filter(
-        ledStatus => ledStatus.semaphore !== semaphore
-      )
-      const ledsStatusForThisSemaphore = ledsStatus.filter(
-        ledStatus => ledStatus.semaphore === semaphore
-      )
-      const ledsStatusForledsToBeOff = ledsStatusForThisSemaphore.filter(
-        ledStatus => ledsPinToBeOn.includes(ledStatus.ledPin)
-      )
-      ledsStatus = []
-      ledsStatus = ledsStatus
-        .concat(ledsStatusForOthersSemaphores)
-        .concat(ledsStatusForledsToBeOff)
-    }
-  }
-
-  const getLedStatus = (
-    semaphore: SemaphoreLeds,
-    led: LedPin
-  ): SignalStatus | false => {
-    if (ledsStatus.length) {
-      const ledPin = getLedPinNumber(led)
-      const ledStatus = ledsStatus.find(
-        ledStatus =>
-          ledStatus.ledPin === ledPin && ledStatus.semaphore === semaphore
-      )
-
-      if (ledStatus && ledStatus.hasOwnProperty('status')) {
-        return ledStatus.status
-      }
-    }
-
-    return false
-  }
-
-  const turnOffLeds = (semaphore: SemaphoreLeds, ledsPinToBeOn: number[]) => {
-    const ledsToBeOff = Object.values(semaphore)
-      .filter(val => val.pins) // the semaphore object could includes other props too
-      .filter(val => !ledsPinToBeOn.includes(val.pins[0]))
-    ledsToBeOff.forEach(led => led.off())
-  }
+  // The controller uses only 6 out of 12 functions, while the other 6 are called
+  // exclusively inside the factory. They were also returned so that they could
+  // be tested separately.
+  const {
+    addLoopInstance,
+    putLedStatus,
+    removeLedsStatus,
+    getLedStatus,
+    turnOffLeds,
+    generateSignal
+  } = createSemaphoreState<LedPin, SemaphoreLeds, SignalName>()
 
   /////////////////////////////////////////////////////
   /// LED EFFECTS METHODS
@@ -457,7 +302,7 @@ board.on('ready', function () {
     ledEffectConfig: { pulse: PulseEffectConfig },
     ledsPinToBeOn: number[]
   ) => {
-    if (getLedStatus(semaphore, led) === status.ON) {
+    if (getLedStatus(semaphore, led) === signalStatus.ON) {
       const loopInstance = pulseFromOn(
         led,
         ledMaxBrightness,
@@ -469,10 +314,10 @@ board.on('ready', function () {
         instance: loopInstance
       }
 
-      loopInstances.push(instance)
+      addLoopInstance(instance)
     } else if (
-      getLedStatus(semaphore, led) !== status.PULSE &&
-      getLedStatus(semaphore, led) !== status.ON
+      getLedStatus(semaphore, led) !== signalStatus.PULSE &&
+      getLedStatus(semaphore, led) !== signalStatus.ON
     ) {
       const loopInstance = pulse(led, ledMaxBrightness, ledEffectConfig.pulse)
       const instance = {
@@ -481,12 +326,12 @@ board.on('ready', function () {
         instance: loopInstance
       }
 
-      loopInstances.push(instance)
+      addLoopInstance(instance)
     }
 
     turnOffLeds(semaphore, ledsPinToBeOn)
     removeLedsStatus(semaphore, ledsPinToBeOn)
-    putLedStatus(semaphore, led, status.PULSE)
+    putLedStatus(semaphore, led, signalStatus.PULSE)
   }
 
   const fadeInComplex = (
@@ -496,37 +341,18 @@ board.on('ready', function () {
     ledEffectConfig: { fadeIn: FadeEffectConfig },
     ledsPinToBeOn: number[]
   ) => {
-    if (getLedStatus(semaphore, led) !== status.ON) {
+    if (getLedStatus(semaphore, led) !== signalStatus.ON) {
       fadeIn(led, ledMaxBrightness, ledEffectConfig.fadeIn)
     }
 
     turnOffLeds(semaphore, ledsPinToBeOn)
     removeLedsStatus(semaphore, ledsPinToBeOn)
-    putLedStatus(semaphore, led, status.ON)
+    putLedStatus(semaphore, led, signalStatus.ON)
   }
 
   /////////////////////////////////////////////////////
   /// CHANGE SIGNAL METHODS
   /////////////////////////////////////////////////////
-
-  const generateSignal = (
-    semaphore: SemaphoreLeds,
-    signalStatus: SignalName,
-    ledsPinToBeOn: number[],
-    effects: (() => void)[]
-  ) => {
-    if (!isSignalSet(semaphore, signalStatus)) {
-      removeSignal(semaphore)
-      setCurrentSignal(semaphore, signalStatus)
-      stopAllLoops(semaphore, ledsPinToBeOn)
-
-      effects.forEach(effect => {
-        if (typeof effect === 'function') {
-          effect()
-        }
-      })
-    }
-  }
 
   const setSignalS1 = (semaphore: SemaphoreLeds) => {
     const effects = [

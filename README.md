@@ -30,6 +30,7 @@ http://modelarstwo-kluba.pl/h0/sygnalizatory-swietlne/
 - [How to add a new semaphore definition to the configuration file](#how-to-add-a-new-semaphore-definition-to-the-configuration-file)
 - [Examples of definitions for all types of semaphores](#examples-of-definitions-for-all-types-of-semaphores)
 - [Predefined configurations](#predefined-configurations)
+- [Running tests](#running-tests)
 - [License and copyrights](#license-and-copyrights)
 
 ## Hardware requirements
@@ -106,11 +107,25 @@ npm install
 
 1. Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port
 
-2. Start the steering application and the user interface separately. On Windows, run `start-steering.bat` and `start-ui.bat` in separate windows. Alternatively, open two console windows in the project folder and run:
+2. Set the serial port of your Arduino in the `.env` file (one-time setup on each computer):
+
+   a. Find the port name: in Arduino IDE open 'Tools/Port' or, on Windows, Device Manager > 'Ports (COM & LPT)' (e.g. `COM3`).
+   b. Copy `.env.example` to `.env` in the project root folder.
+   c. Open `.env` and set the port, e.g.:
+
+      ```
+      ARDUINO_PORT=COM3
+      ```
+
+   - The `.env` file is **local to your computer** and is deliberately not committed to Git (it is listed in `.gitignore`). The port is not a secret, but it differs between computers, so a shared file would cause conflicts and overwrite other people's settings. The repository contains only the template `.env.example`.
+   - If `ARDUINO_PORT` is empty or the `.env` file does not exist, the application takes the **first available** USB/COM serial port.
+   - Restart the steering application after every change of `.env`.
+
+3. Start the steering application and the user interface separately. On Windows, run `start-steering.bat` and `start-ui.bat` in separate windows. Alternatively, open two console windows in the project folder and run:
 
 - **The steering application** - it's the main program responsible for steering semaphores via Arduino. It's based on Johnny-Five platform.<br>
 
-  > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port.
+  > Before run: Connect your circuit (Arduino, PCA9685 and conected semaphores) to the selected USB port and set `ARDUINO_PORT` as described in step 2.
 
   Run it with:
 
@@ -138,7 +153,7 @@ npm install
 
 ## How to add a new semaphore definition to the configuration file
 
-All configuration for this application is defined in `src/common/semaphores-config.js`.
+All configuration for this application is defined in `src/common/semaphores-config.ts`.
 
 > By default the application is prepared for using 3x "Sm" semaphores, 3x "Tm" semaphores and 1x "Sp" semaphore. The current circuit has two PCA9685 boards with defined addresses such as `0x40` and `0x41` . These addresses are defined in the `boardPCA9685Addresses` array in the same configuration file.
 
@@ -194,7 +209,7 @@ There are 10 types of semaphores in the application that correspons to the semap
 
 Examples of KLUBA semaphores object definiton:
 
-> You can copy it to your configuration file called `semaphores-config.js`.<br>
+> You can copy it to your configuration file called `semaphores-config.ts`.<br>
 > Remember to change pin numbers and board numbers.<br>
 > Optionally you can add 'label' property to define your own semaphore name.
 
@@ -413,11 +428,29 @@ Examples of KLUBA semaphores object definiton:
 
 ## Predefined configurations
 
-The two predefined configurations are `src/common/predefined/semaphores-config-1.js` and `src/common/predefined/semaphores-config-2.js`.<br>
-To use one, copy it to `src/common/semaphores-config.js`, replacing the existing configuration file.<br>
+The two predefined configurations are `src/common/predefined/semaphores-config-1.ts` and `src/common/predefined/semaphores-config-2.ts`.<br>
+To use one, copy it to `src/common/semaphores-config.ts`, replacing the existing configuration file.<br>
 **Remember to restart the whole application!**
 
 > These configurations are just examples so you can rely on them while building your own config file.
+
+## Running tests
+
+Unit tests cover the semaphore logic only (the user interface is not tested) and use [Vitest](https://vitest.dev/). They do not need Arduino or any connected hardware. Run them once with:
+
+```
+npm run test
+```
+
+or in watch mode with `npm run test:watch`.
+
+The tests are located next to the code they check:
+
+- `src/common/semaphores-config.test.ts` - configuration (port, PCA9685 addresses, pins, route names),
+- `src/server/semaphore-state.test.ts` - LED and signal state (`semaphore-state.ts`),
+- `src/server/semaphore-routing.test.ts` - handling of the `/:semaphore/:signal` endpoint (`semaphore-routing.ts`).
+
+An unknown semaphore or signal in the request URL is answered with HTTP `404`.
 
 ## License and copyrights
 
