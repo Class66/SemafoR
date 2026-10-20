@@ -45,7 +45,7 @@ Kolejność wpisów w `semaphoresLedConfiguration` musi odpowiadać kolejności 
 | `npm run check:staged` | Uruchamia lint-staged dla plików dodanych do indeksu Git.                |
 | `npm run prepare`      | Konfiguruje hooki Git przez Husky.                                      |
 
-Hook `.husky/pre-commit` przed commitem uruchamia `check:staged`, a następnie `type:check`.
+Hook `.husky/pre-commit` przed commitem uruchamia kolejno `check:staged`, `type:check` i `test` (testy jednostkowe Vitest). Błąd któregokolwiek kroku przerywa commit.
 
 ## Testy
 
