@@ -14,7 +14,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "lint:fix": "oxlint src/**/*.{js,jsx,ts,tsx} --fix",
+    "lint:fix": "oxlint src --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "check:staged": "lint-staged",
