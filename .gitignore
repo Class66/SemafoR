@@ -1,3 +1,8 @@
+# compiled output
+/dist
+/node_modules
+/build
+
 # Logs
 logs
 *.log
@@ -7,21 +12,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
 # Local environment settings (see .env.example)
 .env
 
-# Editor directories and files
+# IDE and Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
